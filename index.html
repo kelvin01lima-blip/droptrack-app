@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DropTrack - Distribuição Inteligente</title>
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- FontAwesome Ícones -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -38,27 +38,22 @@
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
       <div class="flex items-center space-x-3">
         <div class="w-10 h-10 bg-brandOrange rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brandOrange/30">
-          <i class="fa-solid me-0.5 fa-location-dot"></i>
+          <i class="fa-solid fa-location-dot"></i>
         </div>
         <div>
           <h1 class="text-2xl font-black tracking-wider text-white">Drop<span class="text-brandOrange">Track</span></h1>
           <p class="text-xs text-gray-400 tracking-widest uppercase">Distribuição Inteligente</p>
         </div>
       </div>
-      <nav class="hidden md:flex space-x-6 font-semibold text-sm">
+      <nav class="hidden md:flex space-x-6 font-semibold">
         <a href="#sobre" class="hover:text-brandOrange transition">O Que Fazemos</a>
         <a href="#diferenciais" class="hover:text-brandOrange transition">Compromisso</a>
         <a href="#precos" class="hover:text-brandOrange transition">Planos e Preços</a>
         <a href="#regioes" class="hover:text-brandOrange transition">Regiões</a>
       </nav>
-      <div class="flex space-x-2">
-        <button onclick="abrirModalLoginCliente()" class="bg-brandBlue/20 hover:bg-brandBlue/30 text-brandBlue border border-brandBlue/40 text-xs px-3 py-2 rounded-lg font-bold">
-          <i class="fa-solid fa-user mr-1"></i> Área do Cliente
-        </button>
-        <button onclick="abrirModalLoginAdmin()" class="bg-gray-800 hover:bg-gray-700 text-xs px-3 py-2 rounded-lg border border-gray-600 text-gray-300 font-bold">
-          <i class="fa-solid fa-user-shield mr-1"></i> Diretoria
-        </button>
-      </div>
+      <button onclick="abrirLogin()" class="bg-gray-800 hover:bg-gray-700 text-xs px-3 py-2 rounded border border-gray-600 text-gray-300">
+        <i class="fa-solid fa-lock mr-1"></i> Diretoria
+      </button>
     </div>
   </header>
 
@@ -100,8 +95,8 @@
     </div>
   </section>
 
-  <!-- DIFERENCIAIS -->
-  <section id="diferenciais" class="max-w-7xl mx-auto px-4 py-12 border-t border-gray-800/80">
+  <!-- COMPROMISSO OPERACIONAL -->
+  <section id="diferenciais" class="max-w-7xl mx-auto px-4 py-12 border-t border-gray-800">
     <div class="text-center mb-10">
       <span class="text-brandOrange font-bold text-sm uppercase tracking-wider">Qualidade e Cuidado</span>
       <h3 class="text-3xl font-bold text-white">Compromisso e Cuidado Operacional</h3>
@@ -110,28 +105,59 @@
       <div class="bg-brandCard p-6 rounded-xl border border-gray-800">
         <div class="text-brandOrange text-2xl mb-3"><i class="fa-solid fa-wind"></i></div>
         <h4 class="text-lg font-bold text-white mb-2">1. Proteção Contra o Vento</h4>
-        <p class="text-gray-400 text-xs leading-relaxed">Fixamos os folhetos no portão com elásticos quando não houver caixa de correio.</p>
+        <p class="text-gray-400 text-xs">Fixamos os folhetos no portão com elásticos quando não houver caixa de correio.</p>
       </div>
       <div class="bg-brandCard p-6 rounded-xl border border-gray-800">
         <div class="text-brandOrange text-2xl mb-3"><i class="fa-solid fa-cloud-showers-heavy"></i></div>
         <h4 class="text-lg font-bold text-white mb-2">2. Política Anti-Chuva</h4>
-        <p class="text-gray-400 text-xs leading-relaxed">Operação pausada em dias de chuva. Material 100% preservado e limpo.</p>
+        <p class="text-gray-400 text-xs">Operação pausada em dias de chuva. Material 100% preservado e limpo.</p>
       </div>
       <div class="bg-brandCard p-6 rounded-xl border border-gray-800">
         <div class="text-brandOrange text-2xl mb-3"><i class="fa-solid fa-calendar-check"></i></div>
         <h4 class="text-lg font-bold text-white mb-2">3. Reprogramação Sem Custo</h4>
-        <p class="text-gray-400 text-xs leading-relaxed">Garantia de reposição das datas em caso de interrupção climática.</p>
+        <p class="text-gray-400 text-xs">Garantia de reposição das datas em caso de interrupção climática.</p>
       </div>
     </div>
   </section>
 
   <!-- PREÇOS E PLANOS -->
-  <section id="precos" class="max-w-7xl mx-auto px-4 py-12 border-t border-gray-800/80">
+  <section id="precos" class="max-w-7xl mx-auto px-4 py-12 border-t border-gray-800">
     <div class="text-center mb-10">
       <h3 class="text-3xl font-bold text-white">Nossos Preços e Planos</h3>
       <p class="text-gray-400">Escolha a melhor estratégia para o seu negócio</p>
     </div>
-    <div class="grid md:grid-cols-2 gap-8" id="lista-precos"></div>
+
+    <div class="grid md:grid-cols-2 gap-8" id="lista-precos">
+      <!-- Card Compartilhado -->
+      <div class="bg-brandCard p-6 rounded-2xl border border-brandOrange/20 flex flex-col justify-between">
+        <div>
+          <span class="text-xs font-bold text-brandOrange uppercase">Plano Compartilhado</span>
+          <h4 class="text-2xl font-bold text-white mb-2" id="nome_p1">Compartilhado</h4>
+          <p class="text-gray-400 text-sm mb-6">Até 4 clientes não concorrentes por área.</p>
+          <div class="space-y-3 mb-6 text-sm">
+            <div class="flex justify-between border-b border-gray-800 pb-2"><span>Regional (1 área ~1.300 casas):</span><strong class="text-white" id="v1_reg">R$ 139,99</strong></div>
+            <div class="flex justify-between border-b border-gray-800 pb-2"><span>Semanal (5 áreas ~6.500 casas):</span><strong class="text-brandOrange" id="v1_sem">R$ 599,99</strong></div>
+            <div class="flex justify-between border-b border-gray-800 pb-2"><span>Mensal (20 áreas ~25.000 casas):</span><strong class="text-white" id="v1_men">R$ 1.999,99</strong></div>
+          </div>
+        </div>
+        <a href="#regioes" class="block text-center bg-gray-800 hover:bg-brandOrange text-white py-2.5 rounded-lg font-bold transition">Ver Regiões Disponíveis</a>
+      </div>
+
+      <!-- Card Premium -->
+      <div class="bg-brandCard p-6 rounded-2xl border border-brandOrange/20 flex flex-col justify-between">
+        <div>
+          <span class="text-xs font-bold text-brandOrange uppercase">Plano Premium</span>
+          <h4 class="text-2xl font-bold text-white mb-2" id="nome_p2">Exclusivo Premium</h4>
+          <p class="text-gray-400 text-sm mb-6">Área 100% dedicada exclusivamente à sua marca.</p>
+          <div class="space-y-3 mb-6 text-sm">
+            <div class="flex justify-between border-b border-gray-800 pb-2"><span>Regional (1 área ~1.300 casas):</span><strong class="text-white" id="v2_reg">R$ 499,99</strong></div>
+            <div class="flex justify-between border-b border-gray-800 pb-2"><span>Semanal (5 áreas ~6.500 casas):</span><strong class="text-brandOrange" id="v2_sem">R$ 2.299,99</strong></div>
+            <div class="flex justify-between border-b border-gray-800 pb-2"><span>Mensal (20 áreas ~25.000 casas):</span><strong class="text-white" id="v2_men">R$ 6.999,99</strong></div>
+          </div>
+        </div>
+        <a href="#regioes" class="block text-center bg-gray-800 hover:bg-brandOrange text-white py-2.5 rounded-lg font-bold transition">Ver Regiões Disponíveis</a>
+      </div>
+    </div>
   </section>
 
   <!-- SELEÇÃO DE REGIÕES (SEMANAS) -->
@@ -139,175 +165,466 @@
     <div class="text-center mb-10">
       <span class="text-brandOrange font-bold text-sm uppercase tracking-wider">Cronograma de Operações</span>
       <h3 class="text-3xl font-bold text-white">Escolha sua Região e Garanta sua Vaga</h3>
-      <p class="text-gray-400 mt-2">Clique em qualquer card para ver todos os detalhes operacionais e mapa da região.</p>
+      <p class="text-gray-400 mt-2">Clique em qualquer card para ver detalhes e solicitar. Início oficial: <strong class="text-brandOrange">19/10/2026</strong></p>
     </div>
 
     <!-- SELETOR DE SEMANAS -->
-    <div class="flex overflow-x-auto space-x-3 pb-4 mb-8 scrollbar-thin" id="botoes-semanas"></div>
+    <div class="flex overflow-x-auto space-x-3 pb-4 mb-8 scrollbar-thin" id="botoes-semanas">
+      <!-- Botoes gerados via JS -->
+    </div>
 
-    <!-- LISTA DE REGIÕES LIBERADAS -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6" id="cards-regioes"></div>
+    <!-- CARDS DAS REGIÕES -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6" id="cards-regioes">
+      <!-- Cards gerados via JS -->
+    </div>
   </section>
 
-  <!-- MODAL LOGIN CLIENTE -->
-  <div id="modalLoginCliente" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
-    <div class="bg-brandCard border border-brandBlue/30 p-6 rounded-2xl max-w-sm w-full text-center">
-      <div class="w-12 h-12 bg-brandBlue/20 border border-brandBlue/40 rounded-full flex items-center justify-center text-brandBlue text-xl mx-auto mb-3">
-        <i class="fa-solid fa-user"></i>
+  <!-- MODAL DETALHES CARD REGIÃO -->
+  <div id="modalDetalhesRegiao" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
+    <div class="bg-brandCard border border-brandOrange/30 p-6 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-3">
+        <h4 class="text-2xl font-bold text-white" id="detalheNomeRegiao">Detalhes da Região</h4>
+        <button onclick="fecharModalDetalhes()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
       </div>
-      <h4 class="text-xl font-bold text-white mb-1">Portal do Cliente</h4>
-      <p class="text-xs text-gray-400 mb-4">Acesse seus relatórios e mapas contratados</p>
-      
-      <form onsubmit="autenticarCliente(event)" class="space-y-3 text-left">
+
+      <div class="grid grid-cols-2 gap-4 text-sm mb-6 bg-gray-900/80 p-4 rounded-xl border border-gray-800">
+        <div><span class="text-gray-400">Residências:</span> <strong id="detalheResidencias" class="text-white block text-lg">0</strong></div>
+        <div><span class="text-gray-400">Pessoas Atingidas:</span> <strong id="detalhePessoas" class="text-brandOrange block text-lg">0</strong></div>
+        <div><span class="text-gray-400">Limite de Clientes:</span> <strong class="text-white block">Até 4 não concorrentes</strong></div>
+        <div><span class="text-gray-400">Status das Vagas:</span> <strong id="detalheVagas" class="text-green-400 block">3 vaga(s) restante(s)</strong></div>
+      </div>
+
+      <div class="space-y-3 text-xs text-gray-300 mb-6 bg-brandDark/50 p-4 rounded-xl border border-gray-800">
+        <h5 class="font-bold text-white text-sm">O que está incluído no relatório desta região:</h5>
+        <div class="flex items-start space-x-2"><i class="fa-solid fa-check text-brandOrange mt-0.5"></i> <span><strong>Relatório de GPS:</strong> Registro do percurso, velocidade e tempo de execução.</span></div>
+        <div class="flex items-start space-x-2"><i class="fa-solid fa-check text-brandOrange mt-0.5"></i> <span><strong>Comprovação Fotográfica:</strong> Registros em tempo real nos Stories e fotos reais das entregas.</span></div>
+        <div class="flex items-start space-x-2"><i class="fa-solid fa-check text-brandOrange mt-0.5"></i> <span><strong>Proteção de Segmento:</strong> Exclusividade garantida por ramo comercial.</span></div>
+      </div>
+
+      <button id="btnGarantirModalDetalhes" class="w-full bg-brandOrange hover:bg-brandOrangeHover text-white font-bold py-3.5 rounded-xl transition shadow-lg shadow-brandOrange/30">
+        Garantir Minha Vaga nesta Área
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL SOLICITAÇÃO CLIENTE -->
+  <div id="modalCliente" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
+    <div class="bg-brandCard border border-brandOrange/30 p-6 rounded-2xl max-w-lg w-full">
+      <div class="flex justify-between items-center mb-4">
+        <h4 class="text-xl font-bold text-white">Garantir Vaga na Região</h4>
+        <button onclick="fecharModalCliente()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+      </div>
+      <form onsubmit="enviarPedido(event)" class="space-y-4">
+        <input type="hidden" id="modalRegiaoNomeOculto">
         <div>
-          <label class="block text-xs text-gray-400 mb-1">E-mail / Usuário</label>
-          <input type="text" id="clienteUser" required placeholder="seu@email.com" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white focus:border-brandBlue outline-none text-sm">
+          <label class="block text-xs font-semibold text-gray-400 mb-1">Região Selecionada</label>
+          <input type="text" id="modalRegiaoNome" disabled class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white font-bold">
         </div>
         <div>
-          <label class="block text-xs text-gray-400 mb-1">Senha</label>
-          <input type="password" id="clientePass" required placeholder="••••••" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white focus:border-brandBlue outline-none text-sm">
+          <label class="block text-xs font-semibold text-gray-400 mb-1">Nome da Sua Empresa / Marca</label>
+          <input type="text" id="nomeEmpresa" required placeholder="Ex: Pizzaria Bella Limeira" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white outline-none focus:border-brandOrange">
         </div>
-        <p id="clienteLoginError" class="text-red-500 text-xs hidden">Credenciais inválidas ou cliente não encontrado!</p>
-        <div class="flex space-x-2 pt-2">
-          <button type="button" onclick="fecharModalLoginCliente()" class="w-1/2 bg-gray-800 hover:bg-gray-700 text-white py-2 rounded text-xs font-bold">Cancelar</button>
-          <button type="submit" class="w-1/2 bg-brandBlue hover:bg-blue-600 text-white py-2 rounded text-xs font-bold">Acessar</button>
+        <div>
+          <label class="block text-xs font-semibold text-gray-400 mb-1">Ramo de Atuação (Nicho)</label>
+          <input type="text" id="ramoEmpresa" required placeholder="Ex: Pizzaria / Loja de Sapatos" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white outline-none focus:border-brandOrange">
+          <p class="text-[10px] text-brandOrange mt-1">*Validamos seu ramo para evitar concorrência na mesma área!</p>
         </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-400 mb-1">Seu WhatsApp de Contato</label>
+          <input type="tel" id="whatsappEmpresa" required placeholder="(19) 99999-9999" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white outline-none focus:border-brandOrange">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-400 mb-1">Tipo de Plano Desejado</label>
+          <select id="tipoPlano" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white outline-none focus:border-brandOrange">
+            <option value="Compartilhado">Compartilhado (Até 4 parceiros não concorrentes)</option>
+            <option value="Exclusivo Premium">Exclusivo Premium (Área 100% dedicada)</option>
+          </select>
+        </div>
+        <button type="submit" class="w-full bg-brandOrange hover:bg-brandOrangeHover text-white font-bold py-3 rounded-xl transition shadow-lg shadow-brandOrange/30">
+          <i class="fa-brands fa-whatsapp mr-2"></i> Solicitar Participação via WhatsApp
+        </button>
       </form>
     </div>
   </div>
 
-  <!-- PORTAL / PAINEL DO CLIENTE LOGADO -->
-  <div id="modalPainelCliente" class="fixed inset-0 bg-black/85 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
-    <div class="bg-brandCard border border-brandBlue/40 p-6 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-      <div class="flex justify-between items-center mb-6 border-b border-gray-700 pb-3">
-        <div>
-          <h4 class="text-2xl font-bold text-white"><i class="fa-solid fa-chart-line text-brandBlue mr-2"></i> Painel do Parceiro</h4>
-          <p class="text-xs text-gray-400" id="nomeClienteLogado">Bem-vindo(a)</p>
-        </div>
-        <button onclick="fecharPainelCliente()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
-      </div>
-
-      <!-- HISTÓRICO DE CAMPANHAS DO CLIENTE -->
-      <h5 class="text-lg font-bold text-brandOrange mb-4"><i class="fa-solid fa-clock-rotate-left mr-1"></i> Suas Campanhas e Relatórios de Entrega</h5>
-      <div id="containerCampanhasCliente" class="space-y-4">
-        <!-- Renderizado dinamicamente -->
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL LOGIN DIRETORIA -->
+  <!-- MODAL LOGIN ADMIN (DIRETORIA) -->
   <div id="modalLoginAdmin" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
     <div class="bg-brandCard border border-brandOrange/30 p-6 rounded-2xl max-w-sm w-full text-center">
       <div class="w-12 h-12 bg-brandOrange/20 border border-brandOrange/40 rounded-full flex items-center justify-center text-brandOrange text-xl mx-auto mb-3">
-        <i class="fa-solid fa-user-shield"></i>
+        <i class="fa-solid fa-lock"></i>
       </div>
-      <h4 class="text-xl font-bold text-white mb-1">Acesso Diretoria</h4>
-      <p class="text-xs text-gray-400 mb-4">Painel de Gestão Estratégica</p>
+      <h4 class="text-xl font-bold text-white mb-1">Área Restrita (Diretoria)</h4>
+      <p class="text-xs text-gray-400 mb-4">Acesso exclusivo para gerenciamento</p>
       
       <form onsubmit="autenticarAdmin(event)" class="space-y-3 text-left">
         <div>
           <label class="block text-xs text-gray-400 mb-1">Usuário</label>
-          <input type="text" id="adminUser" required placeholder="diretoria" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white focus:border-brandOrange outline-none text-sm">
+          <input type="text" id="adminUser" required placeholder="diretoria" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white outline-none focus:border-brandOrange">
         </div>
         <div>
           <label class="block text-xs text-gray-400 mb-1">Senha</label>
-          <input type="password" id="adminPass" required placeholder="••••••" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white focus:border-brandOrange outline-none text-sm">
+          <input type="password" id="adminPass" required placeholder="••••••" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white outline-none focus:border-brandOrange">
         </div>
         <p id="loginError" class="text-red-500 text-xs hidden">Usuário ou senha incorretos!</p>
         <div class="flex space-x-2 pt-2">
-          <button type="button" onclick="fecharModalLoginAdmin()" class="w-1/2 bg-gray-800 hover:bg-gray-700 text-white py-2 rounded text-xs font-bold">Cancelar</button>
+          <button type="button" onclick="fecharLogin()" class="w-1/2 bg-gray-800 hover:bg-gray-700 text-white py-2 rounded text-xs font-bold">Cancelar</button>
           <button type="submit" class="w-1/2 bg-brandOrange hover:bg-brandOrangeHover text-white py-2 rounded text-xs font-bold">Entrar</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- PAINEL ADMINISTRATIVO (DIRETORIA) -->
+  <!-- MODAL PAINEL ADMINISTRATIVO -->
   <div id="modalAdmin" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
-    <div class="bg-brandCard border border-gray-700 p-6 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+    <div class="bg-brandCard border border-gray-700 p-6 rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
       <div class="flex justify-between items-center mb-6 border-b border-gray-700 pb-3">
-        <h4 class="text-2xl font-bold text-white"><i class="fa-solid fa-gears text-brandOrange mr-2"></i> Painel da Diretoria</h4>
-        <button onclick="toggleAdminModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+        <h4 class="text-2xl font-bold text-white"><i class="fa-solid fa-gears text-brandOrange mr-2"></i> Painel de Controle (Dono)</h4>
+        <button onclick="fecharAdmin()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
       </div>
 
-      <!-- ABAS DO PAINEL DA DIRETORIA -->
-      <div class="flex space-x-2 border-b border-gray-800 pb-3 mb-6">
-        <button onclick="mudarAbaAdmin('semanas')" id="btnAbaSemanas" class="px-4 py-2 rounded-lg text-xs font-bold bg-brandOrange text-white">Gerenciar Semanas e Regiões</button>
-        <button onclick="mudarAbaAdmin('clientes')" id="btnAbaClientes" class="px-4 py-2 rounded-lg text-xs font-bold bg-gray-800 text-gray-300">Clientes & Logins</button>
-        <button onclick="mudarAbaAdmin('historico')" id="btnAbaHistorico" class="px-4 py-2 rounded-lg text-xs font-bold bg-gray-800 text-gray-300">Histórico de Fechamentos</button>
-        <button onclick="mudarAbaAdmin('precos')" id="btnAbaPrecos" class="px-4 py-2 rounded-lg text-xs font-bold bg-gray-800 text-gray-300">Preços & Planos</button>
-      </div>
-
-      <!-- ABA 1: GERENCIAR SEMANAS -->
-      <div id="conteudoAbaSemanas" class="space-y-4">
-        <div class="flex justify-between items-center">
-          <div>
-            <label class="block text-xs font-semibold text-gray-400 mb-1">Selecione a Semana:</label>
-            <select id="adminSemanaSelect" onchange="carregarFormRegioesAdmin()" class="bg-gray-900 border border-gray-700 rounded p-2 text-white text-sm w-64">
-              <!-- JS -->
-            </select>
+      <!-- EDITAR VALORES -->
+      <div class="mb-8">
+        <h5 class="text-lg font-bold text-brandOrange mb-3"><i class="fa-solid fa-tag mr-1"></i> Editar Preços e Planos</h5>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-gray-900 p-3 rounded border border-gray-800 text-xs space-y-2">
+            <strong class="text-brandOrange block">Plano Compartilhado</strong>
+            <div><label>Regional (R$):</label> <input type="number" step="0.01" id="adm_v1_reg" value="139.99" class="bg-gray-800 p-1 rounded text-white w-full"></div>
+            <div><label>Semanal (R$):</label> <input type="number" step="0.01" id="adm_v1_sem" value="599.99" class="bg-gray-800 p-1 rounded text-white w-full"></div>
+            <div><label>Mensal (R$):</label> <input type="number" step="0.01" id="adm_v1_men" value="1999.99" class="bg-gray-800 p-1 rounded text-white w-full"></div>
           </div>
-          <button onclick="finalizarSemanaAtualAdmin()" class="bg-red-600/20 text-red-400 border border-red-500/30 hover:bg-red-600 hover:text-white px-4 py-2 rounded-lg text-xs font-bold transition">
-            <i class="fa-solid fa-flag-checkered mr-1"></i> Finalizar Semana e Abrir Próxima
-          </button>
+          <div class="bg-gray-900 p-3 rounded border border-gray-800 text-xs space-y-2">
+            <strong class="text-brandOrange block">Plano Premium Exclusivo</strong>
+            <div><label>Regional (R$):</label> <input type="number" step="0.01" id="adm_v2_reg" value="499.99" class="bg-gray-800 p-1 rounded text-white w-full"></div>
+            <div><label>Semanal (R$):</label> <input type="number" step="0.01" id="adm_v2_sem" value="2299.99" class="bg-gray-800 p-1 rounded text-white w-full"></div>
+            <div><label>Mensal (R$):</label> <input type="number" step="0.01" id="adm_v2_men" value="6999.99" class="bg-gray-800 p-1 rounded text-white w-full"></div>
+          </div>
+        </div>
+        <button onclick="salvarPrecos()" class="mt-3 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-bold">Salvar Preços</button>
+      </div>
+
+      <!-- EDITAR REGIÕES -->
+      <div>
+        <h5 class="text-lg font-bold text-brandOrange mb-3"><i class="fa-solid fa-map-location mr-1"></i> Gerenciar Regiões por Semana</h5>
+        <div class="mb-4">
+          <label class="block text-xs font-semibold text-gray-400 mb-1">Selecione a Semana para Editar:</label>
+          <select id="adminSemanaSelect" onchange="carregarFormAdminSemana()" class="bg-gray-900 border border-gray-700 rounded p-2 text-white w-full">
+            <!-- Opções de 1 a 10 geradas via JS -->
+          </select>
         </div>
 
-        <div id="adminRegioesContainer" class="space-y-4"></div>
+        <div id="adminRegioesContainer" class="space-y-4">
+          <!-- Formulários gerados via JS -->
+        </div>
 
         <div class="mt-4 flex space-x-3">
-          <button onclick="adicionarNovaRegiaoAdmin()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-xs font-bold">+ Adicionar Região nesta Semana</button>
-          <button onclick="salvarRegioesSemanaAdmin()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-xs font-bold">Salvar Regiões da Semana</button>
+          <button onclick="adicionarRegiaoAdmin()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-bold">+ Adicionar Região</button>
+          <button onclick="salvarRegioesAdmin()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-bold">Salvar Regiões da Semana</button>
         </div>
-      </div>
-
-      <!-- ABA 2: CLIENTES & LOGINS -->
-      <div id="conteudoAbaClientes" class="hidden space-y-4">
-        <h5 class="text-sm font-bold text-brandOrange">Cadastrar Novo Cliente / Conceder Acesso ao Portal</h5>
-        <form onsubmit="cadastrarClienteAdmin(event)" class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs bg-gray-900 p-4 rounded-xl border border-gray-800">
-          <div><label class="text-gray-400">Nome da Empresa</label><input type="text" id="cadEmpresa" required class="bg-gray-800 p-2 rounded text-white w-full border border-gray-700"></div>
-          <div><label class="text-gray-400">Login/E-mail</label><input type="text" id="cadEmail" required class="bg-gray-800 p-2 rounded text-white w-full border border-gray-700"></div>
-          <div><label class="text-gray-400">Senha Acesso</label><input type="text" id="cadSenha" required class="bg-gray-800 p-2 rounded text-white w-full border border-gray-700"></div>
-          <div><label class="text-gray-400">Ramo/Nicho</label><input type="text" id="cadRamo" required class="bg-gray-800 p-2 rounded text-white w-full border border-gray-700"></div>
-          <button type="submit" class="col-span-4 bg-brandOrange hover:bg-brandOrangeHover text-white py-2 rounded font-bold mt-2">Cadastrar Cliente</button>
-        </form>
-
-        <h5 class="text-sm font-bold text-white mt-6">Clientes Ativos</h5>
-        <div id="listaClientesAdmin" class="space-y-2"></div>
-      </div>
-
-      <!-- ABA 3: HISTÓRICO DE FECHAMENTOS & RELATÓRIOS -->
-      <div id="conteudoAbaHistorico" class="hidden space-y-4">
-        <h5 class="text-sm font-bold text-brandOrange">Registrar Relatório Pós-Campanha de Cliente</h5>
-        <form onsubmit="registrarRelatorioClienteAdmin(event)" class="grid grid-cols-2 md:grid-cols-3 gap-2 text-xs bg-gray-900 p-4 rounded-xl border border-gray-800">
-          <div>
-            <label class="text-gray-400">Selecione o Cliente</label>
-            <select id="relatClienteSelect" class="bg-gray-800 p-2 rounded text-white w-full border border-gray-700"></select>
-          </div>
-          <div><label class="text-gray-400">Região / Área</label><input type="text" id="relatRegiao" required placeholder="Ex: Vila Camargo" class="bg-gray-800 p-2 rounded text-white w-full border border-gray-700"></div>
-          <div><label class="text-gray-400">Data de Entrega</label><input type="date" id="relatData" required class="bg-gray-800 p-2 rounded text-white w-full border border-gray-700"></div>
-          <div><label class="text-gray-400">Entregador / Equipe</label><input type="text" id="relatEntregador" placeholder="Ex: Kelvin / Equipe A" class="bg-gray-800 p-2 rounded text-white w-full border border-gray-700"></div>
-          <div><label class="text-gray-400">Tempo Total</label><input type="text" id="relatTempo" placeholder="Ex: 4h 15min" class="bg-gray-800 p-2 rounded text-white w-full border border-gray-700"></div>
-          <div><label class="text-gray-400">Qtd Panfletos Entregues</label><input type="number" id="relatQtd" placeholder="1300" class="bg-gray-800 p-2 rounded text-white w-full border border-gray-700"></div>
-          <div><label class="text-gray-400">Custo por Folheto (R$)</label><input type="number" step="0.01" id="relatCustoFolheto" placeholder="0.14" class="bg-gray-800 p-2 rounded text-white w-full border border-gray-700"></div>
-          <div class="col-span-2"><label class="text-gray-400">URL / Link do Mapa de Calor GPS</label><input type="text" id="relatMapa" placeholder="https://..." class="bg-gray-800 p-2 rounded text-white w-full border border-gray-700"></div>
-          <button type="submit" class="col-span-3 bg-green-600 hover:bg-green-700 text-white py-2 rounded font-bold mt-2">Salvar Relatório e Enviar para Painel do Cliente</button>
-        </form>
-
-        <h5 class="text-sm font-bold text-white mt-6">Histórico Geral de Campanhas</h5>
-        <div id="listaHistoricoGeralAdmin" class="space-y-2"></div>
-      </div>
-
-      <!-- ABA 4: PREÇOS & PLANOS -->
-      <div id="conteudoAbaPrecos" class="hidden space-y-4">
-        <div class="grid md:grid-cols-2 gap-4" id="admin-precos-form"></div>
-        <button onclick="salvarPrecosAdmin()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-xs font-bold">Salvar Alterações de Preços</button>
       </div>
     </div>
   </div>
 
-  <!-- MODAL DETALHES CARD REGIÃO CLIENTE -->
-  <div id="modalDetalhesRegiao" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
-    <div class="bg-brandCard border border-brandOrange/30 p-6 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-      <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-3">
-        <h4 class="text-2xl font-bold text-white" id="detalheNomeRegiao">Detalhes da Região</h4>
-        <button onclick="fecharModalDetalhes()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl
+  <script>
+    // --- DADOS FIXOS INICIAIS (PDF 2) ---
+    const dadosIniciaisSemanas = [
+      {
+        semana: 1,
+        data: '19/10/2026',
+        regioes: [
+          { id: 'r1', nome: 'Vila Camargo / Nova Suíça', residencias: 900, pessoas: 2000, ocupadas: 1, max: 4, visivel: true },
+          { id: 'r2', nome: 'Jardim Cavinato / Nova Suíça', residencias: 1200, pessoas: 3500, ocupadas: 0, max: 4, visivel: true },
+          { id: 'r3', nome: 'Boa Vista / Vila Piza', residencias: 1300, pessoas: 3500, ocupadas: 2, max: 4, visivel: true },
+          { id: 'r4', nome: 'Boa Vista / Jardim Bandeirantes', residencias: 900, pessoas: 2500, ocupadas: 0, max: 4, visivel: true }
+        ]
+      }
+    ];
+
+    // Criar semanas 2 a 10 automaticamente
+    for (let i = 2; i <= 10; i++) {
+      dadosIniciaisSemanas.push({
+        semana: i,
+        data: `Semana ${i}`,
+        regioes: []
+      });
+    }
+
+    let bancoSemanas = JSON.parse(localStorage.getItem('dt_semanas_v2')) || dadosIniciaisSemanas;
+    let semanaAtual = 1;
+    const WHATSAPP_DONO = "5519999999999";
+
+    // --- RENDERIZAÇÃO DA PAGINA ---
+
+    function renderizarBotoesSemanas() {
+      const container = document.getElementById('botoes-semanas');
+      container.innerHTML = bancoSemanas.map(s => `
+        <button onclick="mudarSemana(${s.semana})" class="px-5 py-3 rounded-xl font-bold whitespace-nowrap transition border ${s.semana === semanaAtual ? 'bg-brandOrange text-white border-brandOrange shadow-lg shadow-brandOrange/20' : 'bg-brandCard text-gray-400 border-gray-800 hover:border-gray-700'}">
+          Semana ${s.semana}
+          <span class="block text-[10px] font-normal opacity-80">${s.data}</span>
+        </button>
+      `).join('');
+    }
+
+    function renderizarRegioes() {
+      const container = document.getElementById('cards-regioes');
+      const semanaObj = bancoSemanas.find(s => s.semana === semanaAtual);
+      const regioesVisiveis = semanaObj ? semanaObj.regioes.filter(r => r.visivel) : [];
+
+      if (!semanaObj || regioesVisiveis.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full text-center py-12 bg-brandCard rounded-2xl border border-gray-800">
+            <i class="fa-solid fa-calendar-xmark text-4xl text-gray-600 mb-3"></i>
+            <p class="text-gray-400">Nenhuma região liberada para esta semana ainda.</p>
+            <p class="text-xs text-gray-500 mt-1">Acesse a área da Diretoria para cadastrar e liberar visibilidade.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = regioesVisiveis.map(r => {
+        const vagasRestantes = r.max - r.ocupadas;
+
+        return `
+          <div onclick="abrirDetalhes('${r.id}')" class="cursor-pointer bg-brandCard rounded-2xl border ${vagasRestantes === 0 ? 'border-red-500/30 opacity-75' : 'border-gray-800 hover:border-brandOrange/50'} flex flex-col justify-between overflow-hidden shadow-xl transition transform hover:-translate-y-1">
+            <div class="relative h-40 w-full bg-gradient-to-br from-brandDark via-brandCard to-gray-900 border-b border-gray-800 flex flex-col items-center justify-center p-4 text-center">
+              <div class="w-12 h-12 rounded-full bg-brandOrange/20 border border-brandOrange/40 flex items-center justify-center text-brandOrange text-xl mb-2">
+                <i class="fa-solid fa-map-marked-alt"></i>
+              </div>
+              <span class="text-xs font-bold text-white tracking-wide">${r.nome}</span>
+              <span class="text-[10px] text-gray-400 mt-0.5">Clique para ver dados de cobertura</span>
+            </div>
+
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-start mb-3">
+                  <span class="bg-brandBlue/20 text-brandBlue border border-brandBlue/30 text-xs px-2.5 py-1 rounded-md font-bold">
+                    <i class="fa-solid fa-location-dot mr-1"></i> Área de Distribuição
+                  </span>
+                  ${vagasRestantes === 0 
+                    ? `<span class="bg-red-500/20 text-red-400 border border-red-500/30 text-xs px-2 py-0.5 rounded font-bold">FECHADA / LOTADA</span>`
+                    : `<span class="bg-green-500/20 text-green-400 border border-green-500/30 text-xs px-2 py-0.5 rounded font-bold">${vagasRestantes} vaga(s) restante(s)</span>`
+                  }
+                </div>
+
+                <h4 class="text-xl font-bold text-white mb-2">${r.nome}</h4>
+
+                <div class="grid grid-cols-2 gap-2 text-xs bg-gray-900/60 p-3 rounded-lg mb-4 border border-gray-800/80">
+                  <div><span class="text-gray-400">Residências:</span> <strong class="text-white block text-sm">${r.residencias.toLocaleString()}</strong></div>
+                  <div><span class="text-gray-400">Pessoas Atingidas:</span> <strong class="text-white block text-sm">+${r.pessoas.toLocaleString()}</strong></div>
+                </div>
+
+                <div class="bg-brandDark/50 p-3 rounded-lg border border-brandOrange/10 mb-4">
+                  <p class="text-xs text-gray-300">
+                    <i class="fa-solid fa-shield-cat text-brandOrange mr-1"></i>
+                    <strong>Exclusividade Garantida:</strong> Apenas 1 empresa por segmento.
+                  </p>
+                </div>
+              </div>
+
+              <div class="w-full ${vagasRestantes === 0 ? 'bg-gray-800 text-gray-500' : 'bg-brandOrange hover:bg-brandOrangeHover text-white'} py-3 rounded-xl font-bold transition flex items-center justify-center space-x-2 text-center text-sm shadow-lg">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>Ver Detalhes e Participar</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function mudarSemana(s) {
+      semanaAtual = s;
+      renderizarBotoesSemanas();
+      renderizarRegioes();
+    }
+
+    // --- MODAL DETALHES ---
+
+    function abrirDetalhes(idRegiao) {
+      const semanaObj = bancoSemanas.find(s => s.semana === semanaAtual);
+      const regiao = semanaObj.regioes.find(r => r.id === idRegiao);
+      if (!regiao) return;
+
+      document.getElementById('detalheNomeRegiao').innerText = regiao.nome;
+      document.getElementById('detalheResidencias').innerText = regiao.residencias.toLocaleString();
+      document.getElementById('detalhePessoas').innerText = '+' + regiao.pessoas.toLocaleString();
+      
+      const vagas = regiao.max - regiao.ocupadas;
+      document.getElementById('detalheVagas').innerText = `${vagas} vaga(s) disponível(is)`;
+
+      document.getElementById('btnGarantirModalDetalhes').onclick = function() {
+        fecharModalDetalhes();
+        abrirModalCliente(regiao.nome);
+      };
+
+      document.getElementById('modalDetalhesRegiao').classList.remove('hidden');
+    }
+
+    function fecharModalDetalhes() {
+      document.getElementById('modalDetalhesRegiao').classList.add('hidden');
+    }
+
+    // --- MODAL CLIENTE & PEDIDOS ---
+
+    function abrirModalCliente(nomeRegiao) {
+      document.getElementById('modalRegiaoNome').value = nomeRegiao;
+      document.getElementById('modalRegiaoNomeOculto').value = nomeRegiao;
+      document.getElementById('modalCliente').classList.remove('hidden');
+    }
+
+    function fecharModalCliente() {
+      document.getElementById('modalCliente').classList.add('hidden');
+    }
+
+    function enviarPedido(e) {
+      e.preventDefault();
+      const regiao = document.getElementById('modalRegiaoNomeOculto').value;
+      const empresa = document.getElementById('nomeEmpresa').value;
+      const ramo = document.getElementById('ramoEmpresa').value;
+      const whatsapp = document.getElementById('whatsappEmpresa').value;
+      const plano = document.getElementById('tipoPlano').value;
+
+      const mensagem = `Olá! Quero garantir vaga na *DropTrack*:%0A%0A` +
+        `📍 *Região:* ${regiao} (Semana ${semanaAtual})%0A` +
+        `🏢 *Empresa:* ${empresa}%0A` +
+        `🏷️ *Ramo/Nicho:* ${ramo}%0A` +
+        `📦 *Plano Desejado:* ${plano}%0A` +
+        `📞 *Contato:* ${whatsapp}`;
+
+      window.open(`https://wa.me/${WHATSAPP_DONO}?text=${mensagem}`, '_blank');
+      fecharModalCliente();
+    }
+
+    // --- LOGIN & PAINEL DIRETORIA ---
+
+    function abrirLogin() {
+      document.getElementById('loginError').classList.add('hidden');
+      document.getElementById('modalLoginAdmin').classList.remove('hidden');
+    }
+
+    function fecharLogin() {
+      document.getElementById('modalLoginAdmin').classList.add('hidden');
+    }
+
+    function autenticarAdmin(e) {
+      e.preventDefault();
+      const user = document.getElementById('adminUser').value;
+      const pass = document.getElementById('adminPass').value;
+
+      if (user === 'diretoria' && pass === '123456') {
+        fecharLogin();
+        abrirAdmin();
+      } else {
+        document.getElementById('loginError').classList.remove('hidden');
+      }
+    }
+
+    function abrirAdmin() {
+      carregarSelectSemanaAdmin();
+      carregarFormAdminSemana();
+      document.getElementById('modalAdmin').classList.remove('hidden');
+    }
+
+    function fecharAdmin() {
+      document.getElementById('modalAdmin').classList.add('hidden');
+    }
+
+    function carregarSelectSemanaAdmin() {
+      const select = document.getElementById('adminSemanaSelect');
+      select.innerHTML = bancoSemanas.map(s => `<option value="${s.semana}">Semana ${s.semana}</option>`).join('');
+    }
+
+    function carregarFormAdminSemana() {
+      const sem = parseInt(document.getElementById('adminSemanaSelect').value) || 1;
+      const semObj = bancoSemanas.find(s => s.semana === sem);
+      const container = document.getElementById('adminRegioesContainer');
+
+      if (!semObj || semObj.regioes.length === 0) {
+        container.innerHTML = `<p class="text-xs text-gray-500">Nenhuma região cadastrada para a Semana ${sem}. Clique no botão abaixo para adicionar.</p>`;
+        return;
+      }
+
+      container.innerHTML = semObj.regioes.map((r, index) => `
+        <div class="bg-gray-900 p-4 rounded-xl border border-gray-800 space-y-3">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-bold text-brandOrange">Região #${index + 1}</span>
+            <label class="flex items-center text-xs text-gray-300">
+              <input type="checkbox" id="adm_vis_${index}" ${r.visivel ? 'checked' : ''} class="mr-1">
+              Liberar Visibilidade para o Cliente
+            </label>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+            <div class="col-span-2">
+              <label class="text-gray-400">Nome da Região / Bairros</label>
+              <input type="text" id="adm_nome_${index}" value="${r.nome}" class="bg-gray-800 p-2 rounded text-white w-full border border-gray-700">
+            </div>
+            <div>
+              <label class="text-gray-400">Residências</label>
+              <input type="number" id="adm_res_${index}" value="${r.residencias}" class="bg-gray-800 p-2 rounded text-white w-full border border-gray-700">
+            </div>
+            <div>
+              <label class="text-gray-400">Pessoas Atingidas</label>
+              <input type="number" id="adm_pes_${index}" value="${r.pessoas}" class="bg-gray-800 p-2 rounded text-white w-full border border-gray-700">
+            </div>
+            <div>
+              <label class="text-gray-400">Vagas Ocupadas</label>
+              <input type="number" id="adm_ocup_${index}" value="${r.ocupadas}" min="0" max="4" class="bg-gray-800 p-2 rounded text-white w-full border border-gray-700">
+            </div>
+            <div>
+              <label class="text-gray-400">Limite Max Vagas</label>
+              <input type="number" id="adm_max_${index}" value="${r.max}" min="1" max="4" class="bg-gray-800 p-2 rounded text-white w-full border border-gray-700">
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function adicionarRegiaoAdmin() {
+      const sem = parseInt(document.getElementById('adminSemanaSelect').value) || 1;
+      const semObj = bancoSemanas.find(s => s.semana === sem);
+      semObj.regioes.push({
+        id: 'r_' + Date.now(),
+        nome: 'Nova Região em Limeira',
+        residencias: 1000,
+        pessoas: 3000,
+        ocupadas: 0,
+        max: 4,
+        visivel: true
+      });
+      carregarFormAdminSemana();
+    }
+
+    function salvarRegioesAdmin() {
+      const sem = parseInt(document.getElementById('adminSemanaSelect').value) || 1;
+      const semObj = bancoSemanas.find(s => s.semana === sem);
+
+      semObj.regioes.forEach((r, index) => {
+        r.nome = document.getElementById(`adm_nome_${index}`).value;
+        r.residencias = parseInt(document.getElementById(`adm_res_${index}`).value) || 0;
+        r.pessoas = parseInt(document.getElementById(`adm_pes_${index}`).value) || 0;
+        r.ocupadas = parseInt(document.getElementById(`adm_ocup_${index}`).value) || 0;
+        r.max = parseInt(document.getElementById(`adm_max_${index}`).value) || 4;
+        r.visivel = document.getElementById(`adm_vis_${index}`).checked;
+      });
+
+      localStorage.setItem('dt_semanas_v2', JSON.stringify(bancoSemanas));
+      renderizarRegioes();
+      alert(`Regiões da Semana ${sem} salvas!`);
+    }
+
+    function salvarPrecos() {
+      document.getElementById('v1_reg').innerText = 'R$ ' + parseFloat(document.getElementById('adm_v1_reg').value).toFixed(2);
+      document.getElementById('v1_sem').innerText = 'R$ ' + parseFloat(document.getElementById('adm_v1_sem').value).toFixed(2);
+      document.getElementById('v1_men').innerText = 'R$ ' + parseFloat(document.getElementById('adm_v1_men').value).toFixed(2);
+
+      document.getElementById('v2_reg').innerText = 'R$ ' + parseFloat(document.getElementById('adm_v2_reg').value).toFixed(2);
+      document.getElementById('v2_sem').innerText = 'R$ ' + parseFloat(document.getElementById('adm_v2_sem').value).toFixed(2);
+      document.getElementById('v2_men').innerText = 'R$ ' + parseFloat(document.getElementById('adm_v2_men').value).toFixed(2);
+
+      alert('Preços atualizados!');
+    }
+
+    // --- INICIALIZAÇÃO ---
+    renderizarBotoesSemanas();
+    renderizarRegioes();
+  </script>
+</body>
+</html>
