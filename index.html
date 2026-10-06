@@ -201,7 +201,7 @@
     <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6" id="cards-regioes"></div>
   </section>
 
-  <!-- MODAL DETALHES CARD REGIÃO -->
+  <!-- MODAL DETALHES CARD REGIÃO (COM ENQUADRAMENTO COMPLETO E ZOOM) -->
   <div id="modalDetalhesRegiao" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
     <div class="bg-brandCard border border-brandOrange/30 p-6 rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
       <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-3">
@@ -209,9 +209,16 @@
         <button onclick="fecharModalDetalhes()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
       </div>
 
+      <!-- Container do Mapa sem cortes -->
       <div class="mb-4">
-        <div id="galeriaGrande" class="relative h-72 w-full rounded-xl overflow-hidden border border-brandOrange/30 bg-gray-900 mb-2 flex items-center justify-center"></div>
-        <div id="galeriaMiniaturas" class="flex space-x-2 overflow-x-auto pb-2"></div>
+        <div id="galeriaGrande" class="relative h-80 w-full rounded-xl overflow-hidden border border-brandOrange/30 bg-gray-950/80 flex items-center justify-center p-2 group cursor-zoom-in" onclick="abrirZoomMapa()">
+          <!-- Imagem dinamicamente inserida com object-contain -->
+        </div>
+        <div class="flex justify-between items-center text-[10px] text-gray-400 px-1 mt-1">
+          <span><i class="fa-solid fa-magnifying-glass-plus text-brandOrange mr-1"></i> Clique no mapa para ver em Tela Cheia</span>
+          <span id="contadorFotosTexto">1/1</span>
+        </div>
+        <div id="galeriaMiniaturas" class="flex space-x-2 overflow-x-auto pt-2 pb-1"></div>
       </div>
 
       <div class="grid grid-cols-2 gap-4 text-sm mb-6 bg-gray-900/80 p-4 rounded-xl border border-gray-800">
@@ -225,6 +232,12 @@
         Garantir Minha Vaga nesta Área
       </button>
     </div>
+  </div>
+
+  <!-- MODAL ZOOM TELA CHEIA PARA O MAPA -->
+  <div id="modalZoomMapa" class="fixed inset-0 bg-black/95 hidden flex items-center justify-center p-2 z-[100]" onclick="fecharZoomMapa()">
+    <button class="absolute top-4 right-4 text-white text-3xl hover:text-brandOrange z-10"><i class="fa-solid fa-xmark"></i></button>
+    <img id="imgZoomMapa" src="" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl">
   </div>
 
   <!-- MODAL SOLICITAÇÃO CLIENTE -->
@@ -423,12 +436,11 @@
   </div>
 
   <script>
-    // --- CONVERSOR ROBUSTO GOOGLE DRIVE PARA LINK DIRETO DE IMAGEM ---
+    // --- CONVERSOR ROBUSTO GOOGLE DRIVE PARA LINK DIRETO ---
     function converterLinkDrive(url) {
       if (!url) return '';
       url = url.trim();
 
-      // Extrai a ID única do arquivo do Google Drive em vários formatos de URL
       let fileId = '';
       if (url.includes('drive.google.com')) {
         const matchFile = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
@@ -473,9 +485,9 @@
       };
     });
 
-    let precosData = JSON.parse(localStorage.getItem('dt_precos_v6')) || defaultPrecos;
-    let semanasData = JSON.parse(localStorage.getItem('dt_semanas_v6')) || defaultSemanas;
-    let pedidosData = JSON.parse(localStorage.getItem('dt_pedidos_v6')) || [];
+    let precosData = JSON.parse(localStorage.getItem('dt_precos_v7')) || defaultPrecos;
+    let semanasData = JSON.parse(localStorage.getItem('dt_semanas_v7')) || defaultSemanas;
+    let pedidosData = JSON.parse(localStorage.getItem('dt_pedidos_v7')) || [];
     let semanaAtual = 1;
     let clienteLogado = null;
     const WHATSAPP_DONO = "5519999999999";
@@ -549,10 +561,11 @@
         const fotosValidas = (r.fotos || []).map(f => converterLinkDrive(f)).filter(f => f && f.trim() !== '');
         const primeiraFoto = fotosValidas.length > 0 ? fotosValidas[0] : '';
 
+        // Exibição sem cortes usando object-contain
         const blocoImagem = primeiraFoto !== ''
-          ? `<div class="relative h-48 w-full overflow-hidden border-b border-brandOrange/30 bg-gray-900">
-               <img src="${primeiraFoto}" alt="Mapa ${r.nome}" class="w-full h-full object-cover" onerror="tratarErroImagemCard(this, '${r.nome}')">
-               <div class="absolute top-2 right-2 bg-brandDark/80 backdrop-blur px-2.5 py-1 rounded text-[10px] font-bold text-brandOrange border border-brandOrange/30">
+          ? `<div class="relative h-48 w-full border-b border-brandOrange/30 bg-gray-950 flex items-center justify-center p-2">
+               <img src="${primeiraFoto}" alt="Mapa ${r.nome}" class="max-h-full max-w-full object-contain" onerror="tratarErroImagemCard(this, '${r.nome}')">
+               <div class="absolute top-2 right-2 bg-brandDark/90 backdrop-blur px-2.5 py-1 rounded text-[10px] font-bold text-brandOrange border border-brandOrange/30 shadow">
                  <i class="fa-solid fa-images mr-1"></i> ${fotosValidas.length} Foto(s)
                </div>
              </div>`
@@ -628,12 +641,16 @@
       const fotosValidas = (regiao.fotos || []).map(f => converterLinkDrive(f)).filter(f => f && f.trim() !== '');
       const gGrande = document.getElementById('galeriaGrande');
       const gMini = document.getElementById('galeriaMiniaturas');
+      const contadorTxt = document.getElementById('contadorFotosTexto');
 
       if (fotosValidas.length > 0) {
-        gGrande.innerHTML = `<img id="imgPrincipalGaleria" src="${fotosValidas[0]}" class="w-full h-full object-cover" onerror="tratarErroGaleriaPrincipal(this)">`;
-        gMini.innerHTML = fotosValidas.map(f => `
-          <button onclick="trocarFotoGaleria('${f}')" class="w-16 h-16 rounded-lg overflow-hidden border border-brandOrange/40 flex-shrink-0 bg-gray-900">
-            <img src="${f}" class="w-full h-full object-cover">
+        // Renderiza com max-h e object-contain para exibir 100% do mapa sem cortes
+        gGrande.innerHTML = `<img id="imgPrincipalGaleria" src="${fotosValidas[0]}" class="max-h-full max-w-full object-contain" onerror="tratarErroGaleriaPrincipal(this)">`;
+        if (contadorTxt) contadorTxt.innerText = `1 / ${fotosValidas.length}`;
+
+        gMini.innerHTML = fotosValidas.map((f, idx) => `
+          <button onclick="trocarFotoGaleria('${f}', ${idx + 1}, ${fotosValidas.length})" class="w-16 h-16 rounded-lg overflow-hidden border border-brandOrange/40 flex-shrink-0 bg-gray-950 flex items-center justify-center">
+            <img src="${f}" class="max-h-full max-w-full object-contain">
           </button>
         `).join('');
       } else {
@@ -643,6 +660,7 @@
             <span>Setor Mapeado e Auditado via GPS em Limeira</span>
           </div>`;
         gMini.innerHTML = '';
+        if (contadorTxt) contadorTxt.innerText = `0 / 0`;
       }
 
       document.getElementById('btnGarantirModalDetalhes').onclick = function() {
@@ -665,13 +683,27 @@
       }
     }
 
-    function trocarFotoGaleria(url) {
+    function trocarFotoGaleria(url, atual, total) {
       const mainImg = document.getElementById('imgPrincipalGaleria');
       if (mainImg) mainImg.src = url;
+      const contadorTxt = document.getElementById('contadorFotosTexto');
+      if (contadorTxt) contadorTxt.innerText = `${atual} / ${total}`;
     }
 
     function fecharModalDetalhes() {
       document.getElementById('modalDetalhesRegiao').classList.add('hidden');
+    }
+
+    // ZOOM EM TELA CHEIA
+    function abrirZoomMapa() {
+      const mainImg = document.getElementById('imgPrincipalGaleria');
+      if (!mainImg || !mainImg.src) return;
+      document.getElementById('imgZoomMapa').src = mainImg.src;
+      document.getElementById('modalZoomMapa').classList.remove('hidden');
+    }
+
+    function fecharZoomMapa() {
+      document.getElementById('modalZoomMapa').classList.add('hidden');
     }
 
     // --- MODAL SOLICITAÇÃO CLIENTE ---
@@ -708,7 +740,7 @@
       };
 
       pedidosData.push(novoPedido);
-      localStorage.setItem('dt_pedidos_v6', JSON.stringify(pedidosData));
+      localStorage.setItem('dt_pedidos_v7', JSON.stringify(pedidosData));
 
       const mensagem = `Olá! Quero garantir vaga na *DropTrack*:%0A%0A` +
         `📍 *Região:* ${regiao} (Semana ${semanaAtual})%0A` +
@@ -914,7 +946,7 @@
         p.passCliente = document.getElementById('admCliPass').value.trim();
         p.pdfUrl = document.getElementById('admCliPdf').value.trim();
 
-        localStorage.setItem('dt_pedidos_v6', JSON.stringify(pedidosData));
+        localStorage.setItem('dt_pedidos_v7', JSON.stringify(pedidosData));
         renderizarPedidosAdmin();
         fecharGerenciarClienteAdmin();
         alert(`Acesso do cliente ${p.empresa} salvo com sucesso!`);
@@ -1034,7 +1066,7 @@
           ];
         });
 
-        localStorage.setItem('dt_semanas_v6', JSON.stringify(semanasData));
+        localStorage.setItem('dt_semanas_v7', JSON.stringify(semanasData));
         renderizarRegioes();
         alert(`Regiões e fotos salvas com sucesso para a Semana ${sem}!`);
       }
@@ -1060,7 +1092,7 @@
         p.mensal = parseFloat(document.getElementById(`adm_p_men_${index}`).value) || 0;
       });
 
-      localStorage.setItem('dt_precos_v6', JSON.stringify(precosData));
+      localStorage.setItem('dt_precos_v7', JSON.stringify(precosData));
       renderizarPrecos();
       alert('Tabela de preços atualizada com sucesso!');
     }
