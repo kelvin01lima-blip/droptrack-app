@@ -125,12 +125,12 @@
     </section>
   </main>
 
-  <!-- PÁGINA PAINEL DA DIRETORIA (SEÇÃO COMPLETA) -->
+  <!-- PÁGINA PAINEL DA DIRETORIA -->
   <section id="viewDiretoria" class="hidden max-w-7xl mx-auto px-4 py-8">
     <div class="flex justify-between items-center mb-8 border-b border-gray-800 pb-4">
       <div>
         <h2 class="text-3xl font-bold text-white"><i class="fa-solid fa-gears text-brandOrange mr-2"></i> Painel da Diretoria</h2>
-        <p class="text-xs text-gray-400">Gerenciamento completo do sistema e liberação de acessos dos clientes</p>
+        <p class="text-xs text-gray-400">Gerenciamento completo agrupado por regiões e controle de indisponibilidade</p>
       </div>
       <button onclick="navegarPara('home')" class="bg-gray-800 hover:bg-gray-700 text-xs px-4 py-2 rounded-xl text-gray-300 font-bold">
         <i class="fa-solid fa-arrow-left mr-1"></i> Voltar ao Site
@@ -139,18 +139,18 @@
 
     <!-- ABAS DA DIRETORIA -->
     <div class="flex space-x-3 mb-8">
-      <button onclick="mudarAbaAdmin('pedidos')" id="tabPed" class="px-5 py-3 rounded-xl font-bold text-xs bg-brandOrange text-white shadow">Base de Clientes & Acessos</button>
-      <button onclick="mudarAbaAdmin('regioes')" id="tabReg" class="px-5 py-3 rounded-xl font-bold text-xs bg-gray-800 text-gray-400 hover:text-white">Gerenciar Regiões e Fotos</button>
+      <button onclick="mudarAbaAdmin('pedidos')" id="tabPed" class="px-5 py-3 rounded-xl font-bold text-xs bg-brandOrange text-white shadow">Clientes Agrupados por Mapa</button>
+      <button onclick="mudarAbaAdmin('regioes')" id="tabReg" class="px-5 py-3 rounded-xl font-bold text-xs bg-gray-800 text-gray-400 hover:text-white">Gerenciar Regiões, Vagas e Fotos</button>
       <button onclick="mudarAbaAdmin('precos')" id="tabPre" class="px-5 py-3 rounded-xl font-bold text-xs bg-gray-800 text-gray-400 hover:text-white">Tabela de Preços</button>
     </div>
 
-    <!-- ABA 1: BASE DE CLIENTES EM CARDS SEPARADOS -->
+    <!-- ABA 1: CLIENTES AGRUPADOS POR REGIÃO/MAPA -->
     <div id="secAdminPedidos">
-      <h3 class="text-xl font-bold text-white mb-4">Clientes Cadastrados & Gestão de Credenciais</h3>
-      <div id="listaPedidosAdmin" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      <h3 class="text-xl font-bold text-white mb-4">Gestão de Campanhas por Região</h3>
+      <div id="listaPedidosAgrupadosAdmin" class="space-y-6"></div>
     </div>
 
-    <!-- ABA 2: EDITAR REGIÕES E MAPAS -->
+    <!-- ABA 2: EDITAR REGIÕES E MAPAS (COM BOTÃO DE DISPONIBILIDADE) -->
     <div id="secAdminRegioes" class="hidden">
       <div class="mb-6 bg-brandCard p-4 rounded-xl border border-gray-800">
         <label class="block text-xs font-semibold text-gray-400 mb-2">Selecione a Semana para Editar:</label>
@@ -170,16 +170,21 @@
     </div>
   </section>
 
-  <!-- PÁGINA ÁREA DO CLIENTE (SEÇÃO COMPLETA REDESENHADA) -->
+  <!-- PÁGINA ÁREA DO CLIENTE LOGADO -->
   <section id="viewCliente" class="hidden max-w-7xl mx-auto px-4 py-8">
     <div class="flex justify-between items-center mb-8 border-b border-gray-800 pb-4">
       <div>
-        <h2 class="text-3xl font-bold text-white" id="cliPainelNome">Área do Cliente</h2>
+        <h2 class="text-3xl font-bold text-white" id="cliPainelNome">Painel do Parceiro</h2>
         <p class="text-sm font-bold text-brandOrange" id="cliPainelEmpresa">Sua Empresa</p>
       </div>
-      <button onclick="sairPainelCliente()" class="bg-gray-800 hover:bg-gray-700 text-xs px-4 py-2 rounded-xl text-gray-300 font-bold">
-        <i class="fa-solid fa-right-from-bracket mr-1"></i> Sair do Painel
-      </button>
+      <div class="flex items-center space-x-3">
+        <button onclick="abrirModalContratarNovoMapa()" class="bg-brandOrange hover:bg-brandOrangeHover text-white text-xs px-4 py-2.5 rounded-xl font-bold shadow">
+          <i class="fa-solid fa-plus mr-1"></i> Contratar Novo Mapa / Área
+        </button>
+        <button onclick="sairPainelCliente()" class="bg-gray-800 hover:bg-gray-700 text-xs px-4 py-2 rounded-xl text-gray-300 font-bold">
+          <i class="fa-solid fa-right-from-bracket mr-1"></i> Sair
+        </button>
+      </div>
     </div>
 
     <!-- CUPOM DE DESCONTO -->
@@ -189,16 +194,16 @@
       <p class="text-xs text-gray-300">Você possui 10% de desconto adicional para contratações de novas áreas! <span class="text-brandOrange font-semibold">*Válido exceto para promoções já ativas (como a de Inauguração).</span></p>
     </div>
 
-    <!-- ÁREAS CONTRATADAS / ATIVAS -->
+    <!-- ÁREAS CONTRATADAS (CAMPANHA EM ANDAMENTO) -->
     <div class="mb-10">
-      <h3 class="text-xl font-bold text-white mb-4 flex items-center"><i class="fa-solid fa-map-location-dot text-brandOrange mr-2"></i> Áreas Contratadas (Campanha Ativa)</h3>
+      <h3 class="text-xl font-bold text-white mb-4 flex items-center"><i class="fa-solid fa-spinner text-brandOrange mr-2 animate-spin"></i> Campanhas em Andamento</h3>
       <div id="cliAreaContratadas" class="grid md:grid-cols-2 gap-6"></div>
     </div>
 
-    <!-- HISTÓRICO DE CAMPANHAS E RELATÓRIOS EM PDF -->
+    <!-- HISTÓRICO DE CAMPANHAS FINALIZADAS -->
     <div>
-      <h3 class="text-xl font-bold text-white mb-4 flex items-center"><i class="fa-solid fa-clock-rotate-left text-brandBlue mr-2"></i> Histórico de Campanhas & Relatórios em PDF</h3>
-      <div id="cliAreaHistorico" class="bg-brandCard p-6 rounded-2xl border border-gray-800"></div>
+      <h3 class="text-xl font-bold text-white mb-4 flex items-center"><i class="fa-solid fa-circle-check text-green-400 mr-2"></i> Histórico de Campanhas Concluídas</h3>
+      <div id="cliAreaHistorico" class="grid md:grid-cols-2 gap-6"></div>
     </div>
   </section>
 
@@ -238,7 +243,7 @@
     <img id="imgZoomMapa" src="" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl">
   </div>
 
-  <!-- MODAL SOLICITAÇÃO CLIENTE (SEM ABRIR WHATSAPP AUTOMÁTICO) -->
+  <!-- MODAL SOLICITAÇÃO CLIENTE DA HOME -->
   <div id="modalCliente" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
     <div class="bg-brandCard border border-brandOrange/30 p-6 rounded-2xl max-w-lg w-full">
       <div class="flex justify-between items-center mb-4">
@@ -279,6 +284,32 @@
     </div>
   </div>
 
+  <!-- MODAL CONTRATAR NOVO MAPA ESTANDO LOGADO -->
+  <div id="modalNovoMapaLogado" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
+    <div class="bg-brandCard border border-brandOrange/30 p-6 rounded-2xl max-w-lg w-full">
+      <div class="flex justify-between items-center mb-4">
+        <h4 class="text-xl font-bold text-white">Contratar Nova Área / Mapa</h4>
+        <button onclick="fecharModalContratarNovoMapa()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+      </div>
+      <form onsubmit="enviarNovoMapaLogado(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-gray-400 mb-1">Escolha o Mapa / Região Desejada</label>
+          <select id="novoMapaRegiaoSelect" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white outline-none focus:border-brandOrange text-xs"></select>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-400 mb-1">Tipo de Plano</label>
+          <select id="novoMapaPlanoSelect" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white outline-none focus:border-brandOrange text-xs">
+            <option value="Compartilhado">Compartilhado (Com 10% de Desconto)</option>
+            <option value="Exclusivo Premium">Exclusivo Premium (Com 10% de Desconto)</option>
+          </select>
+        </div>
+        <button type="submit" class="w-full bg-brandOrange hover:bg-brandOrangeHover text-white font-bold py-3 rounded-xl transition shadow-lg shadow-brandOrange/30">
+          Confirmar Pedido de Nova Área
+        </button>
+      </form>
+    </div>
+  </div>
+
   <!-- MODAL LOGIN CLIENTE -->
   <div id="modalLoginCliente" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
     <div class="bg-brandCard border border-brandBlue/40 p-6 rounded-2xl max-w-sm w-full text-center">
@@ -286,7 +317,7 @@
         <i class="fa-solid fa-user-check"></i>
       </div>
       <h4 class="text-xl font-bold text-white mb-1">Área do Cliente</h4>
-      <p class="text-xs text-gray-400 mb-4">Acesse seus relatórios em PDF e áreas contratadas</p>
+      <p class="text-xs text-gray-400 mb-4">Acesse seus relatórios e áreas contratadas</p>
       <form onsubmit="autenticarCliente(event)" class="space-y-3 text-left">
         <div>
           <label class="block text-xs text-gray-400 mb-1">Login / Usuário</label>
@@ -332,7 +363,7 @@
   </div>
 
   <script>
-    // --- NAVEGAÇÃO ENTRE PÁGINAS DA APLICAÇÃO ---
+    // --- NAVEGAÇÃO NATIVA ---
     function navegarPara(secao) {
       document.getElementById('viewHome').classList.add('hidden');
       document.getElementById('viewDiretoria').classList.add('hidden');
@@ -343,7 +374,7 @@
       if (secao === 'cliente') document.getElementById('viewCliente').classList.remove('hidden');
     }
 
-    // --- CONVERSOR GOOGLE DRIVE PARA IMAGEM DIRETA ---
+    // --- CONVERSOR GOOGLE DRIVE PARA IMAGEM ---
     function converterLinkDrive(url) {
       if (!url) return '';
       url = url.trim();
@@ -361,7 +392,7 @@
       return url;
     }
 
-    // --- DADOS INICIAIS ---
+    // --- BANCO DE DADOS LOCALSTORAGE DE RETENÇÃO ---
     const defaultPrecos = [
       { id: 'p1', nome: 'Plano Compartilhado', regional: 79.90, semanal: 349.50, mensal: 1199.80, desc: 'Até 4 parceiros por área (1 por segmento).' },
       { id: 'p2', nome: 'Promoção Inauguração', regional: 59.90, semanal: 279.50, mensal: 998.00, desc: 'Condição especial de lançamento!' },
@@ -373,10 +404,10 @@
       let regioes = [];
       if (i === 0) {
         regioes = [
-          { id: 'r1', nome: 'Vila Camargo / Nova Suíça', residencias: 900, pessoas: 2000, ocupadas: 1, max: 4, visivel: true, fotos: ['', '', '', '', ''] },
-          { id: 'r2', nome: 'Jardim Cavinato / Nova Suíça', residencias: 1200, pessoas: 3500, ocupadas: 0, max: 4, visivel: true, fotos: ['', '', '', '', ''] },
-          { id: 'r3', nome: 'Boa Vista / Vila Piza', residencias: 1300, pessoas: 3500, ocupadas: 2, max: 4, visivel: true, fotos: ['', '', '', '', ''] },
-          { id: 'r4', nome: 'Boa Vista / Jardim Bandeirantes', residencias: 900, pessoas: 2500, ocupadas: 0, max: 4, visivel: true, fotos: ['', '', '', '', ''] }
+          { id: 'r1', nome: 'Vila Camargo / Nova Suíça', residencias: 900, pessoas: 2000, ocupadas: 1, max: 4, visivel: true, disponivel: true, fotos: ['', '', '', '', ''] },
+          { id: 'r2', nome: 'Jardim Cavinato / Nova Suíça', residencias: 1200, pessoas: 3500, ocupadas: 0, max: 4, visivel: true, disponivel: true, fotos: ['', '', '', '', ''] },
+          { id: 'r3', nome: 'Boa Vista / Vila Piza', residencias: 1300, pessoas: 3500, ocupadas: 2, max: 4, visivel: true, disponivel: true, fotos: ['', '', '', '', ''] },
+          { id: 'r4', nome: 'Boa Vista / Jardim Bandeirantes', residencias: 900, pessoas: 2500, ocupadas: 0, max: 4, visivel: true, disponivel: true, fotos: ['', '', '', '', ''] }
         ];
       }
       return {
@@ -386,9 +417,9 @@
       };
     });
 
-    let precosData = JSON.parse(localStorage.getItem('dt_precos_v8')) || defaultPrecos;
-    let semanasData = JSON.parse(localStorage.getItem('dt_semanas_v8')) || defaultSemanas;
-    let pedidosData = JSON.parse(localStorage.getItem('dt_pedidos_v8')) || [];
+    let precosData = JSON.parse(localStorage.getItem('dt_precos_v10')) || defaultPrecos;
+    let semanasData = JSON.parse(localStorage.getItem('dt_semanas_v10')) || defaultSemanas;
+    let pedidosData = JSON.parse(localStorage.getItem('dt_pedidos_v10')) || [];
     let semanaAtual = 1;
     let clienteLogado = null;
 
@@ -450,7 +481,10 @@
       }
 
       container.innerHTML = regioesVisiveis.map(r => {
-        const vagasRestantes = r.max - r.ocupadas;
+        const semVagas = (r.max - r.ocupadas) <= 0;
+        const eIndisponivel = (r.disponivel === false) || semVagas;
+        const vagasRestantes = eIndisponivel ? 0 : (r.max - r.ocupadas);
+
         const fotosValidas = (r.fotos || []).map(f => converterLinkDrive(f)).filter(f => f && f.trim() !== '');
         const primeiraFoto = fotosValidas.length > 0 ? fotosValidas[0] : '';
 
@@ -467,15 +501,15 @@
              </div>`;
 
         return `
-          <div onclick="abrirDetalhesRegiao('${r.id}')" class="cursor-pointer bg-brandCard rounded-2xl border ${vagasRestantes === 0 ? 'border-red-500/30 opacity-75' : 'border-gray-800 hover:border-brandOrange/50'} flex flex-col justify-between overflow-hidden shadow-xl transition transform hover:-translate-y-1">
+          <div onclick="${eIndisponivel ? '' : `abrirDetalhesRegiao('${r.id}')`}" class="${eIndisponivel ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer hover:border-brandOrange/50 hover:-translate-y-1'} bg-brandCard rounded-2xl border border-gray-800 flex flex-col justify-between overflow-hidden shadow-xl transition transform">
             ${blocoImagem}
             <div class="p-6 flex-1 flex flex-col justify-between">
               <div>
                 <div class="flex justify-between items-start mb-3">
                   <span class="bg-brandBlue/20 text-brandBlue border border-brandBlue/30 text-[10px] px-2.5 py-1 rounded font-bold">Cobertura Auditada</span>
-                  ${vagasRestantes === 0 
-                    ? `<span class="bg-red-500/20 text-red-400 border border-red-500/30 text-[10px] px-2 py-0.5 rounded font-bold">LOTADO</span>`
-                    : `<span class="bg-green-500/20 text-green-400 border border-green-500/30 text-[10px] px-2 py-0.5 rounded font-bold">${vagasRestantes} vaga(s) disponível(is)</span>`
+                  ${eIndisponivel 
+                    ? `<span class="bg-red-500/20 text-red-400 border border-red-500/30 text-[10px] px-2.5 py-1 rounded font-bold">INDISPONÍVEL / ESGOTADO</span>`
+                    : `<span class="bg-green-500/20 text-green-400 border border-green-500/30 text-[10px] px-2.5 py-1 rounded font-bold">${vagasRestantes} vaga(s) disponível(is)</span>`
                   }
                 </div>
                 <h4 class="text-xl font-bold text-white mb-2">${r.nome}</h4>
@@ -484,9 +518,9 @@
                   <div><span class="text-gray-400">Pessoas:</span> <strong class="text-white block text-sm">+${r.pessoas.toLocaleString()}</strong></div>
                 </div>
               </div>
-              <div class="w-full ${vagasRestantes === 0 ? 'bg-gray-800 text-gray-500' : 'bg-brandOrange hover:bg-brandOrangeHover text-white'} py-3 rounded-xl font-bold transition flex items-center justify-center space-x-2 text-center text-xs shadow">
-                <i class="fa-solid fa-eye"></i>
-                <span>Ver Mapa e Fazer Pedido</span>
+              <div class="w-full ${eIndisponivel ? 'bg-gray-800 text-gray-500 cursor-not-allowed' : 'bg-brandOrange hover:bg-brandOrangeHover text-white'} py-3 rounded-xl font-bold transition flex items-center justify-center space-x-2 text-center text-xs shadow">
+                <i class="fa-solid ${eIndisponivel ? 'fa-lock' : 'fa-eye'}"></i>
+                <span>${eIndisponivel ? 'Área Totalmente Preenchida' : 'Ver Mapa e Fazer Pedido'}</span>
               </div>
             </div>
           </div>
@@ -555,7 +589,7 @@
     }
     function fecharZoomMapa() { document.getElementById('modalZoomMapa').classList.add('hidden'); }
 
-    // --- SOLICITAÇÃO CLIENTE (SEM WHATSAPP AUTOMÁTICO) ---
+    // --- SOLICITAÇÃO CLIENTE DA HOME ---
     function abrirModalCliente(nomeRegiao) {
       document.getElementById('modalRegiaoNome').value = nomeRegiao;
       document.getElementById('modalRegiaoNomeOculto').value = nomeRegiao;
@@ -579,20 +613,23 @@
         ramo: ramo,
         whatsapp: whatsapp,
         plano: plano,
+        status: 'Em Andamento',
         dataHora: new Date().toLocaleString('pt-BR'),
         userCliente: '',
         passCliente: '',
-        pdfUrl: ''
+        pdfUrl: '',
+        estrelas: 0,
+        feedback: ''
       };
 
       pedidosData.push(novoPedido);
-      localStorage.setItem('dt_pedidos_v8', JSON.stringify(pedidosData));
+      localStorage.setItem('dt_pedidos_v10', JSON.stringify(pedidosData));
 
       fecharModalCliente();
-      alert(`Solicitação registrada com sucesso! A diretoria analisará e liberará seu login e senha em breve.`);
+      alert(`Solicitação enviada com sucesso! A diretoria analisará e liberará seu login.`);
     }
 
-    // --- PAINEL DA DIRETORIA ---
+    // --- PAINEL DIRETORIA ---
     function abrirLoginAdmin() {
       document.getElementById('loginError').classList.add('hidden');
       document.getElementById('modalLoginAdmin').classList.remove('hidden');
@@ -604,7 +641,7 @@
       if (document.getElementById('adminUser').value === 'diretoria' && document.getElementById('adminPass').value === '123456') {
         fecharLoginAdmin();
         navegarPara('diretoria');
-        renderizarPedidosAdmin();
+        renderizarPedidosAgrupadosAdmin();
         carregarSelectSemanaAdmin();
         carregarFormAdminSemana();
         carregarFormAdminPrecos();
@@ -634,63 +671,97 @@
       }
     }
 
-    // CARDS DE CLIENTES COM CAMPOS EDITÁVEIS NA HORA
-    function renderizarPedidosAdmin() {
-      const container = document.getElementById('listaPedidosAdmin');
+    function renderizarPedidosAgrupadosAdmin() {
+      const container = document.getElementById('listaPedidosAgrupadosAdmin');
       if (!container) return;
       if (pedidosData.length === 0) {
-        container.innerHTML = `<p class="col-span-full text-xs text-gray-500 py-8 text-center bg-brandCard rounded-xl border border-gray-800">Nenhum cliente cadastrado ainda.</p>`;
+        container.innerHTML = `<p class="text-xs text-gray-500 py-8 text-center bg-brandCard rounded-xl border border-gray-800">Nenhum pedido registrado ainda.</p>`;
         return;
       }
 
-      container.innerHTML = pedidosData.map((p, idx) => `
-        <div class="bg-brandCard p-5 rounded-2xl border border-gray-800 flex flex-col justify-between space-y-4 shadow-xl">
-          <div>
-            <div class="flex justify-between items-start mb-2">
-              <h4 class="text-lg font-bold text-brandOrange">${p.empresa}</h4>
-              <span class="text-[10px] text-gray-400 bg-gray-900 px-2 py-0.5 rounded">${p.dataHora}</span>
-            </div>
-            <div class="text-xs space-y-1 text-gray-300 mb-4 bg-gray-900/60 p-3 rounded-xl border border-gray-800">
-              <p><strong>Ramo / Nicho:</strong> ${p.ramo}</p>
-              <p><strong>Região:</strong> ${p.regiao} (Semana ${p.semana})</p>
-              <p><strong>Plano:</strong> ${p.plano}</p>
-              <p><strong>WhatsApp:</strong> ${p.whatsapp}</p>
-            </div>
+      const grupos = {};
+      pedidosData.forEach((p, realIndex) => {
+        if (!grupos[p.regiao]) grupos[p.regiao] = [];
+        grupos[p.regiao].push({ ...p, realIndex });
+      });
 
-            <!-- DEFINIÇÃO DIRETA DE LOGIN, SENHA E PDF NO CARD -->
-            <div class="space-y-2 border-t border-gray-800 pt-3">
-              <strong class="text-xs text-white block"><i class="fa-solid fa-key text-brandOrange mr-1"></i> Acesso e Relatório do Cliente:</strong>
-              <div>
-                <label class="text-[10px] text-gray-400">Usuário de Acesso:</label>
-                <input type="text" id="adm_user_${idx}" value="${p.userCliente || ''}" placeholder="Ex: empresa123" class="w-full bg-gray-900 border border-gray-700 rounded p-1.5 text-xs text-white outline-none focus:border-brandOrange">
-              </div>
-              <div>
-                <label class="text-[10px] text-gray-400">Senha de Acesso:</label>
-                <input type="text" id="adm_pass_${idx}" value="${p.passCliente || ''}" placeholder="Ex: 123456" class="w-full bg-gray-900 border border-gray-700 rounded p-1.5 text-xs text-white outline-none focus:border-brandOrange">
-              </div>
-              <div>
-                <label class="text-[10px] text-gray-400">URL do PDF no Google Drive:</label>
-                <input type="text" id="adm_pdf_${idx}" value="${p.pdfUrl || ''}" placeholder="https://drive.google.com/..." class="w-full bg-gray-900 border border-gray-700 rounded p-1.5 text-xs text-white outline-none focus:border-brandOrange">
-              </div>
+      container.innerHTML = Object.keys(grupos).map(regiaoNome => {
+        const clientesNaRegiao = grupos[regiaoNome];
+        return `
+          <div class="bg-brandCard rounded-2xl border border-gray-800 overflow-hidden shadow-xl">
+            <div class="bg-gray-900/80 p-4 border-b border-gray-800 flex justify-between items-center">
+              <h4 class="text-lg font-bold text-brandOrange"><i class="fa-solid fa-map-pin mr-2"></i> ${regiaoNome}</h4>
+              <span class="bg-brandBlue/20 text-brandBlue border border-brandBlue/30 text-xs px-3 py-1 rounded font-bold">${clientesNaRegiao.length} Cliente(s)</span>
+            </div>
+            <div class="p-4 grid md:grid-cols-2 gap-4">
+              ${clientesNaRegiao.map(p => `
+                <div class="bg-gray-800/80 p-4 rounded-xl border border-gray-700 space-y-3 text-xs">
+                  <div class="flex justify-between items-center">
+                    <strong class="text-white text-sm">${p.empresa}</strong>
+                    <span class="px-2 py-0.5 rounded font-bold text-[10px] ${p.status === 'Finalizada' ? 'bg-green-500/20 text-green-400 border border-green-500/30' : 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30'}">
+                      ${p.status || 'Em Andamento'}
+                    </span>
+                  </div>
+                  <div class="space-y-1 text-gray-300">
+                    <p><strong>Nicho:</strong> ${p.ramo}</p>
+                    <p><strong>Plano:</strong> ${p.plano}</p>
+                    <p><strong>WhatsApp:</strong> ${p.whatsapp}</p>${p.estrelas ? `<p class="text-yellow-400"><strong>Nota:</strong> ${'★'.repeat(p.estrelas)} (${p.estrelas}/5)</p>` : ''}
+                    ${p.feedback ? `<p class="text-gray-300 italic">"${p.feedback}"</p>` : ''}
+                  </div>
+
+                  <div class="space-y-2 border-t border-gray-700 pt-2">
+                    <div>
+                      <label class="text-[10px] text-gray-400">Usuário:</label>
+                      <input type="text" id="adm_u_${p.realIndex}" value="${p.userCliente || ''}" class="w-full bg-gray-900 border border-gray-700 rounded p-1.5 text-white">
+                    </div>
+                    <div>
+                      <label class="text-[10px] text-gray-400">Senha:</label>
+                      <input type="text" id="adm_s_${p.realIndex}" value="${p.passCliente || ''}" class="w-full bg-gray-900 border border-gray-700 rounded p-1.5 text-white">
+                    </div>
+                    <div>
+                      <label class="text-[10px] text-gray-400">URL do PDF do Relatório:</label>
+                      <input type="text" id="adm_pdf_${p.realIndex}" value="${p.pdfUrl || ''}" class="w-full bg-gray-900 border border-gray-700 rounded p-1.5 text-white">
+                    </div>
+                  </div>
+
+                  <div class="flex space-x-2 pt-2">
+                    <button onclick="salvarAcessoClienteAdmin(${p.realIndex})" class="w-1/2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded text-[10px]">
+                      Salvar Dados
+                    </button>
+                    ${p.status !== 'Finalizada' ? `
+                      <button onclick="finalizarCampanhaAdmin(${p.realIndex})" class="w-1/2 bg-green-600 hover:bg-green-700 text-white font-bold py-2 rounded text-[10px]">
+                        Finalizar Campanha
+                      </button>
+                    ` : `
+                      <button disabled class="w-1/2 bg-gray-700 text-gray-400 font-bold py-2 rounded text-[10px]">Concluída</button>
+                    `}
+                  </div>
+                </div>
+              `).join('')}
             </div>
           </div>
-
-          <button onclick="salvarCredenciaisClienteCard(${idx})" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 rounded-xl text-xs transition shadow">
-            Salvar Credenciais do Cliente
-          </button>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
 
-    function salvarCredenciaisClienteCard(idx) {
+    function salvarAcessoClienteAdmin(idx) {
       if (pedidosData[idx]) {
-        pedidosData[idx].userCliente = document.getElementById(`adm_user_${idx}`).value.trim();
-        pedidosData[idx].passCliente = document.getElementById(`adm_pass_${idx}`).value.trim();
+        pedidosData[idx].userCliente = document.getElementById(`adm_u_${idx}`).value.trim();
+        pedidosData[idx].passCliente = document.getElementById(`adm_s_${idx}`).value.trim();
         pedidosData[idx].pdfUrl = document.getElementById(`adm_pdf_${idx}`).value.trim();
 
-        localStorage.setItem('dt_pedidos_v8', JSON.stringify(pedidosData));
-        alert(`Credenciais e PDF do cliente ${pedidosData[idx].empresa} salvas com sucesso!`);
-        renderizarPedidosAdmin();
+        localStorage.setItem('dt_pedidos_v10', JSON.stringify(pedidosData));
+        alert(`Dados do cliente ${pedidosData[idx].empresa} atualizados com sucesso!`);
+        renderizarPedidosAgrupadosAdmin();
+      }
+    }
+
+    function finalizarCampanhaAdmin(idx) {
+      if (pedidosData[idx]) {
+        pedidosData[idx].status = 'Finalizada';
+        localStorage.setItem('dt_pedidos_v10', JSON.stringify(pedidosData));
+        alert(`Campanha da empresa ${pedidosData[idx].empresa} foi FINALIZADA e movida para o histórico!`);
+        renderizarPedidosAgrupadosAdmin();
       }
     }
 
@@ -700,6 +771,7 @@
       select.innerHTML = semanasData.map(s => `<option value="${s.semana}">Semana ${s.semana} (${s.data})</option>`).join('');
     }
 
+    // FORMULARIO DA DIRETORIA COM TOGGLE DE DISPONIBILIDADE DO MAPA
     function carregarFormAdminSemana() {
       const select = document.getElementById('adminSemanaSelect');
       if (!select) return;
@@ -715,15 +787,24 @@
 
       container.innerHTML = semObj.regioes.map((r, index) => {
         const fotos = r.fotos || ['', '', '', '', ''];
+        const isDisp = r.disponivel !== false;
         return `
           <div class="bg-brandCard p-4 rounded-xl border border-gray-800 space-y-3 text-xs">
-            <div class="flex justify-between items-center">
+            <div class="flex flex-wrap justify-between items-center gap-2 border-b border-gray-800 pb-2">
               <span class="font-bold text-brandOrange">Região #${index + 1}</span>
-              <label class="flex items-center text-gray-300">
-                <input type="checkbox" id="adm_vis_${index}" ${r.visivel ? 'checked' : ''} class="mr-1">
-                Visível no Site
-              </label>
+              <div class="flex items-center space-x-4">
+                <label class="flex items-center text-gray-300">
+                  <input type="checkbox" id="adm_vis_${index}" ${r.visivel ? 'checked' : ''} class="mr-1">
+                  Visível no Site
+                </label>
+                <!-- BOTAO/TOGGLE INDISPONIVEL -->
+                <label class="flex items-center font-bold ${isDisp ? 'text-green-400' : 'text-red-400'}">
+                  <input type="checkbox" id="adm_disp_${index}" ${isDisp ? 'checked' : ''} class="mr-1">
+                  ${isDisp ? 'MAPA DISPONÍVEL' : 'MAPA INDISPONÍVEL / ESGOTADO'}
+                </label>
+              </div>
             </div>
+
             <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
               <div class="col-span-2">
                 <label class="text-gray-400">Nome da Região / Bairros</label>
@@ -776,6 +857,7 @@
           ocupadas: 0,
           max: 4,
           visivel: true,
+          disponivel: true,
           fotos: ['', '', '', '', '']
         });
         carregarFormAdminSemana();
@@ -796,6 +878,7 @@
           r.ocupadas = parseInt(document.getElementById(`adm_ocup_${index}`).value) || 0;
           r.max = parseInt(document.getElementById(`adm_max_${index}`).value) || 4;
           r.visivel = document.getElementById(`adm_vis_${index}`).checked;
+          r.disponivel = document.getElementById(`adm_disp_${index}`).checked;
 
           r.fotos = [
             document.getElementById(`adm_f0_${index}`).value.trim(),
@@ -806,9 +889,9 @@
           ];
         });
 
-        localStorage.setItem('dt_semanas_v8', JSON.stringify(semanasData));
+        localStorage.setItem('dt_semanas_v10', JSON.stringify(semanasData));
         renderizarRegioes();
-        alert(`Regiões e fotos salvas com sucesso para a Semana ${sem}!`);
+        alert(`Regiões e disponibilidade salvas com sucesso para a Semana ${sem}!`);
       }
     }
 
@@ -832,12 +915,12 @@
         p.mensal = parseFloat(document.getElementById(`adm_p_men_${index}`).value) || 0;
       });
 
-      localStorage.setItem('dt_precos_v8', JSON.stringify(precosData));
+      localStorage.setItem('dt_precos_v10', JSON.stringify(precosData));
       renderizarPrecos();
       alert('Tabela de preços atualizada com sucesso!');
     }
 
-    // --- ÁREA DO CLIENTE (PÁGINA COMPLETA & HISTÓRICO) ---
+    // --- ÁREA DO CLIENTE LOGADO & AVALIAÇÃO ---
     function abrirLoginCliente() {
       document.getElementById('cliLoginError').classList.add('hidden');
       document.getElementById('modalLoginCliente').classList.remove('hidden');
@@ -866,50 +949,156 @@
       document.getElementById('cliPainelNome').innerText = `Painel do Parceiro`;
       document.getElementById('cliPainelEmpresa').innerText = clienteLogado.empresa;
 
-      // Áreas Ativas Contratadas
-      const areaContratada = document.getElementById('cliAreaContratadas');
-      areaContratada.innerHTML = `
-        <div class="bg-brandCard p-6 rounded-2xl border border-gray-800 shadow-xl flex flex-col justify-between">
-          <div>
-            <div class="flex justify-between items-center mb-3">
-              <span class="bg-green-500/20 text-green-400 border border-green-500/30 text-[10px] px-2.5 py-1 rounded font-bold uppercase">Campanha em Andamento</span>
-              <span class="text-xs text-gray-400">Semana ${clienteLogado.semana}</span>
-            </div>
-            <h4 class="text-xl font-bold text-white mb-2">${clienteLogado.regiao}</h4>
-            <div class="text-xs text-gray-300 space-y-1 bg-gray-900/60 p-3 rounded-xl border border-gray-800 mb-4">
-              <p><strong>Plano Contratado:</strong> ${clienteLogado.plano}</p>
-              <p><strong>Segmento Garantido:</strong> ${clienteLogado.ramo}</p>
-            </div>
-          </div>
-          <div class="text-xs text-brandOrange font-semibold flex items-center">
-            <i class="fa-solid fa-satellite-dish mr-1 animate-pulse"></i> Auditoria GPS em processamento no setor
-          </div>
-        </div>
-      `;
+      const meusPedidos = pedidosData.filter(p => p.userCliente === clienteLogado.userCliente);
+      const emAndamento = meusPedidos.filter(p => p.status !== 'Finalizada');
+      const finalizados = meusPedidos.filter(p => p.status === 'Finalizada');
 
-      // Histórico de Campanhas e Download de PDF do Google Drive
-      const areaHistorico = document.getElementById('cliAreaHistorico');
-      if (clienteLogado.pdfUrl && clienteLogado.pdfUrl.trim() !== '') {
-        const pdfLink = converterLinkDrive(clienteLogado.pdfUrl);
-        areaHistorico.innerHTML = `
-          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div>
-              <h5 class="text-lg font-bold text-white mb-1"><i class="fa-solid fa-file-pdf text-red-500 mr-2"></i> Relatório Completo de Distribuição</h5>
-              <p class="text-xs text-gray-400">Acesse o PDF com mapa de calor por GPS e fotos auditadas da sua campanha na região <strong>${clienteLogado.regiao}</strong>.</p>
-            </div>
-            <a href="${pdfLink}" target="_blank" class="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-xl text-xs shadow transition whitespace-nowrap flex items-center justify-center">
-              <i class="fa-solid fa-file-arrow-down mr-2 text-sm"></i> Visualizar / Baixar Relatório PDF
-            </a>
-          </div>
-        `;
+      const containerAndamento = document.getElementById('cliAreaContratadas');
+      if (emAndamento.length === 0) {
+        containerAndamento.innerHTML = `<p class="col-span-full text-xs text-gray-500 py-6 text-center bg-brandCard rounded-xl border border-gray-800">Você não possui campanhas em andamento no momento.</p>`;
       } else {
-        areaHistorico.innerHTML = `
-          <div class="text-center py-6 text-xs text-gray-400">
-            <i class="fa-solid fa-clock text-2xl text-brandOrange mb-2 block"></i>
-            Seu relatório em PDF ainda está sendo gerado pela diretoria. Assim que a rota for finalizada, o documento ficará disponível aqui.
-          </div>
-        `;
+        containerAndamento.innerHTML = emAndamento.map(p => {
+          const pdfLink = converterLinkDrive(p.pdfUrl);
+          return `
+            <div class="bg-brandCard p-6 rounded-2xl border border-gray-800 shadow-xl flex flex-col justify-between space-y-4">
+              <div>
+                <div class="flex justify-between items-center mb-3">
+                  <span class="bg-brandOrange/20 text-brandOrange border border-brandOrange/30 text-[10px] px-2.5 py-1 rounded font-bold uppercase">Em Andamento</span>
+                  <span class="text-xs text-gray-400">Semana ${p.semana}</span>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-2">${p.regiao}</h4>
+                <div class="text-xs text-gray-300 space-y-1 bg-gray-900/60 p-3 rounded-xl border border-gray-800 mb-3">
+                  <p><strong>Plano:</strong> ${p.plano}</p>
+                  <p><strong>Nicho Garantido:</strong> ${p.ramo}</p>
+                </div>
+
+                ${p.pdfUrl ? `
+                  <a href="${pdfLink}" target="_blank" class="block w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 rounded-xl text-xs text-center shadow mb-3">
+                    <i class="fa-solid fa-file-pdf mr-1"></i> Visualizar / Baixar Relatório PDF
+                  </a>
+                ` : `
+                  <p class="text-[11px] text-gray-500 italic mb-3">Relatório em PDF em processamento pela diretoria.</p>
+                `}
+              </div>
+
+              <a href="https://www.instagram.com/droptrackinteligente/" target="_blank" class="bg-pink-600/20 hover:bg-pink-600/30 text-pink-400 border border-pink-500/30 py-2 px-3 rounded-xl text-xs font-bold text-center flex items-center justify-center transition">
+                <i class="fa-brands fa-instagram mr-2 text-sm"></i> Veja sua campanha em nosso Instagram
+              </a>
+            </div>
+          `;
+        }).join('');
       }
+
+      const containerHistorico = document.getElementById('cliAreaHistorico');
+      if (finalizados.length === 0) {
+        containerHistorico.innerHTML = `<p class="col-span-full text-xs text-gray-500 py-6 text-center bg-brandCard rounded-xl border border-gray-800">Sua conta ainda não possui histórico de campanhas finalizadas.</p>`;
+      } else {
+        containerHistorico.innerHTML = finalizados.map(p => {
+          const pdfLink = converterLinkDrive(p.pdfUrl);
+          const realIdx = pedidosData.findIndex(item => item.id === p.id);
+          return `
+            <div class="bg-brandCard p-6 rounded-2xl border border-gray-800 shadow-xl space-y-4">
+              <div class="flex justify-between items-center">
+                <h4 class="text-lg font-bold text-white">${p.regiao}</h4>
+                <span class="bg-green-500/20 text-green-400 border border-green-500/30 text-[10px] px-2.5 py-1 rounded font-bold uppercase">Concluída</span>
+              </div>
+              <div class="text-xs text-gray-300 bg-gray-900/60 p-3 rounded-xl border border-gray-800">
+                <p><strong>Plano:</strong> ${p.plano} | <strong>Data:</strong> ${p.dataHora}</p>
+              </div>
+
+              ${p.pdfUrl ? `
+                <a href="${pdfLink}" target="_blank" class="block w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 rounded-xl text-xs text-center shadow">
+                  <i class="fa-solid fa-file-arrow-down mr-1"></i> Baixar Relatório Completo PDF
+                </a>
+              ` : ''}
+
+              <div class="bg-gray-900/80 p-4 rounded-xl border border-gray-800 space-y-2">
+                <strong class="text-xs text-brandOrange block">Sua Avaliação do Serviço:</strong>
+                <div class="flex space-x-2 text-lg text-yellow-400">
+                  ${[1, 2, 3, 4, 5].map(star => `
+                    <button onclick="avaliarCampanhaCliente(${realIdx},${star})" class="hover:scale-125 transition">
+                      ${star <= (p.estrelas || 0) ? '★' : '☆'}
+                    </button>
+                  `).join('')}
+                </div>
+                <div class="flex space-x-2 pt-1">
+                  <input type="text" id="fb_txt_${realIdx}" maxlength="100" value="${p.feedback || ''}" placeholder="Escreva um feedback (max 100 caracteres)" class="bg-gray-800 border border-gray-700 rounded p-2 text-xs text-white w-full outline-none focus:border-brandOrange">
+                  <button onclick="salvarFeedbackCliente(${realIdx})" class="bg-brandOrange hover:bg-brandOrangeHover text-white px-3 py-1 rounded font-bold text-xs">
+                    Enviar
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+    }
+
+    function avaliarCampanhaCliente(idx, nota) {
+      if (pedidosData[idx]) {
+        pedidosData[idx].estrelas = nota;
+        localStorage.setItem('dt_pedidos_v10', JSON.stringify(pedidosData));
+        renderizarPainelClientePagina();
+      }
+    }
+
+    function salvarFeedbackCliente(idx) {
+      if (pedidosData[idx]) {
+        const txt = document.getElementById(`fb_txt_${idx}`).value.trim();
+        pedidosData[idx].feedback = txt;
+        localStorage.setItem('dt_pedidos_v10', JSON.stringify(pedidosData));
+        alert('Obrigado pelo seu feedback!');
+        renderizarPainelClientePagina();
+      }
+    }
+
+    function abrirModalContratarNovoMapa() {
+      const select = document.getElementById('novoMapaRegiaoSelect');
+      select.innerHTML = '';
+      semanasData.forEach(s => {
+        s.regioes.forEach(r => {
+          if (r.visivel && r.disponivel !== false && (r.max - r.ocupadas > 0)) {
+            select.innerHTML += `<option value="${r.nome} (Semana ${s.semana})">${r.nome} - Semana ${s.semana}</option>`;
+          }
+        });
+      });
+      document.getElementById('modalNovoMapaLogado').classList.remove('hidden');
+    }
+
+    function fecharModalContratarNovoMapa() {
+      document.getElementById('modalNovoMapaLogado').classList.add('hidden');
+    }
+
+    function enviarNovoMapaLogado(e) {
+      e.preventDefault();
+      if (!clienteLogado) return;
+
+      const regiao = document.getElementById('novoMapaRegiaoSelect').value;
+      const plano = document.getElementById('novoMapaPlanoSelect').value;
+
+      const novoPedido = {
+        id: 'p_' + Date.now(),
+        regiao: regiao,
+        semana: 1,
+        empresa: clienteLogado.empresa,
+        ramo: clienteLogado.ramo,
+        whatsapp: clienteLogado.whatsapp,
+        plano: plano,
+        status: 'Em Andamento',
+        dataHora: new Date().toLocaleString('pt-BR'),
+        userCliente: clienteLogado.userCliente,
+        passCliente: clienteLogado.passCliente,
+        pdfUrl: '',
+        estrelas: 0,
+        feedback: ''
+      };
+
+      pedidosData.push(novoPedido);
+      localStorage.setItem('dt_pedidos_v10', JSON.stringify(pedidosData));
+
+      fecharModalContratarNovoMapa();
+      alert('Sua nova solicitação de mapa foi enviada para a diretoria!');
+      renderizarPainelClientePagina();
     }
 
     function sairPainelCliente() {
