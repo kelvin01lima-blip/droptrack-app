@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DropTrack - Distribuição Inteligente</title>
-  <!-- Tailwind CSS -->
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- FontAwesome Ícones -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -19,6 +19,10 @@
             brandOrangeHover: '#d95300',
             brandBlue: '#007bd2',
             brandLight: '#e6f1ff'
+          },
+          animation: {
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'bounce-soft': 'bounce 2s infinite'
           }
         }
       }
@@ -26,7 +30,7 @@
   </script>
   <style>
     .bg-grid {
-      background-image: radial-gradient(rgba(249, 109, 17, 0.1) 1px, transparent 0);
+      background-image: radial-gradient(rgba(249, 109, 17, 0.12) 1px, transparent 0);
       background-size: 24px 24px;
     }
   </style>
@@ -37,7 +41,8 @@
   <header class="bg-brandDark/90 backdrop-blur border-b border-brandOrange/20 sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
       <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 bg-brandOrange rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brandOrange/30">
+        <!-- LOGO DROPTRACK -->
+        <div class="w-10 h-10 bg-brandOrange rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brandOrange/30 animate-pulse-slow">
           <i class="fa-solid fa-location-dot"></i>
         </div>
         <div>
@@ -46,159 +51,175 @@
         </div>
       </div>
       <nav class="hidden md:flex space-x-6 font-semibold">
-        <a href="#sobre" class="hover:text-brandOrange transition">O Que Fazemos</a>
+        <a href="#sobre" class="hover:text-brandOrange transition">Quem Somos</a>
         <a href="#diferenciais" class="hover:text-brandOrange transition">Compromisso</a>
         <a href="#precos" class="hover:text-brandOrange transition">Planos e Preços</a>
         <a href="#regioes" class="hover:text-brandOrange transition">Regiões</a>
       </nav>
-      <button onclick="abrirLogin()" class="bg-gray-800 hover:bg-gray-700 text-xs px-3 py-2 rounded border border-gray-600 text-gray-300">
-        <i class="fa-solid fa-lock mr-1"></i> Diretoria
-      </button>
+      <div class="flex items-center space-x-2">
+        <a href="#regioes" class="bg-brandBlue/20 text-brandBlue border border-brandBlue/40 text-xs px-3 py-2 rounded font-bold hover:bg-brandBlue/30 transition">
+          <i class="fa-solid fa-user-tag mr-1"></i> Área do Cliente
+        </a>
+        <button onclick="abrirLoginAdmin()" class="bg-gray-800 hover:bg-gray-700 text-xs px-3 py-2 rounded border border-gray-600 text-gray-300">
+          <i class="fa-solid fa-lock mr-1"></i> Diretoria
+        </button>
+      </div>
     </div>
   </header>
 
   <!-- HERO SECTION -->
-  <section class="max-w-7xl mx-auto px-4 py-12 text-center">
+  <section class="max-w-7xl mx-auto px-4 py-12 text-center relative overflow-hidden">
     <span class="bg-brandOrange/10 text-brandOrange border border-brandOrange/30 px-4 py-1.5 rounded-full text-sm font-semibold inline-block mb-4">
-      <i class="fa-solid fa-satellite mr-1"></i> Rastreamento GPS e Prova Real de Entrega
+      <i class="fa-solid fa-satellite-dish mr-1 animate-spin"></i> Rastreamento GPS e Prova Real em Tempo Real
     </span>
     <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight">
       Sua panfletagem com <span class="text-brandOrange">Precisão Britânica</span> em Limeira
     </h2>
     <p class="text-gray-300 max-w-2xl mx-auto text-lg mb-8">
-      Muito além da panfletagem tradicional: distribuição de folhetos com rastreamento via satélite, prova de entrega e garantia de exclusividade por segmento na sua região.
+      Muito além da panfletagem tradicional: mapas de calor por GPS, relatórios de auditagem fotográfica e garantia de exclusividade por segmento comercial na sua região.
     </p>
-    <a href="#regioes" class="bg-brandOrange hover:bg-brandOrangeHover text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-brandOrange/30 transition duration-300 inline-block">
-      Ver Regiões Disponíveis <i class="fa-solid fa-arrow-right ml-2"></i>
+    <a href="#regioes" class="bg-brandOrange hover:bg-brandOrangeHover text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-brandOrange/30 transition duration-300 inline-block animate-bounce-soft">
+      Ver Regiões e Garantir Vaga <i class="fa-solid fa-arrow-right ml-2"></i>
     </a>
   </section>
 
-  <!-- O QUE FAZEMOS -->
-  <section id="sobre" class="max-w-7xl mx-auto px-4 py-12">
-    <h3 class="text-3xl font-bold text-white text-center mb-8">O Que Fazemos</h3>
+  <!-- QUEM SOMOS / O QUE FAZEMOS (CARDS CLICÁVEIS) -->
+  <section id="sobre" class="max-w-7xl mx-auto px-4 py-12 border-t border-gray-800">
+    <div class="text-center mb-8">
+      <span class="text-brandOrange font-bold text-sm uppercase tracking-wider">Metodologia Exclusiva</span>
+      <h3 class="text-3xl font-bold text-white">Quem Somos & Como Atuamos</h3>
+      <p class="text-gray-400 text-xs mt-1">Clique em qualquer um dos pilares abaixo para ver o funcionamento detalhado</p>
+    </div>
+
     <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-brandCard p-6 rounded-xl border border-gray-800">
-        <div class="text-brandOrange text-3xl mb-3"><i class="fa-solid fa-route"></i></div>
+      <!-- Card 1 -->
+      <div onclick="abrirModalSobre(1)" class="bg-brandCard p-6 rounded-2xl border border-gray-800 hover:border-brandOrange/60 cursor-pointer transition transform hover:-translate-y-1 shadow-lg group">
+        <div class="flex justify-between items-center mb-3">
+          <div class="text-brandOrange text-3xl group-hover:scale-110 transition"><i class="fa-solid fa-route"></i></div>
+          <span class="text-[10px] text-brandOrange bg-brandOrange/10 border border-brandOrange/30 px-2 py-0.5 rounded font-bold">Clique para expandir</span>
+        </div>
         <h4 class="text-xl font-bold text-white mb-2">Mapeamento Geoestratégico</h4>
-        <p class="text-gray-400 text-sm">Roteamento planejado setor por setor em Limeira com foco em densidade residencial e público-alvo.</p>
+        <p class="text-gray-400 text-sm">Roteamento setor por setor em Limeira com dados geográficos de alta densidade e público-alvo com real potencial de compra.</p>
       </div>
-      <div class="bg-brandCard p-6 rounded-xl border border-gray-800">
-        <div class="text-brandOrange text-3xl mb-3"><i class="fa-solid fa-map-location-dot"></i></div>
+
+      <!-- Card 2 -->
+      <div onclick="abrirModalSobre(2)" class="bg-brandCard p-6 rounded-2xl border border-gray-800 hover:border-brandOrange/60 cursor-pointer transition transform hover:-translate-y-1 shadow-lg group">
+        <div class="flex justify-between items-center mb-3">
+          <div class="text-brandOrange text-3xl group-hover:scale-110 transition"><i class="fa-solid fa-map-location-dot"></i></div>
+          <span class="text-[10px] text-brandOrange bg-brandOrange/10 border border-brandOrange/30 px-2 py-0.5 rounded font-bold">Clique para expandir</span>
+        </div>
         <h4 class="text-xl font-bold text-white mb-2">Rastreamento via Satélite</h4>
-        <p class="text-gray-400 text-sm">100% das rotas auditadas com mapas de calor, tempo de execução e fotos reais das entregas.</p>
+        <p class="text-gray-400 text-sm">100% das rotas auditadas com rastreador GPS em tempo real, mapas de calor, cálculo de velocidade e fotos das entregas.</p>
       </div>
-      <div class="bg-brandCard p-6 rounded-xl border border-gray-800">
-        <div class="text-brandOrange text-3xl mb-3"><i class="fa-solid fa-shield-halved"></i></div>
+
+      <!-- Card 3 -->
+      <div onclick="abrirModalSobre(3)" class="bg-brandCard p-6 rounded-2xl border border-gray-800 hover:border-brandOrange/60 cursor-pointer transition transform hover:-translate-y-1 shadow-lg group">
+        <div class="flex justify-between items-center mb-3">
+          <div class="text-brandOrange text-3xl group-hover:scale-110 transition"><i class="fa-solid fa-shield-halved"></i></div>
+          <span class="text-[10px] text-brandOrange bg-brandOrange/10 border border-brandOrange/30 px-2 py-0.5 rounded font-bold">Clique para expandir</span>
+        </div>
         <h4 class="text-xl font-bold text-white mb-2">Proteção de Nicho</h4>
-        <p class="text-gray-400 text-sm">Garantimos zero concorrência direta no mesmo panfleto compartilhado (ex: apenas 1 pizzaria por área).</p>
+        <p class="text-gray-400 text-sm">Garantimos zero concorrência direta no mesmo lote (ex: apenas 1 pizzaria, 1 loja de calçados ou 1 farmácia por área).</p>
       </div>
     </div>
   </section>
+
+  <!-- MODAL EXPLICATIVO QUEM SOMOS -->
+  <div id="modalSobre" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
+    <div class="bg-brandCard border border-brandOrange/30 p-6 rounded-2xl max-w-xl w-full">
+      <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-3">
+        <h4 class="text-2xl font-bold text-white" id="modalSobreTitulo">Título</h4>
+        <button onclick="fecharModalSobre()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+      </div>
+      <div id="modalSobreConteudo" class="text-gray-300 text-sm space-y-3 leading-relaxed mb-6"></div>
+      <button onclick="fecharModalSobre()" class="w-full bg-brandOrange hover:bg-brandOrangeHover text-white font-bold py-2.5 rounded-xl transition">
+        Entendi
+      </button>
+    </div>
+  </div>
 
   <!-- COMPROMISSO OPERACIONAL -->
   <section id="diferenciais" class="max-w-7xl mx-auto px-4 py-12 border-t border-gray-800">
     <div class="text-center mb-10">
-      <span class="text-brandOrange font-bold text-sm uppercase tracking-wider">Qualidade e Cuidado</span>
-      <h3 class="text-3xl font-bold text-white">Compromisso e Cuidado Operacional</h3>
+      <span class="text-brandOrange font-bold text-sm uppercase tracking-wider">Qualidade Operacional</span>
+      <h3 class="text-3xl font-bold text-white">Compromisso e Cuidado em Cada Detalhe</h3>
+      <p class="text-gray-400 text-sm">Respeitamos seu investimento e a imagem da sua marca</p>
     </div>
+
     <div class="grid md:grid-cols-3 gap-6">
       <div class="bg-brandCard p-6 rounded-xl border border-gray-800">
         <div class="text-brandOrange text-2xl mb-3"><i class="fa-solid fa-wind"></i></div>
-        <h4 class="text-lg font-bold text-white mb-2">1. Proteção Contra o Vento</h4>
-        <p class="text-gray-400 text-xs">Fixamos os folhetos no portão com elásticos quando não houver caixa de correio.</p>
+        <h4 class="text-lg font-bold text-white mb-2">1. Fixação Antivento</h4>
+        <p class="text-gray-400 text-xs leading-relaxed">Em casas sem caixa de correio, não jogamos seu folheto ao chão. Utilizamos elásticos próprios para fixar a peça no portão com total organização.</p>
       </div>
       <div class="bg-brandCard p-6 rounded-xl border border-gray-800">
         <div class="text-brandOrange text-2xl mb-3"><i class="fa-solid fa-cloud-showers-heavy"></i></div>
         <h4 class="text-lg font-bold text-white mb-2">2. Política Anti-Chuva</h4>
-        <p class="text-gray-400 text-xs">Operação pausada em dias de chuva. Material 100% preservado e limpo.</p>
+        <p class="text-gray-400 text-xs leading-relaxed">Monitoramos o tempo em tempo real via satélite. Se houver chuva, a distribuição é pausada imediatamente para não molhar ou amassar seu material.</p>
       </div>
       <div class="bg-brandCard p-6 rounded-xl border border-gray-800">
         <div class="text-brandOrange text-2xl mb-3"><i class="fa-solid fa-calendar-check"></i></div>
         <h4 class="text-lg font-bold text-white mb-2">3. Reprogramação Sem Custo</h4>
-        <p class="text-gray-400 text-xs">Garantia de reposição das datas em caso de interrupção climática.</p>
+        <p class="text-gray-400 text-xs leading-relaxed">Qualquer pausa forçada pelo clima garante reprogramação automática e reposição das datas sem custos adicionais para o seu negócio.</p>
       </div>
     </div>
   </section>
 
-  <!-- PREÇOS E PLANOS -->
+  <!-- PREÇOS E PLANOS (DINÂMICOS E EDITÁVEIS NA DIRETORIA) -->
   <section id="precos" class="max-w-7xl mx-auto px-4 py-12 border-t border-gray-800">
     <div class="text-center mb-10">
+      <span class="text-brandOrange font-bold text-sm uppercase tracking-wider">Investimento Transparente</span>
       <h3 class="text-3xl font-bold text-white">Nossos Preços e Planos</h3>
-      <p class="text-gray-400">Escolha a melhor estratégia para o seu negócio</p>
+      <p class="text-gray-400 text-sm">Escolha a escala ideal de alcance para o seu orçamento</p>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-8" id="lista-precos">
-      <!-- Card Compartilhado -->
-      <div class="bg-brandCard p-6 rounded-2xl border border-brandOrange/20 flex flex-col justify-between">
-        <div>
-          <span class="text-xs font-bold text-brandOrange uppercase">Plano Compartilhado</span>
-          <h4 class="text-2xl font-bold text-white mb-2" id="nome_p1">Compartilhado</h4>
-          <p class="text-gray-400 text-sm mb-6">Até 4 clientes não concorrentes por área.</p>
-          <div class="space-y-3 mb-6 text-sm">
-            <div class="flex justify-between border-b border-gray-800 pb-2"><span>Regional (1 área ~1.300 casas):</span><strong class="text-white" id="v1_reg">R$ 139,99</strong></div>
-            <div class="flex justify-between border-b border-gray-800 pb-2"><span>Semanal (5 áreas ~6.500 casas):</span><strong class="text-brandOrange" id="v1_sem">R$ 599,99</strong></div>
-            <div class="flex justify-between border-b border-gray-800 pb-2"><span>Mensal (20 áreas ~25.000 casas):</span><strong class="text-white" id="v1_men">R$ 1.999,99</strong></div>
-          </div>
-        </div>
-        <a href="#regioes" class="block text-center bg-gray-800 hover:bg-brandOrange text-white py-2.5 rounded-lg font-bold transition">Ver Regiões Disponíveis</a>
-      </div>
-
-      <!-- Card Premium -->
-      <div class="bg-brandCard p-6 rounded-2xl border border-brandOrange/20 flex flex-col justify-between">
-        <div>
-          <span class="text-xs font-bold text-brandOrange uppercase">Plano Premium</span>
-          <h4 class="text-2xl font-bold text-white mb-2" id="nome_p2">Exclusivo Premium</h4>
-          <p class="text-gray-400 text-sm mb-6">Área 100% dedicada exclusivamente à sua marca.</p>
-          <div class="space-y-3 mb-6 text-sm">
-            <div class="flex justify-between border-b border-gray-800 pb-2"><span>Regional (1 área ~1.300 casas):</span><strong class="text-white" id="v2_reg">R$ 499,99</strong></div>
-            <div class="flex justify-between border-b border-gray-800 pb-2"><span>Semanal (5 áreas ~6.500 casas):</span><strong class="text-brandOrange" id="v2_sem">R$ 2.299,99</strong></div>
-            <div class="flex justify-between border-b border-gray-800 pb-2"><span>Mensal (20 áreas ~25.000 casas):</span><strong class="text-white" id="v2_men">R$ 6.999,99</strong></div>
-          </div>
-        </div>
-        <a href="#regioes" class="block text-center bg-gray-800 hover:bg-brandOrange text-white py-2.5 rounded-lg font-bold transition">Ver Regiões Disponíveis</a>
-      </div>
+    <div class="grid md:grid-cols-3 gap-6" id="lista-precos">
+      <!-- Inserido dinamicamente via JS -->
     </div>
   </section>
 
-  <!-- SELEÇÃO DE REGIÕES (SEMANAS) -->
+  <!-- SELEÇÃO DE REGIÕES (10 SEMANAS) -->
   <section id="regioes" class="max-w-7xl mx-auto px-4 py-12 border-t border-gray-800">
     <div class="text-center mb-10">
-      <span class="text-brandOrange font-bold text-sm uppercase tracking-wider">Cronograma de Operações</span>
+      <span class="text-brandOrange font-bold text-sm uppercase tracking-wider">Área do Cliente & Mapeamento</span>
       <h3 class="text-3xl font-bold text-white">Escolha sua Região e Garanta sua Vaga</h3>
-      <p class="text-gray-400 mt-2">Clique em qualquer card para ver detalhes e solicitar. Início oficial: <strong class="text-brandOrange">19/10/2026</strong></p>
+      <p class="text-gray-400 mt-2 text-sm">Selecione a semana e clique no card para abrir o mapa em tamanho real e fazer o pedido. Início oficial: <strong class="text-brandOrange">19/10/2026</strong></p>
     </div>
 
     <!-- SELETOR DE SEMANAS -->
     <div class="flex overflow-x-auto space-x-3 pb-4 mb-8 scrollbar-thin" id="botoes-semanas">
-      <!-- Botoes gerados via JS -->
+      <!-- Botoes das semanas gerados via JS -->
     </div>
 
-    <!-- CARDS DAS REGIÕES -->
+    <!-- CARDS DAS REGIÕES DA SEMANA SELECIONADA -->
     <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6" id="cards-regioes">
       <!-- Cards gerados via JS -->
     </div>
   </section>
 
-  <!-- MODAL DETALHES CARD REGIÃO -->
+  <!-- MODAL DETALHES CARD REGIÃO (COM MAPA EM TAMANHO REAL) -->
   <div id="modalDetalhesRegiao" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
-    <div class="bg-brandCard border border-brandOrange/30 p-6 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+    <div class="bg-brandCard border border-brandOrange/30 p-6 rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
       <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-3">
         <h4 class="text-2xl font-bold text-white" id="detalheNomeRegiao">Detalhes da Região</h4>
         <button onclick="fecharModalDetalhes()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
       </div>
 
+      <!-- Container da imagem do mapa -->
+      <div id="detalheImagemContainer" class="mb-4 rounded-xl overflow-hidden border border-brandOrange/30"></div>
+
       <div class="grid grid-cols-2 gap-4 text-sm mb-6 bg-gray-900/80 p-4 rounded-xl border border-gray-800">
-        <div><span class="text-gray-400">Residências:</span> <strong id="detalheResidencias" class="text-white block text-lg">0</strong></div>
-        <div><span class="text-gray-400">Pessoas Atingidas:</span> <strong id="detalhePessoas" class="text-brandOrange block text-lg">0</strong></div>
-        <div><span class="text-gray-400">Limite de Clientes:</span> <strong class="text-white block">Até 4 não concorrentes</strong></div>
-        <div><span class="text-gray-400">Status das Vagas:</span> <strong id="detalheVagas" class="text-green-400 block">3 vaga(s) restante(s)</strong></div>
+        <div><span class="text-gray-400">Residências Estimadas:</span> <strong id="detalheResidencias" class="text-white block text-lg">0</strong></div>
+        <div><span class="text-gray-400">Pessoas Impactadas:</span> <strong id="detalhePessoas" class="text-brandOrange block text-lg">0</strong></div>
+        <div><span class="text-gray-400">Limite da Área:</span> <strong class="text-white block">Max 4 empresas parceiras</strong></div>
+        <div><span class="text-gray-400">Vagas Disponíveis:</span> <strong id="detalheVagas" class="text-green-400 block">0</strong></div>
       </div>
 
-      <div class="space-y-3 text-xs text-gray-300 mb-6 bg-brandDark/50 p-4 rounded-xl border border-gray-800">
-        <h5 class="font-bold text-white text-sm">O que está incluído no relatório desta região:</h5>
-        <div class="flex items-start space-x-2"><i class="fa-solid fa-check text-brandOrange mt-0.5"></i> <span><strong>Relatório de GPS:</strong> Registro do percurso, velocidade e tempo de execução.</span></div>
-        <div class="flex items-start space-x-2"><i class="fa-solid fa-check text-brandOrange mt-0.5"></i> <span><strong>Comprovação Fotográfica:</strong> Registros em tempo real nos Stories e fotos reais das entregas.</span></div>
-        <div class="flex items-start space-x-2"><i class="fa-solid fa-check text-brandOrange mt-0.5"></i> <span><strong>Proteção de Segmento:</strong> Exclusividade garantida por ramo comercial.</span></div>
+      <div class="space-y-2 text-xs text-gray-300 mb-6 bg-brandDark/60 p-4 rounded-xl border border-gray-800">
+        <h5 class="font-bold text-white text-sm">Serviços inclusos na auditoria da campanha:</h5>
+        <div class="flex items-start space-x-2"><i class="fa-solid fa-circle-check text-brandOrange mt-0.5"></i> <span>Rastreamento contínuo por satélite e relatório de rota percorrida em PDF.</span></div>
+        <div class="flex items-start space-x-2"><i class="fa-solid fa-circle-check text-brandOrange mt-0.5"></i> <span>Registro fotográfico das entregas e divulgação em tempo real no Instagram.</span></div>
+        <div class="flex items-start space-x-2"><i class="fa-solid fa-circle-check text-brandOrange mt-0.5"></i> <span>Garantia de não repetição do mesmo segmento comercial na área.</span></div>
       </div>
 
       <button id="btnGarantirModalDetalhes" class="w-full bg-brandOrange hover:bg-brandOrangeHover text-white font-bold py-3.5 rounded-xl transition shadow-lg shadow-brandOrange/30">
@@ -227,7 +248,7 @@
         <div>
           <label class="block text-xs font-semibold text-gray-400 mb-1">Ramo de Atuação (Nicho)</label>
           <input type="text" id="ramoEmpresa" required placeholder="Ex: Pizzaria / Loja de Sapatos" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white outline-none focus:border-brandOrange">
-          <p class="text-[10px] text-brandOrange mt-1">*Validamos seu ramo para evitar concorrência na mesma área!</p>
+          <p class="text-[10px] text-brandOrange mt-1">*Verificamos se já existe outra marca do seu segmento na região!</p>
         </div>
         <div>
           <label class="block text-xs font-semibold text-gray-400 mb-1">Seu WhatsApp de Contato</label>
@@ -237,7 +258,8 @@
           <label class="block text-xs font-semibold text-gray-400 mb-1">Tipo de Plano Desejado</label>
           <select id="tipoPlano" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white outline-none focus:border-brandOrange">
             <option value="Compartilhado">Compartilhado (Até 4 parceiros não concorrentes)</option>
-            <option value="Exclusivo Premium">Exclusivo Premium (Área 100% dedicada)</option>
+            <option value="Promoção Inauguração">Promoção Inauguração (Economia Especial)</option>
+            <option value="Exclusivo Premium">Exclusivo Premium (Área 100% dedicada só ao seu folheto)</option>
           </select>
         </div>
         <button type="submit" class="w-full bg-brandOrange hover:bg-brandOrangeHover text-white font-bold py-3 rounded-xl transition shadow-lg shadow-brandOrange/30">
@@ -267,96 +289,130 @@
         </div>
         <p id="loginError" class="text-red-500 text-xs hidden">Usuário ou senha incorretos!</p>
         <div class="flex space-x-2 pt-2">
-          <button type="button" onclick="fecharLogin()" class="w-1/2 bg-gray-800 hover:bg-gray-700 text-white py-2 rounded text-xs font-bold">Cancelar</button>
+          <button type="button" onclick="fecharLoginAdmin()" class="w-1/2 bg-gray-800 hover:bg-gray-700 text-white py-2 rounded text-xs font-bold">Cancelar</button>
           <button type="submit" class="w-1/2 bg-brandOrange hover:bg-brandOrangeHover text-white py-2 rounded text-xs font-bold">Entrar</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- MODAL PAINEL ADMINISTRATIVO -->
+  <!-- MODAL PAINEL ADMINISTRATIVO DIRETORIA -->
   <div id="modalAdmin" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
-    <div class="bg-brandCard border border-gray-700 p-6 rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+    <div class="bg-brandCard border border-gray-700 p-6 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
       <div class="flex justify-between items-center mb-6 border-b border-gray-700 pb-3">
-        <h4 class="text-2xl font-bold text-white"><i class="fa-solid fa-gears text-brandOrange mr-2"></i> Painel de Controle (Dono)</h4>
+        <h4 class="text-2xl font-bold text-white"><i class="fa-solid fa-gears text-brandOrange mr-2"></i> Painel da Diretoria</h4>
         <button onclick="fecharAdmin()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
       </div>
 
-      <!-- EDITAR VALORES -->
-      <div class="mb-8">
+      <!-- EDITAR VALORES DOS PLANOS -->
+      <div class="mb-8 bg-gray-900/60 p-4 rounded-xl border border-gray-800">
         <h5 class="text-lg font-bold text-brandOrange mb-3"><i class="fa-solid fa-tag mr-1"></i> Editar Preços e Planos</h5>
-        <div class="grid md:grid-cols-2 gap-4">
-          <div class="bg-gray-900 p-3 rounded border border-gray-800 text-xs space-y-2">
-            <strong class="text-brandOrange block">Plano Compartilhado</strong>
-            <div><label>Regional (R$):</label> <input type="number" step="0.01" id="adm_v1_reg" value="139.99" class="bg-gray-800 p-1 rounded text-white w-full"></div>
-            <div><label>Semanal (R$):</label> <input type="number" step="0.01" id="adm_v1_sem" value="599.99" class="bg-gray-800 p-1 rounded text-white w-full"></div>
-            <div><label>Mensal (R$):</label> <input type="number" step="0.01" id="adm_v1_men" value="1999.99" class="bg-gray-800 p-1 rounded text-white w-full"></div>
-          </div>
-          <div class="bg-gray-900 p-3 rounded border border-gray-800 text-xs space-y-2">
-            <strong class="text-brandOrange block">Plano Premium Exclusivo</strong>
-            <div><label>Regional (R$):</label> <input type="number" step="0.01" id="adm_v2_reg" value="499.99" class="bg-gray-800 p-1 rounded text-white w-full"></div>
-            <div><label>Semanal (R$):</label> <input type="number" step="0.01" id="adm_v2_sem" value="2299.99" class="bg-gray-800 p-1 rounded text-white w-full"></div>
-            <div><label>Mensal (R$):</label> <input type="number" step="0.01" id="adm_v2_men" value="6999.99" class="bg-gray-800 p-1 rounded text-white w-full"></div>
-          </div>
+        <div class="grid md:grid-cols-3 gap-4" id="formAdminPrecos">
+          <!-- Inserido via JS -->
         </div>
-        <button onclick="salvarPrecos()" class="mt-3 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-bold">Salvar Preços</button>
+        <button onclick="salvarPrecosAdmin()" class="mt-4 bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded text-sm font-bold shadow">
+          Salvar Alterações de Preços
+        </button>
       </div>
 
-      <!-- EDITAR REGIÕES -->
-      <div>
-        <h5 class="text-lg font-bold text-brandOrange mb-3"><i class="fa-solid fa-map-location mr-1"></i> Gerenciar Regiões por Semana</h5>
+      <!-- EDITAR REGIÕES E MAPAS POR SEMANA -->
+      <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800">
+        <h5 class="text-lg font-bold text-brandOrange mb-3"><i class="fa-solid fa-map-location mr-1"></i> Gerenciar Regiões e Fotos dos Mapas</h5>
         <div class="mb-4">
           <label class="block text-xs font-semibold text-gray-400 mb-1">Selecione a Semana para Editar:</label>
-          <select id="adminSemanaSelect" onchange="carregarFormAdminSemana()" class="bg-gray-900 border border-gray-700 rounded p-2 text-white w-full">
-            <!-- Opções de 1 a 10 geradas via JS -->
+          <select id="adminSemanaSelect" onchange="carregarFormAdminSemana()" class="bg-gray-800 border border-gray-700 rounded p-2 text-white w-full">
+            <!-- Opções geradas via JS -->
           </select>
         </div>
 
         <div id="adminRegioesContainer" class="space-y-4">
-          <!-- Formulários gerados via JS -->
+          <!-- Formulário dinâmico das regiões -->
         </div>
 
         <div class="mt-4 flex space-x-3">
           <button onclick="adicionarRegiaoAdmin()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-bold">+ Adicionar Região</button>
-          <button onclick="salvarRegioesAdmin()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-bold">Salvar Regiões da Semana</button>
+          <button onclick="salvarRegioesAdmin()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-bold shadow">Salvar Regiões da Semana</button>
         </div>
       </div>
     </div>
   </div>
 
   <script>
-    // --- DADOS FIXOS INICIAIS (PDF 2) ---
-    const dadosIniciaisSemanas = [
-      {
-        semana: 1,
-        data: '19/10/2026',
-        regioes: [
-          { id: 'r1', nome: 'Vila Camargo / Nova Suíça', residencias: 900, pessoas: 2000, ocupadas: 1, max: 4, visivel: true },
-          { id: 'r2', nome: 'Jardim Cavinato / Nova Suíça', residencias: 1200, pessoas: 3500, ocupadas: 0, max: 4, visivel: true },
-          { id: 'r3', nome: 'Boa Vista / Vila Piza', residencias: 1300, pessoas: 3500, ocupadas: 2, max: 4, visivel: true },
-          { id: 'r4', nome: 'Boa Vista / Jardim Bandeirantes', residencias: 900, pessoas: 2500, ocupadas: 0, max: 4, visivel: true }
-        ]
-      }
+    // --- BANCO DE DADOS EM LOCALSTORAGE (COM PREÇOS ATUALIZADOS) ---
+
+    const defaultPrecos = [
+      { id: 'p1', nome: 'Plano Compartilhado', regional: 79.90, semanal: 349.50, mensal: 1199.80, desc: 'Até 4 parceiros por área (1 por segmento).' },
+      { id: 'p2', nome: 'Promoção Inauguração', regional: 59.90, semanal: 279.50, mensal: 998.00, desc: 'Condição especial de lançamento!' },
+      { id: 'p3', nome: 'Exclusivo Premium', regional: 199.90, semanal: 899.90, mensal: 2998.00, desc: 'Área 100% dedicada. Somente o seu folheto é entregue!' }
     ];
 
-    // Criar semanas 2 a 10 automaticamente
-    for (let i = 2; i <= 10; i++) {
-      dadosIniciaisSemanas.push({
-        semana: i,
-        data: `Semana ${i}`,
-        regioes: []
-      });
-    }
+    const defaultSemanas = Array.from({ length: 10 }, (_, i) => {
+      const semNum = i + 1;
+      let regioes = [];
+      
+      // Semana 1 pré-carregada com dados do PDF 2
+      if (i === 0) {
+        regioes = [
+          { id: 'r1', nome: 'Vila Camargo / Nova Suíça', residencias: 900, pessoas: 2000, ocupadas: 1, max: 4, visivel: true, imagem: '' },
+          { id: 'r2', nome: 'Jardim Cavinato / Nova Suíça', residencias: 1200, pessoas: 3500, ocupadas: 0, max: 4, visivel: true, imagem: '' },
+          { id: 'r3', nome: 'Boa Vista / Vila Piza', residencias: 1300, pessoas: 3500, ocupadas: 2, max: 4, visivel: true, imagem: '' },
+          { id: 'r4', nome: 'Boa Vista / Jardim Bandeirantes', residencias: 900, pessoas: 2500, ocupadas: 0, max: 4, visivel: true, imagem: '' }
+        ];
+      }
 
-    let bancoSemanas = JSON.parse(localStorage.getItem('dt_semanas_v2')) || dadosIniciaisSemanas;
+      return {
+        semana: semNum,
+        data: semNum === 1 ? '19/10/2026' : `Semana ${semNum}`,
+        regioes: regioes
+      };
+    });
+
+    // Carregamento de dados com retentativa/fallback
+    let precosData = JSON.parse(localStorage.getItem('dt_precos_v3')) || defaultPrecos;
+    let semanasData = JSON.parse(localStorage.getItem('dt_semanas_v3')) || defaultSemanas;
     let semanaAtual = 1;
     const WHATSAPP_DONO = "5519999999999";
 
-    // --- RENDERIZAÇÃO DA PAGINA ---
+    // --- RENDERIZADORES ---
+
+    function renderizarPrecos() {
+      const container = document.getElementById('lista-precos');
+      container.innerHTML = precosData.map(p => `
+        <div class="bg-brandCard p-6 rounded-2xl border ${p.id === 'p3' ? 'border-brandOrange' : 'border-gray-800'} flex flex-col justify-between shadow-xl">
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-[10px] font-bold uppercase tracking-widest text-brandOrange">${p.id === 'p3' ? 'Dominância Total' : 'Plano Oficial'}</span>
+              ${p.id === 'p2' ? '<span class="bg-green-500/20 text-green-400 text-[10px] font-bold px-2 py-0.5 rounded border border-green-500/30">Lançamento</span>' : ''}
+            </div>
+            <h4 class="text-xl font-bold text-white mb-2">${p.nome}</h4>
+            <p class="text-gray-400 text-xs mb-6 h-10">${p.desc}</p>
+
+            <div class="space-y-3 mb-6 text-xs bg-gray-900/60 p-3 rounded-lg border border-gray-800">
+              <div class="flex justify-between border-b border-gray-800/80 pb-2">
+                <span class="text-gray-300">1 Área (~1.300 casas):</span>
+                <strong class="text-white text-sm">R$ ${Number(p.regional).toFixed(2)}</strong>
+              </div>
+              <div class="flex justify-between border-b border-gray-800/80 pb-2">
+                <span class="text-gray-300">Semanal (5 áreas ~6.500 casas):</span>
+                <strong class="text-brandOrange text-sm">R$ ${Number(p.semanal).toFixed(2)}</strong>
+              </div>
+              <div class="flex justify-between pb-1">
+                <span class="text-gray-300">Mensal (20 áreas ~25.000 casas):</span>
+                <strong class="text-white text-sm">R$ ${Number(p.mensal).toFixed(2)}</strong>
+              </div>
+            </div>
+          </div>
+
+          <a href="#regioes" class="block text-center ${p.id === 'p3' ? 'bg-brandOrange hover:bg-brandOrangeHover' : 'bg-gray-800 hover:bg-gray-700'} text-white py-2.5 rounded-xl font-bold transition text-xs shadow">
+            Escolher ${p.nome}
+          </a>
+        </div>
+      `).join('');
+    }
 
     function renderizarBotoesSemanas() {
       const container = document.getElementById('botoes-semanas');
-      container.innerHTML = bancoSemanas.map(s => `
+      container.innerHTML = semanasData.map(s => `
         <button onclick="mudarSemana(${s.semana})" class="px-5 py-3 rounded-xl font-bold whitespace-nowrap transition border ${s.semana === semanaAtual ? 'bg-brandOrange text-white border-brandOrange shadow-lg shadow-brandOrange/20' : 'bg-brandCard text-gray-400 border-gray-800 hover:border-gray-700'}">
           Semana ${s.semana}
           <span class="block text-[10px] font-normal opacity-80">${s.data}</span>
@@ -366,15 +422,15 @@
 
     function renderizarRegioes() {
       const container = document.getElementById('cards-regioes');
-      const semanaObj = bancoSemanas.find(s => s.semana === semanaAtual);
+      const semanaObj = semanasData.find(s => s.semana === semanaAtual);
       const regioesVisiveis = semanaObj ? semanaObj.regioes.filter(r => r.visivel) : [];
 
       if (!semanaObj || regioesVisiveis.length === 0) {
         container.innerHTML = `
           <div class="col-span-full text-center py-12 bg-brandCard rounded-2xl border border-gray-800">
-            <i class="fa-solid fa-calendar-xmark text-4xl text-gray-600 mb-3"></i>
-            <p class="text-gray-400">Nenhuma região liberada para esta semana ainda.</p>
-            <p class="text-xs text-gray-500 mt-1">Acesse a área da Diretoria para cadastrar e liberar visibilidade.</p>
+            <i class="fa-solid fa-map-location-dot text-4xl text-gray-600 mb-3"></i>
+            <p class="text-gray-400 text-sm">Nenhuma região liberada para exibição nesta semana ainda.</p>
+            <p class="text-xs text-gray-500 mt-1">Acesse o painel da Diretoria para liberar o mapeamento das semanas.</p>
           </div>
         `;
         return;
@@ -383,25 +439,34 @@
       container.innerHTML = regioesVisiveis.map(r => {
         const vagasRestantes = r.max - r.ocupadas;
 
+        const blocoImagem = r.imagem && r.imagem.trim() !== ''
+          ? `<div class="relative h-48 w-full overflow-hidden border-b border-brandOrange/30">
+               <img src="${r.imagem}" alt="Mapa ${r.nome}" class="w-full h-full object-cover">
+               <div class="absolute top-2 right-2 bg-brandDark/80 backdrop-blur px-2.5 py-1 rounded text-[10px] font-bold text-brandOrange border border-brandOrange/30">
+                 <i class="fa-solid fa-location-crosshairs mr-1"></i> Mapa Oficial
+               </div>
+             </div>`
+          : `<div class="relative h-40 w-full bg-gradient-to-br from-brandDark via-brandCard to-gray-900 border-b border-gray-800 flex flex-col items-center justify-center p-4 text-center">
+               <div class="w-12 h-12 rounded-full bg-brandOrange/20 border border-brandOrange/40 flex items-center justify-center text-brandOrange text-xl mb-2">
+                 <i class="fa-solid fa-map-marked-alt"></i>
+               </div>
+               <span class="text-xs font-bold text-white tracking-wide">${r.nome}</span>
+               <span class="text-[10px] text-gray-400 mt-0.5">Clique para ver detalhes do setor</span>
+             </div>`;
+
         return `
-          <div onclick="abrirDetalhes('${r.id}')" class="cursor-pointer bg-brandCard rounded-2xl border ${vagasRestantes === 0 ? 'border-red-500/30 opacity-75' : 'border-gray-800 hover:border-brandOrange/50'} flex flex-col justify-between overflow-hidden shadow-xl transition transform hover:-translate-y-1">
-            <div class="relative h-40 w-full bg-gradient-to-br from-brandDark via-brandCard to-gray-900 border-b border-gray-800 flex flex-col items-center justify-center p-4 text-center">
-              <div class="w-12 h-12 rounded-full bg-brandOrange/20 border border-brandOrange/40 flex items-center justify-center text-brandOrange text-xl mb-2">
-                <i class="fa-solid fa-map-marked-alt"></i>
-              </div>
-              <span class="text-xs font-bold text-white tracking-wide">${r.nome}</span>
-              <span class="text-[10px] text-gray-400 mt-0.5">Clique para ver dados de cobertura</span>
-            </div>
+          <div onclick="abrirDetalhesRegiao('${r.id}')" class="cursor-pointer bg-brandCard rounded-2xl border ${vagasRestantes === 0 ? 'border-red-500/30 opacity-75' : 'border-gray-800 hover:border-brandOrange/50'} flex flex-col justify-between overflow-hidden shadow-xl transition transform hover:-translate-y-1">
+            ${blocoImagem}
 
             <div class="p-6 flex-1 flex flex-col justify-between">
               <div>
                 <div class="flex justify-between items-start mb-3">
-                  <span class="bg-brandBlue/20 text-brandBlue border border-brandBlue/30 text-xs px-2.5 py-1 rounded-md font-bold">
-                    <i class="fa-solid fa-location-dot mr-1"></i> Área de Distribuição
+                  <span class="bg-brandBlue/20 text-brandBlue border border-brandBlue/30 text-[10px] px-2.5 py-1 rounded font-bold">
+                    <i class="fa-solid fa-map-pin mr-1"></i> Cobertura Auditada
                   </span>
                   ${vagasRestantes === 0 
-                    ? `<span class="bg-red-500/20 text-red-400 border border-red-500/30 text-xs px-2 py-0.5 rounded font-bold">FECHADA / LOTADA</span>`
-                    : `<span class="bg-green-500/20 text-green-400 border border-green-500/30 text-xs px-2 py-0.5 rounded font-bold">${vagasRestantes} vaga(s) restante(s)</span>`
+                    ? `<span class="bg-red-500/20 text-red-400 border border-red-500/30 text-[10px] px-2 py-0.5 rounded font-bold">LOTADO</span>`
+                    : `<span class="bg-green-500/20 text-green-400 border border-green-500/30 text-[10px] px-2 py-0.5 rounded font-bold">${vagasRestantes} vaga(s) disponível(is)</span>`
                   }
                 </div>
 
@@ -412,17 +477,17 @@
                   <div><span class="text-gray-400">Pessoas Atingidas:</span> <strong class="text-white block text-sm">+${r.pessoas.toLocaleString()}</strong></div>
                 </div>
 
-                <div class="bg-brandDark/50 p-3 rounded-lg border border-brandOrange/10 mb-4">
-                  <p class="text-xs text-gray-300">
+                <div class="bg-brandDark/50 p-2.5 rounded-lg border border-brandOrange/10 mb-4">
+                  <p class="text-[11px] text-gray-300">
                     <i class="fa-solid fa-shield-cat text-brandOrange mr-1"></i>
-                    <strong>Exclusividade Garantida:</strong> Apenas 1 empresa por segmento.
+                    <strong>Exclusividade de Ramo:</strong> Somente 1 empresa por nicho.
                   </p>
                 </div>
               </div>
 
-              <div class="w-full ${vagasRestantes === 0 ? 'bg-gray-800 text-gray-500' : 'bg-brandOrange hover:bg-brandOrangeHover text-white'} py-3 rounded-xl font-bold transition flex items-center justify-center space-x-2 text-center text-sm shadow-lg">
+              <div class="w-full ${vagasRestantes === 0 ? 'bg-gray-800 text-gray-500' : 'bg-brandOrange hover:bg-brandOrangeHover text-white'} py-3 rounded-xl font-bold transition flex items-center justify-center space-x-2 text-center text-xs shadow">
                 <i class="fa-solid fa-circle-info"></i>
-                <span>Ver Detalhes e Participar</span>
+                <span>Ver Mapa e Fazer Pedido</span>
               </div>
             </div>
           </div>
@@ -436,10 +501,43 @@
       renderizarRegioes();
     }
 
-    // --- MODAL DETALHES ---
+    // --- MODAL DETALHES QUEM SOMOS ---
 
-    function abrirDetalhes(idRegiao) {
-      const semanaObj = bancoSemanas.find(s => s.semana === semanaAtual);
+    function abrirModalSobre(pilar) {
+      const titulo = document.getElementById('modalSobreTitulo');
+      const conteudo = document.getElementById('modalSobreConteudo');
+
+      if (pilar === 1) {
+        titulo.innerText = "Mapeamento Geoestratégico";
+        conteudo.innerHTML = `
+          <p>Nossas rotas em Limeira não são definidas ao acaso. Utilizamos inteligência geoestratégica com base na densidade demográfica e perfil comercial das residências.</p>
+          <p><strong>Como funciona:</strong> Dividimos a cidade em micro-regiões de aproximadamente 1.000 a 1.300 residências (impactando mais de 3.000 pessoas por setor), direcionando seu panfleto exatamente para o público com maior potencial de compra do seu nicho.</p>
+        `;
+      } else if (pilar === 2) {
+        titulo.innerText = "Rastreamento via Satélite (GPS)";
+        conteudo.innerHTML = `
+          <p>Eliminamos totalmente a dúvida do empresário sobre onde o panfleto foi parar. Aplicamos a rigorosa metodologia de auditoria testada em campanhas na Europa.</p>
+          <p><strong>O que você recebe:</strong> Relatório em PDF com mapa de calor de GPS em tempo real, velocidade média de entrega, horários e prova fotográfica registrada diretamente nos Stories do Instagram.</p>
+        `;
+      } else if (pilar === 3) {
+        titulo.innerText = "Proteção e Exclusividade de Nicho";
+        conteudo.innerHTML = `
+          <p>No Plano Compartilhado, limitamos a apenas 4 marcas não concorrentes por lote. Garantimos que sua concorrência direta NÃO estará na mesma entrega.</p>
+          <p>Exemplo: Se você é uma pizzaria, nenhuma outra pizzaria participará daquela distribuição na área. No Plano Exclusivo Premium, 100% da área é dedicada unicamente à sua empresa.</p>
+        `;
+      }
+
+      document.getElementById('modalSobre').classList.remove('hidden');
+    }
+
+    function fecharModalSobre() {
+      document.getElementById('modalSobre').classList.add('hidden');
+    }
+
+    // --- MODAL DETALHES DA REGIÃO ---
+
+    function abrirDetalhesRegiao(idRegiao) {
+      const semanaObj = semanasData.find(s => s.semana === semanaAtual);
       const regiao = semanaObj.regioes.find(r => r.id === idRegiao);
       if (!regiao) return;
 
@@ -449,6 +547,18 @@
       
       const vagas = regiao.max - regiao.ocupadas;
       document.getElementById('detalheVagas').innerText = `${vagas} vaga(s) disponível(is)`;
+
+      const imgContainer = document.getElementById('detalheImagemContainer');
+      if (regiao.imagem && regiao.imagem.trim() !== '') {
+        imgContainer.innerHTML = `<img src="${regiao.imagem}" class="w-full h-72 object-cover">`;
+      } else {
+        imgContainer.innerHTML = `
+          <div class="h-44 bg-gray-900 flex flex-col items-center justify-center text-gray-400 text-xs text-center p-4">
+            <i class="fa-solid fa-map-location-dot text-3xl text-brandOrange mb-2"></i>
+            <span>Setor mapeado e auditado via Satélite GPS em Limeira - SP</span>
+            <span class="text-[10px] text-gray-500 mt-1">(Imagem do mapa pode ser incluída pelo administrador)</span>
+          </div>`;
+      }
 
       document.getElementById('btnGarantirModalDetalhes').onclick = function() {
         fecharModalDetalhes();
@@ -493,14 +603,14 @@
       fecharModalCliente();
     }
 
-    // --- LOGIN & PAINEL DIRETORIA ---
+    // --- PAINEL DA DIRETORIA ---
 
-    function abrirLogin() {
+    function abrirLoginAdmin() {
       document.getElementById('loginError').classList.add('hidden');
       document.getElementById('modalLoginAdmin').classList.remove('hidden');
     }
 
-    function fecharLogin() {
+    function fecharLoginAdmin() {
       document.getElementById('modalLoginAdmin').classList.add('hidden');
     }
 
@@ -510,7 +620,7 @@
       const pass = document.getElementById('adminPass').value;
 
       if (user === 'diretoria' && pass === '123456') {
-        fecharLogin();
+        fecharLoginAdmin();
         abrirAdmin();
       } else {
         document.getElementById('loginError').classList.remove('hidden');
@@ -518,6 +628,7 @@
     }
 
     function abrirAdmin() {
+      carregarFormAdminPrecos();
       carregarSelectSemanaAdmin();
       carregarFormAdminSemana();
       document.getElementById('modalAdmin').classList.remove('hidden');
@@ -527,50 +638,79 @@
       document.getElementById('modalAdmin').classList.add('hidden');
     }
 
+    function carregarFormAdminPrecos() {
+      const container = document.getElementById('formAdminPrecos');
+      container.innerHTML = precosData.map((p, index) => `
+        <div class="bg-gray-800 p-3 rounded border border-gray-700 text-xs space-y-2">
+          <strong class="text-brandOrange block">${p.nome}</strong>
+          <div><label class="text-gray-400">Regional (R$):</label> <input type="number" step="0.01" id="adm_p_reg_${index}" value="${p.regional}" class="bg-gray-900 p-1.5 rounded text-white w-full border border-gray-700"></div>
+          <div><label class="text-gray-400">Semanal (R$):</label> <input type="number" step="0.01" id="adm_p_sem_${index}" value="${p.semanal}" class="bg-gray-900 p-1.5 rounded text-white w-full border border-gray-700"></div>
+          <div><label class="text-gray-400">Mensal (R$):</label> <input type="number" step="0.01" id="adm_p_men_${index}" value="${p.mensal}" class="bg-gray-900 p-1.5 rounded text-white w-full border border-gray-700"></div>
+        </div>
+      `).join('');
+    }
+
+    function salvarPrecosAdmin() {
+      precosData.forEach((p, index) => {
+        p.regional = parseFloat(document.getElementById(`adm_p_reg_${index}`).value) || 0;
+        p.semanal = parseFloat(document.getElementById(`adm_p_sem_${index}`).value) || 0;
+        p.mensal = parseFloat(document.getElementById(`adm_p_men_${index}`).value) || 0;
+      });
+
+      localStorage.setItem('dt_precos_v3', JSON.stringify(precosData));
+      renderizarPrecos();
+      alert('Tabela de preços atualizada com sucesso!');
+    }
+
     function carregarSelectSemanaAdmin() {
       const select = document.getElementById('adminSemanaSelect');
-      select.innerHTML = bancoSemanas.map(s => `<option value="${s.semana}">Semana ${s.semana}</option>`).join('');
+      select.innerHTML = semanasData.map(s => `<option value="${s.semana}">Semana ${s.semana} (${s.data})</option>`).join('');
     }
 
     function carregarFormAdminSemana() {
       const sem = parseInt(document.getElementById('adminSemanaSelect').value) || 1;
-      const semObj = bancoSemanas.find(s => s.semana === sem);
+      const semObj = semanasData.find(s => s.semana === sem);
       const container = document.getElementById('adminRegioesContainer');
 
       if (!semObj || semObj.regioes.length === 0) {
-        container.innerHTML = `<p class="text-xs text-gray-500">Nenhuma região cadastrada para a Semana ${sem}. Clique no botão abaixo para adicionar.</p>`;
+        container.innerHTML = `<p class="text-xs text-gray-500">Nenhuma região cadastrada para esta semana.</p>`;
         return;
       }
 
       container.innerHTML = semObj.regioes.map((r, index) => `
-        <div class="bg-gray-900 p-4 rounded-xl border border-gray-800 space-y-3">
+        <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 space-y-3 text-xs">
           <div class="flex justify-between items-center">
-            <span class="text-xs font-bold text-brandOrange">Região #${index + 1}</span>
-            <label class="flex items-center text-xs text-gray-300">
+            <span class="font-bold text-brandOrange">Região #${index + 1}</span>
+            <label class="flex items-center text-gray-300">
               <input type="checkbox" id="adm_vis_${index}" ${r.visivel ? 'checked' : ''} class="mr-1">
-              Liberar Visibilidade para o Cliente
+              Visível para Clientes
             </label>
           </div>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
             <div class="col-span-2">
               <label class="text-gray-400">Nome da Região / Bairros</label>
-              <input type="text" id="adm_nome_${index}" value="${r.nome}" class="bg-gray-800 p-2 rounded text-white w-full border border-gray-700">
+              <input type="text" id="adm_nome_${index}" value="${r.nome}" class="bg-gray-900 p-2 rounded text-white w-full border border-gray-700">
             </div>
             <div>
               <label class="text-gray-400">Residências</label>
-              <input type="number" id="adm_res_${index}" value="${r.residencias}" class="bg-gray-800 p-2 rounded text-white w-full border border-gray-700">
+              <input type="number" id="adm_res_${index}" value="${r.residencias}" class="bg-gray-900 p-2 rounded text-white w-full border border-gray-700">
             </div>
             <div>
-              <label class="text-gray-400">Pessoas Atingidas</label>
-              <input type="number" id="adm_pes_${index}" value="${r.pessoas}" class="bg-gray-800 p-2 rounded text-white w-full border border-gray-700">
+              <label class="text-gray-400">Pessoas</label>
+              <input type="number" id="adm_pes_${index}" value="${r.pessoas}" class="bg-gray-900 p-2 rounded text-white w-full border border-gray-700">
             </div>
             <div>
               <label class="text-gray-400">Vagas Ocupadas</label>
-              <input type="number" id="adm_ocup_${index}" value="${r.ocupadas}" min="0" max="4" class="bg-gray-800 p-2 rounded text-white w-full border border-gray-700">
+              <input type="number" id="adm_ocup_${index}" value="${r.ocupadas}" min="0" max="4" class="bg-gray-900 p-2 rounded text-white w-full border border-gray-700">
             </div>
             <div>
-              <label class="text-gray-400">Limite Max Vagas</label>
-              <input type="number" id="adm_max_${index}" value="${r.max}" min="1" max="4" class="bg-gray-800 p-2 rounded text-white w-full border border-gray-700">
+              <label class="text-gray-400">Max Vagas</label>
+              <input type="number" id="adm_max_${index}" value="${r.max}" min="1" max="4" class="bg-gray-900 p-2 rounded text-white w-full border border-gray-700">
+            </div>
+            <div class="col-span-4">
+              <label class="text-gray-400">URL / Link da Imagem do Mapa (Aparece na semana)</label>
+              <input type="text" id="adm_img_${index}" value="${r.imagem || ''}" placeholder="https://link-da-imagem-do-mapa.jpg" class="bg-gray-900 p-2 rounded text-white w-full border border-gray-700">
             </div>
           </div>
         </div>
@@ -579,22 +719,23 @@
 
     function adicionarRegiaoAdmin() {
       const sem = parseInt(document.getElementById('adminSemanaSelect').value) || 1;
-      const semObj = bancoSemanas.find(s => s.semana === sem);
+      const semObj = semanasData.find(s => s.semana === sem);
       semObj.regioes.push({
         id: 'r_' + Date.now(),
-        nome: 'Nova Região em Limeira',
+        nome: 'Nova Região Limeira',
         residencias: 1000,
         pessoas: 3000,
         ocupadas: 0,
         max: 4,
-        visivel: true
+        visivel: true,
+        imagem: ''
       });
       carregarFormAdminSemana();
     }
 
     function salvarRegioesAdmin() {
       const sem = parseInt(document.getElementById('adminSemanaSelect').value) || 1;
-      const semObj = bancoSemanas.find(s => s.semana === sem);
+      const semObj = semanasData.find(s => s.semana === sem);
 
       semObj.regioes.forEach((r, index) => {
         r.nome = document.getElementById(`adm_nome_${index}`).value;
@@ -603,26 +744,16 @@
         r.ocupadas = parseInt(document.getElementById(`adm_ocup_${index}`).value) || 0;
         r.max = parseInt(document.getElementById(`adm_max_${index}`).value) || 4;
         r.visivel = document.getElementById(`adm_vis_${index}`).checked;
+        r.imagem = document.getElementById(`adm_img_${index}`).value;
       });
 
-      localStorage.setItem('dt_semanas_v2', JSON.stringify(bancoSemanas));
+      localStorage.setItem('dt_semanas_v3', JSON.stringify(semanasData));
       renderizarRegioes();
-      alert(`Regiões da Semana ${sem} salvas!`);
+      alert(`Regiões e mapas da Semana ${sem} salvos com sucesso!`);
     }
 
-    function salvarPrecos() {
-      document.getElementById('v1_reg').innerText = 'R$ ' + parseFloat(document.getElementById('adm_v1_reg').value).toFixed(2);
-      document.getElementById('v1_sem').innerText = 'R$ ' + parseFloat(document.getElementById('adm_v1_sem').value).toFixed(2);
-      document.getElementById('v1_men').innerText = 'R$ ' + parseFloat(document.getElementById('adm_v1_men').value).toFixed(2);
-
-      document.getElementById('v2_reg').innerText = 'R$ ' + parseFloat(document.getElementById('adm_v2_reg').value).toFixed(2);
-      document.getElementById('v2_sem').innerText = 'R$ ' + parseFloat(document.getElementById('adm_v2_sem').value).toFixed(2);
-      document.getElementById('v2_men').innerText = 'R$ ' + parseFloat(document.getElementById('adm_v2_men').value).toFixed(2);
-
-      alert('Preços atualizados!');
-    }
-
-    // --- INICIALIZAÇÃO ---
+    // --- INICIALIZAÇÃO DA APLICAÇÃO ---
+    renderizarPrecos();
     renderizarBotoesSemanas();
     renderizarRegioes();
   </script>
