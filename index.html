@@ -40,7 +40,7 @@
   <!-- HEADER -->
   <header class="bg-brandDark/90 backdrop-blur border-b border-brandOrange/20 sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <div class="flex items-center space-x-3">
+      <div class="flex items-center space-x-3 cursor-pointer" onclick="navegarPara('home')">
         <div class="w-10 h-10 bg-brandOrange rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brandOrange/30 animate-pulse-slow">
           <i class="fa-solid fa-location-dot"></i>
         </div>
@@ -50,8 +50,8 @@
         </div>
       </div>
       <nav class="hidden md:flex space-x-6 font-semibold text-sm">
+        <button onclick="navegarPara('home')" class="hover:text-brandOrange transition">Início</button>
         <a href="#sobre" class="hover:text-brandOrange transition">Quem Somos</a>
-        <a href="#diferenciais" class="hover:text-brandOrange transition">Compromisso</a>
         <a href="#precos" class="hover:text-brandOrange transition">Planos</a>
         <a href="#regioes" class="hover:text-brandOrange transition">Regiões</a>
         <a href="https://www.instagram.com/droptrackinteligente/" target="_blank" class="text-pink-500 hover:text-pink-400 transition flex items-center">
@@ -59,149 +59,150 @@
         </a>
       </nav>
       <div class="flex items-center space-x-2">
-        <button id="btnHeaderCliente" class="bg-brandBlue/20 text-brandBlue border border-brandBlue/40 text-xs px-3 py-2 rounded font-bold hover:bg-brandBlue/30 transition">
+        <button id="btnHeaderCliente" onclick="abrirLoginCliente()" class="bg-brandBlue/20 text-brandBlue border border-brandBlue/40 text-xs px-3 py-2 rounded font-bold hover:bg-brandBlue/30 transition">
           <i class="fa-solid fa-user-circle mr-1"></i> Área do Cliente
         </button>
-        <button id="btnHeaderDiretoria" class="bg-gray-800 hover:bg-gray-700 text-xs px-3 py-2 rounded border border-gray-600 text-gray-300">
+        <button id="btnHeaderDiretoria" onclick="abrirLoginAdmin()" class="bg-gray-800 hover:bg-gray-700 text-xs px-3 py-2 rounded border border-gray-600 text-gray-300">
           <i class="fa-solid fa-lock mr-1"></i> Diretoria
         </button>
       </div>
     </div>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="max-w-7xl mx-auto px-4 py-12 text-center relative overflow-hidden">
-    <span class="bg-brandOrange/10 text-brandOrange border border-brandOrange/30 px-4 py-1.5 rounded-full text-sm font-semibold inline-block mb-4">
-      <i class="fa-solid fa-satellite-dish mr-1 animate-spin"></i> Rastreamento GPS e Prova Real de Entrega
-    </span>
-    <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight">
-      Sua panfletagem com <span class="text-brandOrange">Precisão Britânica</span> em Limeira
-    </h2>
-    <p class="text-gray-300 max-w-2xl mx-auto text-lg mb-8">
-      Auditoria via satélite GPS, relatórios de impacto e garantia de exclusividade por segmento na sua região.
-    </p>
-    <a href="#regioes" class="bg-brandOrange hover:bg-brandOrangeHover text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-brandOrange/30 transition duration-300 inline-block animate-bounce-soft">
-      Ver Regiões Disponíveis <i class="fa-solid fa-arrow-right ml-2"></i>
-    </a>
-  </section>
-
-  <!-- BANNER INSTAGRAM -->
-  <section class="max-w-7xl mx-auto px-4 py-4">
-    <a href="https://www.instagram.com/droptrackinteligente/" target="_blank" class="block bg-gradient-to-r from-purple-900/60 via-pink-900/60 to-brandOrange/60 border border-pink-500/30 p-4 rounded-2xl flex flex-col md:flex-row items-center justify-between hover:scale-[1.01] transition shadow-lg group">
-      <div class="flex items-center space-x-4 mb-3 md:mb-0">
-        <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 flex items-center justify-center text-white text-2xl shadow-md group-hover:rotate-12 transition">
-          <i class="fa-brands fa-instagram"></i>
-        </div>
-        <div>
-          <h4 class="text-lg font-bold text-white flex items-center">Acompanhe a Distribuição nos Stories em Tempo Real <i class="fa-solid fa-fire text-brandOrange ml-2"></i></h4>
-          <p class="text-xs text-gray-300">Publicamos fotos dos pontos de entrega diariamente no perfil @droptrackinteligente</p>
-        </div>
-      </div>
-      <span class="bg-white/10 text-white border border-white/20 text-xs px-4 py-2 rounded-xl font-bold group-hover:bg-pink-600 transition whitespace-nowrap">
-        Acessar Instagram <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+  <!-- PÁGINA PRINCIPAL (HOME) -->
+  <main id="viewHome">
+    <!-- HERO SECTION -->
+    <section class="max-w-7xl mx-auto px-4 py-12 text-center relative overflow-hidden">
+      <span class="bg-brandOrange/10 text-brandOrange border border-brandOrange/30 px-4 py-1.5 rounded-full text-sm font-semibold inline-block mb-4">
+        <i class="fa-solid fa-satellite-dish mr-1 animate-spin"></i> Rastreamento GPS e Prova Real de Entrega
       </span>
-    </a>
-  </section>
+      <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight">
+        Sua panfletagem com <span class="text-brandOrange">Precisão Britânica</span> em Limeira
+      </h2>
+      <p class="text-gray-300 max-w-2xl mx-auto text-lg mb-8">
+        Auditoria via satélite GPS, relatórios de impacto e garantia de exclusividade por segmento na sua região.
+      </p>
+      <a href="#regioes" class="bg-brandOrange hover:bg-brandOrangeHover text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-brandOrange/30 transition duration-300 inline-block animate-bounce-soft">
+        Ver Regiões Disponíveis <i class="fa-solid fa-arrow-right ml-2"></i>
+      </a>
+    </section>
 
-  <!-- QUEM SOMOS -->
-  <section id="sobre" class="max-w-7xl mx-auto px-4 py-12 border-t border-gray-800">
-    <div class="text-center mb-8">
-      <span class="text-brandOrange font-bold text-sm uppercase tracking-wider">Metodologia Exclusiva</span>
-      <h3 class="text-3xl font-bold text-white">Quem Somos & Como Atuamos</h3>
-      <p class="text-gray-400 text-xs mt-1">Clique em qualquer um dos pilares abaixo para ver o funcionamento detalhado</p>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-6">
-      <div onclick="abrirModalSobre(1)" class="bg-brandCard p-6 rounded-2xl border border-gray-800 hover:border-brandOrange/60 cursor-pointer transition transform hover:-translate-y-1 shadow-lg group">
-        <div class="flex justify-between items-center mb-3">
-          <div class="text-brandOrange text-3xl group-hover:scale-110 transition"><i class="fa-solid fa-route"></i></div>
-          <span class="text-[10px] text-brandOrange bg-brandOrange/10 border border-brandOrange/30 px-2 py-0.5 rounded font-bold">Ver detalhes</span>
+    <!-- BANNER INSTAGRAM -->
+    <section class="max-w-7xl mx-auto px-4 py-4">
+      <a href="https://www.instagram.com/droptrackinteligente/" target="_blank" class="block bg-gradient-to-r from-purple-900/60 via-pink-900/60 to-brandOrange/60 border border-pink-500/30 p-4 rounded-2xl flex flex-col md:flex-row items-center justify-between hover:scale-[1.01] transition shadow-lg group">
+        <div class="flex items-center space-x-4 mb-3 md:mb-0">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 flex items-center justify-center text-white text-2xl shadow-md group-hover:rotate-12 transition">
+            <i class="fa-brands fa-instagram"></i>
+          </div>
+          <div>
+            <h4 class="text-lg font-bold text-white flex items-center">Acompanhe a Distribuição nos Stories em Tempo Real <i class="fa-solid fa-fire text-brandOrange ml-2"></i></h4>
+            <p class="text-xs text-gray-300">Publicamos fotos dos pontos de entrega diariamente no perfil @droptrackinteligente</p>
+          </div>
         </div>
-        <h4 class="text-xl font-bold text-white mb-2">Mapeamento Geoestratégico</h4>
-        <p class="text-gray-400 text-sm">Roteamento setor por setor em Limeira com dados geográficos de alta densidade e público-alvo com real potencial de compra.</p>
-      </div>
+        <span class="bg-white/10 text-white border border-white/20 text-xs px-4 py-2 rounded-xl font-bold group-hover:bg-pink-600 transition whitespace-nowrap">
+          Acessar Instagram <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+        </span>
+      </a>
+    </section>
 
-      <div onclick="abrirModalSobre(2)" class="bg-brandCard p-6 rounded-2xl border border-gray-800 hover:border-brandOrange/60 cursor-pointer transition transform hover:-translate-y-1 shadow-lg group">
-        <div class="flex justify-between items-center mb-3">
-          <div class="text-brandOrange text-3xl group-hover:scale-110 transition"><i class="fa-solid fa-map-location-dot"></i></div>
-          <span class="text-[10px] text-brandOrange bg-brandOrange/10 border border-brandOrange/30 px-2 py-0.5 rounded font-bold">Ver detalhes</span>
-        </div>
-        <h4 class="text-xl font-bold text-white mb-2">Rastreamento via Satélite</h4>
-        <p class="text-gray-400 text-sm">100% das rotas auditadas com rastreador GPS em tempo real, mapas de calor, cálculo de velocidade e fotos das entregas.</p>
+    <!-- PREÇOS E PLANOS -->
+    <section id="precos" class="max-w-7xl mx-auto px-4 py-12 border-t border-gray-800">
+      <div class="text-center mb-10">
+        <span class="text-brandOrange font-bold text-sm uppercase tracking-wider">Investimento Transparente</span>
+        <h3 class="text-3xl font-bold text-white">Nossos Preços e Planos</h3>
       </div>
+      <div class="grid md:grid-cols-3 gap-6" id="lista-precos"></div>
+    </section>
 
-      <div onclick="abrirModalSobre(3)" class="bg-brandCard p-6 rounded-2xl border border-gray-800 hover:border-brandOrange/60 cursor-pointer transition transform hover:-translate-y-1 shadow-lg group">
-        <div class="flex justify-between items-center mb-3">
-          <div class="text-brandOrange text-3xl group-hover:scale-110 transition"><i class="fa-solid fa-shield-halved"></i></div>
-          <span class="text-[10px] text-brandOrange bg-brandOrange/10 border border-brandOrange/30 px-2 py-0.5 rounded font-bold">Ver detalhes</span>
-        </div>
-        <h4 class="text-xl font-bold text-white mb-2">Proteção de Nicho</h4>
-        <p class="text-gray-400 text-sm">Garantimos zero concorrência direta no mesmo lote (ex: apenas 1 pizzaria, 1 loja de calçados ou 1 farmácia por área).</p>
+    <!-- SELEÇÃO DE REGIÕES -->
+    <section id="regioes" class="max-w-7xl mx-auto px-4 py-12 border-t border-gray-800">
+      <div class="text-center mb-10">
+        <span class="text-brandOrange font-bold text-sm uppercase tracking-wider">Mapeamento Geoestratégico</span>
+        <h3 class="text-3xl font-bold text-white">Escolha sua Região e Garanta sua Vaga</h3>
       </div>
+      <div class="flex overflow-x-auto space-x-3 pb-4 mb-8 scrollbar-thin" id="botoes-semanas"></div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6" id="cards-regioes"></div>
+    </section>
+  </main>
+
+  <!-- PÁGINA PAINEL DA DIRETORIA (SEÇÃO COMPLETA) -->
+  <section id="viewDiretoria" class="hidden max-w-7xl mx-auto px-4 py-8">
+    <div class="flex justify-between items-center mb-8 border-b border-gray-800 pb-4">
+      <div>
+        <h2 class="text-3xl font-bold text-white"><i class="fa-solid fa-gears text-brandOrange mr-2"></i> Painel da Diretoria</h2>
+        <p class="text-xs text-gray-400">Gerenciamento completo do sistema e liberação de acessos dos clientes</p>
+      </div>
+      <button onclick="navegarPara('home')" class="bg-gray-800 hover:bg-gray-700 text-xs px-4 py-2 rounded-xl text-gray-300 font-bold">
+        <i class="fa-solid fa-arrow-left mr-1"></i> Voltar ao Site
+      </button>
+    </div>
+
+    <!-- ABAS DA DIRETORIA -->
+    <div class="flex space-x-3 mb-8">
+      <button onclick="mudarAbaAdmin('pedidos')" id="tabPed" class="px-5 py-3 rounded-xl font-bold text-xs bg-brandOrange text-white shadow">Base de Clientes & Acessos</button>
+      <button onclick="mudarAbaAdmin('regioes')" id="tabReg" class="px-5 py-3 rounded-xl font-bold text-xs bg-gray-800 text-gray-400 hover:text-white">Gerenciar Regiões e Fotos</button>
+      <button onclick="mudarAbaAdmin('precos')" id="tabPre" class="px-5 py-3 rounded-xl font-bold text-xs bg-gray-800 text-gray-400 hover:text-white">Tabela de Preços</button>
+    </div>
+
+    <!-- ABA 1: BASE DE CLIENTES EM CARDS SEPARADOS -->
+    <div id="secAdminPedidos">
+      <h3 class="text-xl font-bold text-white mb-4">Clientes Cadastrados & Gestão de Credenciais</h3>
+      <div id="listaPedidosAdmin" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+
+    <!-- ABA 2: EDITAR REGIÕES E MAPAS -->
+    <div id="secAdminRegioes" class="hidden">
+      <div class="mb-6 bg-brandCard p-4 rounded-xl border border-gray-800">
+        <label class="block text-xs font-semibold text-gray-400 mb-2">Selecione a Semana para Editar:</label>
+        <select id="adminSemanaSelect" onchange="carregarFormAdminSemana()" class="bg-gray-900 border border-gray-700 rounded p-2 text-white w-full text-xs outline-none focus:border-brandOrange"></select>
+      </div>
+      <div id="adminRegioesContainer" class="space-y-4"></div>
+      <div class="mt-6 flex space-x-3">
+        <button onclick="adicionarRegiaoAdmin()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-xs font-bold shadow">+ Adicionar Nova Região</button>
+        <button onclick="salvarRegioesAdmin()" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-xl text-xs font-bold shadow">Salvar Alterações da Semana</button>
+      </div>
+    </div>
+
+    <!-- ABA 3: EDITAR PREÇOS -->
+    <div id="secAdminPrecos" class="hidden">
+      <div class="grid md:grid-cols-3 gap-6" id="formAdminPrecos"></div>
+      <button onclick="salvarPrecosAdmin()" class="mt-6 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl text-xs font-bold shadow">Salvar Tabela de Preços</button>
     </div>
   </section>
 
-  <!-- MODAL QUEM SOMOS -->
-  <div id="modalSobre" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
-    <div class="bg-brandCard border border-brandOrange/30 p-6 rounded-2xl max-w-xl w-full">
-      <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-3">
-        <h4 class="text-2xl font-bold text-white" id="modalSobreTitulo">Título</h4>
-        <button onclick="fecharModalSobre()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+  <!-- PÁGINA ÁREA DO CLIENTE (SEÇÃO COMPLETA REDESENHADA) -->
+  <section id="viewCliente" class="hidden max-w-7xl mx-auto px-4 py-8">
+    <div class="flex justify-between items-center mb-8 border-b border-gray-800 pb-4">
+      <div>
+        <h2 class="text-3xl font-bold text-white" id="cliPainelNome">Área do Cliente</h2>
+        <p class="text-sm font-bold text-brandOrange" id="cliPainelEmpresa">Sua Empresa</p>
       </div>
-      <div id="modalSobreConteudo" class="text-gray-300 text-sm space-y-3 leading-relaxed mb-6"></div>
-      <button onclick="fecharModalSobre()" class="w-full bg-brandOrange hover:bg-brandOrangeHover text-white font-bold py-2.5 rounded-xl transition">Entendi</button>
-    </div>
-  </div>
-
-  <!-- COMPROMISSO OPERACIONAL -->
-  <section id="diferenciais" class="max-w-7xl mx-auto px-4 py-12 border-t border-gray-800">
-    <div class="text-center mb-10">
-      <span class="text-brandOrange font-bold text-sm uppercase tracking-wider">Qualidade Operacional</span>
-      <h3 class="text-3xl font-bold text-white">Compromisso e Cuidado em Cada Detalhe</h3>
-      <p class="text-gray-400 text-sm">Respeitamos seu investimento e a imagem da sua marca</p>
+      <button onclick="sairPainelCliente()" class="bg-gray-800 hover:bg-gray-700 text-xs px-4 py-2 rounded-xl text-gray-300 font-bold">
+        <i class="fa-solid fa-right-from-bracket mr-1"></i> Sair do Painel
+      </button>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-brandCard p-6 rounded-xl border border-gray-800">
-        <div class="text-brandOrange text-2xl mb-3"><i class="fa-solid fa-wind"></i></div>
-        <h4 class="text-lg font-bold text-white mb-2">1. Fixação Antivento</h4>
-        <p class="text-gray-400 text-xs leading-relaxed">Em casas sem caixa de correio, utilizamos elásticos próprios para fixar a peça no portão com organização.</p>
-      </div>
-      <div class="bg-brandCard p-6 rounded-xl border border-gray-800">
-        <div class="text-brandOrange text-2xl mb-3"><i class="fa-solid fa-cloud-showers-heavy"></i></div>
-        <h4 class="text-lg font-bold text-white mb-2">2. Política Anti-Chuva</h4>
-        <p class="text-gray-400 text-xs leading-relaxed">Monitoramos o tempo em tempo real. Em caso de chuva, a distribuição é pausada para não danificar seu material.</p>
-      </div>
-      <div class="bg-brandCard p-6 rounded-xl border border-gray-800">
-        <div class="text-brandOrange text-2xl mb-3"><i class="fa-solid fa-calendar-check"></i></div>
-        <h4 class="text-lg font-bold text-white mb-2">3. Reprogramação Sem Custo</h4>
-        <p class="text-gray-400 text-xs leading-relaxed">Pausas climáticas garantem reprogramação e reposição das datas sem custos adicionais.</p>
-      </div>
+    <!-- CUPOM DE DESCONTO -->
+    <div class="bg-gradient-to-r from-brandOrange/20 via-brandCard to-brandDark p-6 rounded-2xl border border-brandOrange/30 mb-8 shadow-lg">
+      <span class="text-xs font-bold text-brandOrange uppercase tracking-widest block mb-1">Benefício do Parceiro</span>
+      <h4 class="text-2xl font-bold text-white mb-1"><i class="fa-solid fa-ticket text-brandOrange mr-2"></i> Desconto Exclusivo: 10% OFF</h4>
+      <p class="text-xs text-gray-300">Você possui 10% de desconto adicional para contratações de novas áreas! <span class="text-brandOrange font-semibold">*Válido exceto para promoções já ativas (como a de Inauguração).</span></p>
+    </div>
+
+    <!-- ÁREAS CONTRATADAS / ATIVAS -->
+    <div class="mb-10">
+      <h3 class="text-xl font-bold text-white mb-4 flex items-center"><i class="fa-solid fa-map-location-dot text-brandOrange mr-2"></i> Áreas Contratadas (Campanha Ativa)</h3>
+      <div id="cliAreaContratadas" class="grid md:grid-cols-2 gap-6"></div>
+    </div>
+
+    <!-- HISTÓRICO DE CAMPANHAS E RELATÓRIOS EM PDF -->
+    <div>
+      <h3 class="text-xl font-bold text-white mb-4 flex items-center"><i class="fa-solid fa-clock-rotate-left text-brandBlue mr-2"></i> Histórico de Campanhas & Relatórios em PDF</h3>
+      <div id="cliAreaHistorico" class="bg-brandCard p-6 rounded-2xl border border-gray-800"></div>
     </div>
   </section>
 
-  <!-- PREÇOS E PLANOS -->
-  <section id="precos" class="max-w-7xl mx-auto px-4 py-12 border-t border-gray-800">
-    <div class="text-center mb-10">
-      <span class="text-brandOrange font-bold text-sm uppercase tracking-wider">Investimento Transparente</span>
-      <h3 class="text-3xl font-bold text-white">Nossos Preços e Planos</h3>
-      <p class="text-gray-400 text-sm">Escolha a escala ideal para o seu negócio</p>
-    </div>
-    <div class="grid md:grid-cols-3 gap-6" id="lista-precos"></div>
-  </section>
-
-  <!-- SELEÇÃO DE REGIÕES -->
-  <section id="regioes" class="max-w-7xl mx-auto px-4 py-12 border-t border-gray-800">
-    <div class="text-center mb-10">
-      <span class="text-brandOrange font-bold text-sm uppercase tracking-wider">Mapeamento Geoestratégico</span>
-      <h3 class="text-3xl font-bold text-white">Escolha sua Região e Garanta sua Vaga</h3>
-      <p class="text-gray-400 mt-2 text-sm">Navegue pelas 10 semanas e veja as fotos dos mapas. Início oficial: <strong class="text-brandOrange">19/10/2026</strong></p>
-    </div>
-    <div class="flex overflow-x-auto space-x-3 pb-4 mb-8 scrollbar-thin" id="botoes-semanas"></div>
-    <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6" id="cards-regioes"></div>
-  </section>
-
-  <!-- MODAL DETALHES CARD REGIÃO (COM ENQUADRAMENTO COMPLETO E ZOOM) -->
+  <!-- MODAL DETALHES CARD REGIÃO -->
   <div id="modalDetalhesRegiao" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
     <div class="bg-brandCard border border-brandOrange/30 p-6 rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
       <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-3">
@@ -209,13 +210,10 @@
         <button onclick="fecharModalDetalhes()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
       </div>
 
-      <!-- Container do Mapa sem cortes -->
       <div class="mb-4">
-        <div id="galeriaGrande" class="relative h-80 w-full rounded-xl overflow-hidden border border-brandOrange/30 bg-gray-950/80 flex items-center justify-center p-2 group cursor-zoom-in" onclick="abrirZoomMapa()">
-          <!-- Imagem dinamicamente inserida com object-contain -->
-        </div>
+        <div id="galeriaGrande" class="relative h-80 w-full rounded-xl overflow-hidden border border-brandOrange/30 bg-gray-950 flex items-center justify-center p-2 cursor-zoom-in" onclick="abrirZoomMapa()"></div>
         <div class="flex justify-between items-center text-[10px] text-gray-400 px-1 mt-1">
-          <span><i class="fa-solid fa-magnifying-glass-plus text-brandOrange mr-1"></i> Clique no mapa para ver em Tela Cheia</span>
+          <span><i class="fa-solid fa-magnifying-glass-plus text-brandOrange mr-1"></i> Clique para Tela Cheia</span>
           <span id="contadorFotosTexto">1/1</span>
         </div>
         <div id="galeriaMiniaturas" class="flex space-x-2 overflow-x-auto pt-2 pb-1"></div>
@@ -240,7 +238,7 @@
     <img id="imgZoomMapa" src="" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl">
   </div>
 
-  <!-- MODAL SOLICITAÇÃO CLIENTE -->
+  <!-- MODAL SOLICITAÇÃO CLIENTE (SEM ABRIR WHATSAPP AUTOMÁTICO) -->
   <div id="modalCliente" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
     <div class="bg-brandCard border border-brandOrange/30 p-6 rounded-2xl max-w-lg w-full">
       <div class="flex justify-between items-center mb-4">
@@ -275,7 +273,7 @@
           </select>
         </div>
         <button type="submit" class="w-full bg-brandOrange hover:bg-brandOrangeHover text-white font-bold py-3 rounded-xl transition shadow-lg shadow-brandOrange/30">
-          <i class="fa-brands fa-whatsapp mr-2"></i> Solicitar Participação via WhatsApp
+          Confirmar e Enviar para a Diretoria
         </button>
       </form>
     </div>
@@ -288,10 +286,10 @@
         <i class="fa-solid fa-user-check"></i>
       </div>
       <h4 class="text-xl font-bold text-white mb-1">Área do Cliente</h4>
-      <p class="text-xs text-gray-400 mb-4">Acesse seus relatórios em PDF e promoções exclusivas</p>
+      <p class="text-xs text-gray-400 mb-4">Acesse seus relatórios em PDF e áreas contratadas</p>
       <form onsubmit="autenticarCliente(event)" class="space-y-3 text-left">
         <div>
-          <label class="block text-xs text-gray-400 mb-1">Login / WhatsApp</label>
+          <label class="block text-xs text-gray-400 mb-1">Login / Usuário</label>
           <input type="text" id="cliUser" required placeholder="Seu usuário" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white outline-none focus:border-brandBlue">
         </div>
         <div>
@@ -301,37 +299,9 @@
         <p id="cliLoginError" class="text-red-500 text-xs hidden">Credenciais incorretas ou ainda não ativadas!</p>
         <div class="flex space-x-2 pt-2">
           <button type="button" onclick="fecharLoginCliente()" class="w-1/2 bg-gray-800 hover:bg-gray-700 text-white py-2 rounded text-xs font-bold">Cancelar</button>
-          <button type="submit" class="w-1/2 bg-brandBlue hover:bg-blue-600 text-white py-2 rounded text-xs font-bold">Acessar Painel</button>
+          <button type="submit" class="w-1/2 bg-brandBlue hover:bg-blue-600 text-white py-2 rounded text-xs font-bold">Entrar</button>
         </div>
       </form>
-    </div>
-  </div>
-
-  <!-- MODAL PAINEL DO CLIENTE LOGADO -->
-  <div id="modalPainelCliente" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
-    <div class="bg-brandCard border border-brandBlue/40 p-6 rounded-2xl max-w-2xl w-full">
-      <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-3">
-        <div>
-          <h4 class="text-2xl font-bold text-white" id="cliPainelNome">Bem-vindo, Cliente</h4>
-          <p class="text-xs text-brandOrange font-bold" id="cliPainelEmpresa">Sua Empresa</p>
-        </div>
-        <button onclick="fecharPainelCliente()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
-      </div>
-
-      <div class="bg-gradient-to-r from-brandOrange/20 to-brandDark p-4 rounded-xl border border-brandOrange/30 mb-6">
-        <span class="text-[10px] font-bold text-brandOrange uppercase tracking-widest block mb-1">Benefício do Parceiro</span>
-        <h5 class="text-lg font-bold text-white mb-1"><i class="fa-solid fa-ticket text-brandOrange mr-1"></i> Seu Desconto Ativo: 10% OFF</h5>
-        <p class="text-xs text-gray-300">Você tem 10% de desconto adicional para novas contratações regionais! <span class="text-brandOrange font-semibold">*Válido exceto para promoções já ativas (como a de Inauguração).</span></p>
-      </div>
-
-      <div class="bg-gray-900 p-4 rounded-xl border border-gray-800 mb-6">
-        <h5 class="text-sm font-bold text-white mb-2"><i class="fa-solid fa-file-pdf text-red-500 mr-2"></i> Relatório Operacional da Sua Campanha</h5>
-        <div id="cliPdfArea" class="text-xs text-gray-400"></div>
-      </div>
-
-      <button onclick="fecharPainelCliente()" class="w-full bg-gray-800 hover:bg-gray-700 text-white font-bold py-2.5 rounded-xl transition text-xs">
-        Sair do Painel
-      </button>
     </div>
   </div>
 
@@ -361,82 +331,19 @@
     </div>
   </div>
 
-  <!-- MODAL PAINEL ADMINISTRATIVO DIRETORIA -->
-  <div id="modalAdmin" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
-    <div class="bg-brandCard border border-gray-700 p-6 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-      <div class="flex justify-between items-center mb-6 border-b border-gray-700 pb-3">
-        <h4 class="text-2xl font-bold text-white"><i class="fa-solid fa-gears text-brandOrange mr-2"></i> Painel da Diretoria</h4>
-        <button onclick="fecharAdmin()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
-      </div>
-
-      <div class="flex space-x-2 mb-6 border-b border-gray-800 pb-3">
-        <button onclick="mudarAbaAdmin('pedidos')" id="tabPed" class="px-4 py-2 rounded-lg font-bold text-xs bg-brandOrange text-white">Base de Clientes & Pedidos</button>
-        <button onclick="mudarAbaAdmin('regioes')" id="tabReg" class="px-4 py-2 rounded-lg font-bold text-xs bg-gray-800 text-gray-400">Gerenciar Regiões e Fotos</button>
-        <button onclick="mudarAbaAdmin('precos')" id="tabPre" class="px-4 py-2 rounded-lg font-bold text-xs bg-gray-800 text-gray-400">Tabela de Preços</button>
-      </div>
-
-      <!-- ABA 1: CLIENTES & PEDIDOS -->
-      <div id="secAdminPedidos">
-        <h5 class="text-lg font-bold text-brandOrange mb-3"><i class="fa-solid fa-users text-sm mr-1"></i> Base Completa de Clientes Cadastrados</h5>
-        <div id="listaPedidosAdmin" class="grid md:grid-cols-2 gap-4"></div>
-      </div>
-
-      <!-- ABA 2: EDITAR REGIÕES E MAPAS -->
-      <div id="secAdminRegioes" class="hidden">
-        <div class="mb-4">
-          <label class="block text-xs font-semibold text-gray-400 mb-1">Selecione a Semana para Editar:</label>
-          <select id="adminSemanaSelect" onchange="carregarFormAdminSemana()" class="bg-gray-800 border border-gray-700 rounded p-2 text-white w-full text-xs">
-          </select>
-        </div>
-        <div id="adminRegioesContainer" class="space-y-4"></div>
-        <div class="mt-4 flex space-x-3">
-          <button onclick="adicionarRegiaoAdmin()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-xs font-bold">+ Adicionar Região</button>
-          <button onclick="salvarRegioesAdmin()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-xs font-bold">Salvar Alterações da Semana</button>
-        </div>
-      </div>
-
-      <!-- ABA 3: EDITAR PREÇOS -->
-      <div id="secAdminPrecos" class="hidden">
-        <div class="grid md:grid-cols-3 gap-4" id="formAdminPrecos"></div>
-        <button onclick="salvarPrecosAdmin()" class="mt-4 bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded text-xs font-bold">Salvar Tabela de Preços</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL GERENCIAR CLIENTE PELA DIRETORIA -->
-  <div id="modalGerenciarClienteAdmin" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
-    <div class="bg-brandCard border border-brandOrange/30 p-6 rounded-2xl max-w-lg w-full">
-      <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-3">
-        <h4 class="text-lg font-bold text-white">Gerenciar Acesso do Cliente</h4>
-        <button onclick="fecharGerenciarClienteAdmin()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
-      </div>
-      <form onsubmit="salvarAcessoClienteAdmin(event)" class="space-y-3 text-xs">
-        <input type="hidden" id="admCliId">
-        <div>
-          <label class="block text-gray-400 mb-1">Empresa / Cliente</label>
-          <input type="text" id="admCliEmpresa" disabled class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white font-bold">
-        </div>
-        <div>
-          <label class="block text-gray-400 mb-1">Definir Usuário de Acesso do Cliente</label>
-          <input type="text" id="admCliUser" required placeholder="Ex: pizzaria_bella" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white outline-none focus:border-brandOrange">
-        </div>
-        <div>
-          <label class="block text-gray-400 mb-1">Definir Senha de Acesso</label>
-          <input type="text" id="admCliPass" required placeholder="Ex: 123456" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white outline-none focus:border-brandOrange">
-        </div>
-        <div>
-          <label class="block text-gray-400 mb-1">URL / Link do PDF do Relatório do Cliente (Google Drive / GitHub)</label>
-          <input type="text" id="admCliPdf" placeholder="https://drive.google.com/file/d/.../view" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white outline-none focus:border-brandOrange">
-        </div>
-        <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2.5 rounded-xl transition mt-2">
-          Salvar Dados & Liberar Acesso do Cliente
-        </button>
-      </form>
-    </div>
-  </div>
-
   <script>
-    // --- CONVERSOR ROBUSTO GOOGLE DRIVE PARA LINK DIRETO ---
+    // --- NAVEGAÇÃO ENTRE PÁGINAS DA APLICAÇÃO ---
+    function navegarPara(secao) {
+      document.getElementById('viewHome').classList.add('hidden');
+      document.getElementById('viewDiretoria').classList.add('hidden');
+      document.getElementById('viewCliente').classList.add('hidden');
+
+      if (secao === 'home') document.getElementById('viewHome').classList.remove('hidden');
+      if (secao === 'diretoria') document.getElementById('viewDiretoria').classList.remove('hidden');
+      if (secao === 'cliente') document.getElementById('viewCliente').classList.remove('hidden');
+    }
+
+    // --- CONVERSOR GOOGLE DRIVE PARA IMAGEM DIRETA ---
     function converterLinkDrive(url) {
       if (!url) return '';
       url = url.trim();
@@ -446,17 +353,11 @@
         const matchFile = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
         const matchId = url.match(/id=([a-zA-Z0-9_-]+)/);
 
-        if (matchFile && matchFile[1]) {
-          fileId = matchFile[1];
-        } else if (matchId && matchId[1]) {
-          fileId = matchId[1];
-        }
+        if (matchFile && matchFile[1]) fileId = matchFile[1];
+        else if (matchId && matchId[1]) fileId = matchId[1];
       }
 
-      if (fileId) {
-        return `https://lh3.googleusercontent.com/d/${fileId}`;
-      }
-
+      if (fileId) return `https://lh3.googleusercontent.com/d/${fileId}`;
       return url;
     }
 
@@ -485,14 +386,13 @@
       };
     });
 
-    let precosData = JSON.parse(localStorage.getItem('dt_precos_v7')) || defaultPrecos;
-    let semanasData = JSON.parse(localStorage.getItem('dt_semanas_v7')) || defaultSemanas;
-    let pedidosData = JSON.parse(localStorage.getItem('dt_pedidos_v7')) || [];
+    let precosData = JSON.parse(localStorage.getItem('dt_precos_v8')) || defaultPrecos;
+    let semanasData = JSON.parse(localStorage.getItem('dt_semanas_v8')) || defaultSemanas;
+    let pedidosData = JSON.parse(localStorage.getItem('dt_pedidos_v8')) || [];
     let semanaAtual = 1;
     let clienteLogado = null;
-    const WHATSAPP_DONO = "5519999999999";
 
-    // --- RENDERIZAÇÃO INICIAL ---
+    // --- RENDERIZAÇÃO HOME ---
     function renderizarPrecos() {
       const container = document.getElementById('lista-precos');
       if (!container) return;
@@ -505,7 +405,6 @@
             </div>
             <h4 class="text-xl font-bold text-white mb-2">${p.nome}</h4>
             <p class="text-gray-400 text-xs mb-6 h-10">${p.desc}</p>
-
             <div class="space-y-3 mb-6 text-xs bg-gray-900/60 p-3 rounded-lg border border-gray-800">
               <div class="flex justify-between border-b border-gray-800/80 pb-2">
                 <span class="text-gray-300">1 Área (~1.300 casas):</span>
@@ -546,13 +445,7 @@
       const regioesVisiveis = semanaObj ? semanaObj.regioes.filter(r => r.visivel) : [];
 
       if (!semanaObj || regioesVisiveis.length === 0) {
-        container.innerHTML = `
-          <div class="col-span-full text-center py-12 bg-brandCard rounded-2xl border border-gray-800">
-            <i class="fa-solid fa-map-location-dot text-4xl text-gray-600 mb-3"></i>
-            <p class="text-gray-400 text-sm">Nenhuma região liberada para exibição nesta semana ainda.</p>
-            <p class="text-xs text-gray-500 mt-1">Acesse a Área da Diretoria para liberar o mapeamento das semanas.</p>
-          </div>
-        `;
+        container.innerHTML = `<div class="col-span-full text-center py-12 bg-brandCard rounded-2xl border border-gray-800 text-gray-400 text-sm">Nenhuma região liberada para exibição nesta semana ainda.</div>`;
         return;
       }
 
@@ -561,20 +454,16 @@
         const fotosValidas = (r.fotos || []).map(f => converterLinkDrive(f)).filter(f => f && f.trim() !== '');
         const primeiraFoto = fotosValidas.length > 0 ? fotosValidas[0] : '';
 
-        // Exibição sem cortes usando object-contain
         const blocoImagem = primeiraFoto !== ''
           ? `<div class="relative h-48 w-full border-b border-brandOrange/30 bg-gray-950 flex items-center justify-center p-2">
-               <img src="${primeiraFoto}" alt="Mapa ${r.nome}" class="max-h-full max-w-full object-contain" onerror="tratarErroImagemCard(this, '${r.nome}')">
+               <img src="${primeiraFoto}" alt="Mapa ${r.nome}" class="max-h-full max-w-full object-contain">
                <div class="absolute top-2 right-2 bg-brandDark/90 backdrop-blur px-2.5 py-1 rounded text-[10px] font-bold text-brandOrange border border-brandOrange/30 shadow">
                  <i class="fa-solid fa-images mr-1"></i> ${fotosValidas.length} Foto(s)
                </div>
              </div>`
           : `<div class="relative h-40 w-full bg-gradient-to-br from-brandDark via-brandCard to-gray-900 border-b border-gray-800 flex flex-col items-center justify-center p-4 text-center">
-               <div class="w-12 h-12 rounded-full bg-brandOrange/20 border border-brandOrange/40 flex items-center justify-center text-brandOrange text-xl mb-2">
-                 <i class="fa-solid fa-map-marked-alt"></i>
-               </div>
-               <span class="text-xs font-bold text-white tracking-wide">${r.nome}</span>
-               <span class="text-[10px] text-gray-400 mt-0.5">Clique para ver fotos do mapa</span>
+               <i class="fa-solid fa-map-marked-alt text-brandOrange text-2xl mb-1"></i>
+               <span class="text-xs font-bold text-white">${r.nome}</span>
              </div>`;
 
         return `
@@ -583,18 +472,16 @@
             <div class="p-6 flex-1 flex flex-col justify-between">
               <div>
                 <div class="flex justify-between items-start mb-3">
-                  <span class="bg-brandBlue/20 text-brandBlue border border-brandBlue/30 text-[10px] px-2.5 py-1 rounded font-bold">
-                    <i class="fa-solid fa-map-pin mr-1"></i> Cobertura Auditada
-                  </span>
+                  <span class="bg-brandBlue/20 text-brandBlue border border-brandBlue/30 text-[10px] px-2.5 py-1 rounded font-bold">Cobertura Auditada</span>
                   ${vagasRestantes === 0 
                     ? `<span class="bg-red-500/20 text-red-400 border border-red-500/30 text-[10px] px-2 py-0.5 rounded font-bold">LOTADO</span>`
                     : `<span class="bg-green-500/20 text-green-400 border border-green-500/30 text-[10px] px-2 py-0.5 rounded font-bold">${vagasRestantes} vaga(s) disponível(is)</span>`
                   }
                 </div>
                 <h4 class="text-xl font-bold text-white mb-2">${r.nome}</h4>
-                <div class="grid grid-cols-2 gap-2 text-xs bg-gray-900/60 p-3 rounded-lg mb-4 border border-gray-800/80">
+                <div class="grid grid-cols-2 gap-2 text-xs bg-gray-900/60 p-3 rounded-lg mb-4 border border-gray-800">
                   <div><span class="text-gray-400">Residências:</span> <strong class="text-white block text-sm">${r.residencias.toLocaleString()}</strong></div>
-                  <div><span class="text-gray-400">Pessoas Atingidas:</span> <strong class="text-white block text-sm">+${r.pessoas.toLocaleString()}</strong></div>
+                  <div><span class="text-gray-400">Pessoas:</span> <strong class="text-white block text-sm">+${r.pessoas.toLocaleString()}</strong></div>
                 </div>
               </div>
               <div class="w-full ${vagasRestantes === 0 ? 'bg-gray-800 text-gray-500' : 'bg-brandOrange hover:bg-brandOrangeHover text-white'} py-3 rounded-xl font-bold transition flex items-center justify-center space-x-2 text-center text-xs shadow">
@@ -607,25 +494,13 @@
       }).join('');
     }
 
-    function tratarErroImagemCard(img, nomeRegiao) {
-      const parent = img.parentElement;
-      if (parent) {
-        parent.innerHTML = `
-          <div class="h-full w-full bg-gray-900 flex flex-col items-center justify-center p-4 text-center">
-            <i class="fa-solid fa-image text-2xl text-brandOrange mb-1"></i>
-            <span class="text-xs text-white font-bold">${nomeRegiao}</span>
-            <span class="text-[9px] text-gray-400 mt-0.5">Defina a permissão "Qualquer pessoa com o link" no Drive</span>
-          </div>`;
-      }
-    }
-
     function mudarSemana(s) {
       semanaAtual = s;
       renderizarBotoesSemanas();
       renderizarRegioes();
     }
 
-    // --- MODAL DETALHES DAS FOTOS DO MAPA ---
+    // --- MODAL DETALHES DAS FOTOS ---
     function abrirDetalhesRegiao(idRegiao) {
       const semanaObj = semanasData.find(s => s.semana === semanaAtual);
       const regiao = semanaObj ? semanaObj.regioes.find(r => r.id === idRegiao) : null;
@@ -634,9 +509,7 @@
       document.getElementById('detalheNomeRegiao').innerText = regiao.nome;
       document.getElementById('detalheResidencias').innerText = regiao.residencias.toLocaleString();
       document.getElementById('detalhePessoas').innerText = '+' + regiao.pessoas.toLocaleString();
-      
-      const vagas = regiao.max - regiao.ocupadas;
-      document.getElementById('detalheVagas').innerText = `${vagas} vaga(s) disponível(is)`;
+      document.getElementById('detalheVagas').innerText = `${regiao.max - regiao.ocupadas} vaga(s) disponível(is)`;
 
       const fotosValidas = (regiao.fotos || []).map(f => converterLinkDrive(f)).filter(f => f && f.trim() !== '');
       const gGrande = document.getElementById('galeriaGrande');
@@ -644,8 +517,7 @@
       const contadorTxt = document.getElementById('contadorFotosTexto');
 
       if (fotosValidas.length > 0) {
-        // Renderiza com max-h e object-contain para exibir 100% do mapa sem cortes
-        gGrande.innerHTML = `<img id="imgPrincipalGaleria" src="${fotosValidas[0]}" class="max-h-full max-w-full object-contain" onerror="tratarErroGaleriaPrincipal(this)">`;
+        gGrande.innerHTML = `<img id="imgPrincipalGaleria" src="${fotosValidas[0]}" class="max-h-full max-w-full object-contain">`;
         if (contadorTxt) contadorTxt.innerText = `1 / ${fotosValidas.length}`;
 
         gMini.innerHTML = fotosValidas.map((f, idx) => `
@@ -654,11 +526,7 @@
           </button>
         `).join('');
       } else {
-        gGrande.innerHTML = `
-          <div class="h-full bg-gray-900 flex flex-col items-center justify-center text-gray-400 text-xs text-center p-4">
-            <i class="fa-solid fa-map-location-dot text-3xl text-brandOrange mb-2"></i>
-            <span>Setor Mapeado e Auditado via GPS em Limeira</span>
-          </div>`;
+        gGrande.innerHTML = `<div class="text-xs text-gray-500">Setor Mapeado e Auditado em Limeira</div>`;
         gMini.innerHTML = '';
         if (contadorTxt) contadorTxt.innerText = `0 / 0`;
       }
@@ -671,18 +539,6 @@
       document.getElementById('modalDetalhesRegiao').classList.remove('hidden');
     }
 
-    function tratarErroGaleriaPrincipal(img) {
-      const parent = img.parentElement;
-      if (parent) {
-        parent.innerHTML = `
-          <div class="h-full w-full bg-gray-900 flex flex-col items-center justify-center p-6 text-center">
-            <i class="fa-solid fa-lock text-3xl text-brandOrange mb-2"></i>
-            <span class="text-sm font-bold text-white mb-1">Permissão do Google Drive Privada</span>
-            <span class="text-xs text-gray-400">No Google Drive, clique no arquivo de imagem > Compartilhar > Altere para "Qualquer pessoa com o link".</span>
-          </div>`;
-      }
-    }
-
     function trocarFotoGaleria(url, atual, total) {
       const mainImg = document.getElementById('imgPrincipalGaleria');
       if (mainImg) mainImg.src = url;
@@ -690,32 +546,22 @@
       if (contadorTxt) contadorTxt.innerText = `${atual} / ${total}`;
     }
 
-    function fecharModalDetalhes() {
-      document.getElementById('modalDetalhesRegiao').classList.add('hidden');
-    }
-
-    // ZOOM EM TELA CHEIA
+    function fecharModalDetalhes() { document.getElementById('modalDetalhesRegiao').classList.add('hidden'); }
     function abrirZoomMapa() {
       const mainImg = document.getElementById('imgPrincipalGaleria');
       if (!mainImg || !mainImg.src) return;
       document.getElementById('imgZoomMapa').src = mainImg.src;
       document.getElementById('modalZoomMapa').classList.remove('hidden');
     }
+    function fecharZoomMapa() { document.getElementById('modalZoomMapa').classList.add('hidden'); }
 
-    function fecharZoomMapa() {
-      document.getElementById('modalZoomMapa').classList.add('hidden');
-    }
-
-    // --- MODAL SOLICITAÇÃO CLIENTE ---
+    // --- SOLICITAÇÃO CLIENTE (SEM WHATSAPP AUTOMÁTICO) ---
     function abrirModalCliente(nomeRegiao) {
       document.getElementById('modalRegiaoNome').value = nomeRegiao;
       document.getElementById('modalRegiaoNomeOculto').value = nomeRegiao;
       document.getElementById('modalCliente').classList.remove('hidden');
     }
-
-    function fecharModalCliente() {
-      document.getElementById('modalCliente').classList.add('hidden');
-    }
+    function fecharModalCliente() { document.getElementById('modalCliente').classList.add('hidden'); }
 
     function enviarPedido(e) {
       e.preventDefault();
@@ -740,99 +586,10 @@
       };
 
       pedidosData.push(novoPedido);
-      localStorage.setItem('dt_pedidos_v7', JSON.stringify(pedidosData));
+      localStorage.setItem('dt_pedidos_v8', JSON.stringify(pedidosData));
 
-      const mensagem = `Olá! Quero garantir vaga na *DropTrack*:%0A%0A` +
-        `📍 *Região:* ${regiao} (Semana ${semanaAtual})%0A` +
-        `🏢 *Empresa:* ${empresa}%0A` +
-        `🏷️ *Ramo/Nicho:* ${ramo}%0A` +
-        `📦 *Plano Desejado:* ${plano}%0A` +
-        `📞 *Contato:* ${whatsapp}`;
-
-      window.open(`https://wa.me/${WHATSAPP_DONO}?text=${mensagem}`, '_blank');
       fecharModalCliente();
-    }
-
-    // --- MODAL QUEM SOMOS ---
-    function abrirModalSobre(pilar) {
-      const titulo = document.getElementById('modalSobreTitulo');
-      const conteudo = document.getElementById('modalSobreConteudo');
-
-      if (pilar === 1) {
-        titulo.innerText = "Mapeamento Geoestratégico";
-        conteudo.innerHTML = `
-          <p>Nossas rotas em Limeira são planejadas com inteligência geoestratégica, separando a cidade em micro-regiões residenciais de 1.000 a 1.300 casas.</p>
-          <p>Garantimos entrega direta em bairros de alta densidade para maximizar o retorno das campanhas.</p>
-        `;
-      } else if (pilar === 2) {
-        titulo.innerText = "Rastreamento via Satélite (GPS)";
-        conteudo.innerHTML = `
-          <p>Utilizamos rastreadores de alta precisão que geram mapas de calor de percurso e velocidade média, comprovando a entrega na caixa de correio.</p>
-          <p>Fotos e registros da rota são compartilhados nos Stories do Instagram em tempo real.</p>
-        `;
-      } else if (pilar === 3) {
-        titulo.innerText = "Proteção de Nicho Comercial";
-        conteudo.innerHTML = `
-          <p>Garantimos zero concorrência direta no mesmo panfleto compartilhado (ex: apenas 1 pizzaria ou 1 loja de calçados por área).</p>
-          <p>No Plano Exclusivo Premium, 100% da área é dedicada inteiramente à sua empresa.</p>
-        `;
-      }
-      document.getElementById('modalSobre').classList.remove('hidden');
-    }
-
-    function fecharModalSobre() {
-      document.getElementById('modalSobre').classList.add('hidden');
-    }
-
-    // --- ÁREA DO CLIENTE LOGADO ---
-    function abrirLoginCliente() {
-      document.getElementById('cliLoginError').classList.add('hidden');
-      document.getElementById('modalLoginCliente').classList.remove('hidden');
-    }
-
-    function fecharLoginCliente() {
-      document.getElementById('modalLoginCliente').classList.add('hidden');
-    }
-
-    function autenticarCliente(e) {
-      e.preventDefault();
-      const user = document.getElementById('cliUser').value.trim();
-      const pass = document.getElementById('cliPass').value.trim();
-
-      const clienteEncontrado = pedidosData.find(p => p.userCliente && p.userCliente === user && p.passCliente === pass);
-
-      if (clienteEncontrado) {
-        clienteLogado = clienteEncontrado;
-        fecharLoginCliente();
-        abrirPainelCliente();
-      } else {
-        document.getElementById('cliLoginError').classList.remove('hidden');
-      }
-    }
-
-    function abrirPainelCliente() {
-      if (!clienteLogado) return;
-      document.getElementById('cliPainelNome').innerText = `Bem-vindo!`;
-      document.getElementById('cliPainelEmpresa').innerText = clienteLogado.empresa;
-
-      const pdfArea = document.getElementById('cliPdfArea');
-      if (clienteLogado.pdfUrl && clienteLogado.pdfUrl.trim() !== '') {
-        const pdfLink = converterLinkDrive(clienteLogado.pdfUrl);
-        pdfArea.innerHTML = `
-          <p class="text-gray-300 mb-3">Seu relatório da região <strong>${clienteLogado.regiao}</strong> está disponível para visualização e download:</p>
-          <a href="${pdfLink}" target="_blank" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-2 rounded-lg text-xs shadow">
-            <i class="fa-solid fa-file-pdf mr-1"></i> Acessar / Baixar Relatório PDF
-          </a>
-        `;
-      } else {
-        pdfArea.innerHTML = `<p class="text-gray-500">Seu relatório em PDF ainda está sendo processado pela diretoria. Em breve estará disponível nesta área!</p>`;
-      }
-
-      document.getElementById('modalPainelCliente').classList.remove('hidden');
-    }
-
-    function fecharPainelCliente() {
-      document.getElementById('modalPainelCliente').classList.add('hidden');
+      alert(`Solicitação registrada com sucesso! A diretoria analisará e liberará seu login e senha em breve.`);
     }
 
     // --- PAINEL DA DIRETORIA ---
@@ -840,31 +597,20 @@
       document.getElementById('loginError').classList.add('hidden');
       document.getElementById('modalLoginAdmin').classList.remove('hidden');
     }
-
-    function fecharLoginAdmin() {
-      document.getElementById('modalLoginAdmin').classList.add('hidden');
-    }
+    function fecharLoginAdmin() { document.getElementById('modalLoginAdmin').classList.add('hidden'); }
 
     function autenticarAdmin(e) {
       e.preventDefault();
       if (document.getElementById('adminUser').value === 'diretoria' && document.getElementById('adminPass').value === '123456') {
         fecharLoginAdmin();
-        abrirAdmin();
+        navegarPara('diretoria');
+        renderizarPedidosAdmin();
+        carregarSelectSemanaAdmin();
+        carregarFormAdminSemana();
+        carregarFormAdminPrecos();
       } else {
         document.getElementById('loginError').classList.remove('hidden');
       }
-    }
-
-    function abrirAdmin() {
-      renderizarPedidosAdmin();
-      carregarSelectSemanaAdmin();
-      carregarFormAdminSemana();
-      carregarFormAdminPrecos();
-      document.getElementById('modalAdmin').classList.remove('hidden');
-    }
-
-    function fecharAdmin() {
-      document.getElementById('modalAdmin').classList.add('hidden');
     }
 
     function mudarAbaAdmin(aba) {
@@ -872,84 +618,79 @@
       document.getElementById('secAdminRegioes').classList.add('hidden');
       document.getElementById('secAdminPrecos').classList.add('hidden');
 
-      document.getElementById('tabPed').className = "px-4 py-2 rounded-lg font-bold text-xs bg-gray-800 text-gray-400";
-      document.getElementById('tabReg').className = "px-4 py-2 rounded-lg font-bold text-xs bg-gray-800 text-gray-400";
-      document.getElementById('tabPre').className = "px-4 py-2 rounded-lg font-bold text-xs bg-gray-800 text-gray-400";
+      document.getElementById('tabPed').className = "px-5 py-3 rounded-xl font-bold text-xs bg-gray-800 text-gray-400";
+      document.getElementById('tabReg').className = "px-5 py-3 rounded-xl font-bold text-xs bg-gray-800 text-gray-400";
+      document.getElementById('tabPre').className = "px-5 py-3 rounded-xl font-bold text-xs bg-gray-800 text-gray-400";
 
       if (aba === 'pedidos') {
         document.getElementById('secAdminPedidos').classList.remove('hidden');
-        document.getElementById('tabPed').className = "px-4 py-2 rounded-lg font-bold text-xs bg-brandOrange text-white";
+        document.getElementById('tabPed').className = "px-5 py-3 rounded-xl font-bold text-xs bg-brandOrange text-white shadow";
       } else if (aba === 'regioes') {
         document.getElementById('secAdminRegioes').classList.remove('hidden');
-        document.getElementById('tabReg').className = "px-4 py-2 rounded-lg font-bold text-xs bg-brandOrange text-white";
+        document.getElementById('tabReg').className = "px-5 py-3 rounded-xl font-bold text-xs bg-brandOrange text-white shadow";
       } else if (aba === 'precos') {
         document.getElementById('secAdminPrecos').classList.remove('hidden');
-        document.getElementById('tabPre').className = "px-4 py-2 rounded-lg font-bold text-xs bg-brandOrange text-white";
+        document.getElementById('tabPre').className = "px-5 py-3 rounded-xl font-bold text-xs bg-brandOrange text-white shadow";
       }
     }
 
+    // CARDS DE CLIENTES COM CAMPOS EDITÁVEIS NA HORA
     function renderizarPedidosAdmin() {
       const container = document.getElementById('listaPedidosAdmin');
       if (!container) return;
       if (pedidosData.length === 0) {
-        container.innerHTML = `<p class="col-span-full text-xs text-gray-500">Nenhum cliente cadastrado ainda.</p>`;
+        container.innerHTML = `<p class="col-span-full text-xs text-gray-500 py-8 text-center bg-brandCard rounded-xl border border-gray-800">Nenhum cliente cadastrado ainda.</p>`;
         return;
       }
 
-      container.innerHTML = pedidosData.map(p => `
-        <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 space-y-2 text-xs">
-          <div class="flex justify-between items-center">
-            <strong class="text-brandOrange text-sm">${p.empresa}</strong>
-            <span class="text-[10px] text-gray-400">${p.dataHora}</span>
+      container.innerHTML = pedidosData.map((p, idx) => `
+        <div class="bg-brandCard p-5 rounded-2xl border border-gray-800 flex flex-col justify-between space-y-4 shadow-xl">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="text-lg font-bold text-brandOrange">${p.empresa}</h4>
+              <span class="text-[10px] text-gray-400 bg-gray-900 px-2 py-0.5 rounded">${p.dataHora}</span>
+            </div>
+            <div class="text-xs space-y-1 text-gray-300 mb-4 bg-gray-900/60 p-3 rounded-xl border border-gray-800">
+              <p><strong>Ramo / Nicho:</strong> ${p.ramo}</p>
+              <p><strong>Região:</strong> ${p.regiao} (Semana ${p.semana})</p>
+              <p><strong>Plano:</strong> ${p.plano}</p>
+              <p><strong>WhatsApp:</strong> ${p.whatsapp}</p>
+            </div>
+
+            <!-- DEFINIÇÃO DIRETA DE LOGIN, SENHA E PDF NO CARD -->
+            <div class="space-y-2 border-t border-gray-800 pt-3">
+              <strong class="text-xs text-white block"><i class="fa-solid fa-key text-brandOrange mr-1"></i> Acesso e Relatório do Cliente:</strong>
+              <div>
+                <label class="text-[10px] text-gray-400">Usuário de Acesso:</label>
+                <input type="text" id="adm_user_${idx}" value="${p.userCliente || ''}" placeholder="Ex: empresa123" class="w-full bg-gray-900 border border-gray-700 rounded p-1.5 text-xs text-white outline-none focus:border-brandOrange">
+              </div>
+              <div>
+                <label class="text-[10px] text-gray-400">Senha de Acesso:</label>
+                <input type="text" id="adm_pass_${idx}" value="${p.passCliente || ''}" placeholder="Ex: 123456" class="w-full bg-gray-900 border border-gray-700 rounded p-1.5 text-xs text-white outline-none focus:border-brandOrange">
+              </div>
+              <div>
+                <label class="text-[10px] text-gray-400">URL do PDF no Google Drive:</label>
+                <input type="text" id="adm_pdf_${idx}" value="${p.pdfUrl || ''}" placeholder="https://drive.google.com/..." class="w-full bg-gray-900 border border-gray-700 rounded p-1.5 text-xs text-white outline-none focus:border-brandOrange">
+              </div>
+            </div>
           </div>
-          <div><span class="text-gray-400">Ramo / Nicho:</span> <strong class="text-white">${p.ramo}</strong></div>
-          <div><span class="text-gray-400">Região Selecionada:</span> <strong class="text-white">${p.regiao} (Semana ${p.semana})</strong></div>
-          <div><span class="text-gray-400">Plano:</span> <strong class="text-brandBlue">${p.plano}</strong></div>
-          <div><span class="text-gray-400">WhatsApp:</span> <strong class="text-white">${p.whatsapp}</strong></div>
-          
-          <div class="pt-2 flex justify-between items-center border-t border-gray-700">
-            <span class="text-[10px] ${p.userCliente ? 'text-green-400 font-bold' : 'text-yellow-500'}">
-              ${p.userCliente ? `User: ${p.userCliente}` : 'Sem Login'}
-            </span>
-            <button onclick="abrirGerenciarClienteAdmin('${p.id}')" class="bg-brandOrange hover:bg-brandOrangeHover text-white px-3 py-1 rounded font-bold text-[10px]">
-              Gerenciar Login / PDF
-            </button>
-          </div>
+
+          <button onclick="salvarCredenciaisClienteCard(${idx})" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 rounded-xl text-xs transition shadow">
+            Salvar Credenciais do Cliente
+          </button>
         </div>
       `).join('');
     }
 
-    function abrirGerenciarClienteAdmin(idPedido) {
-      const p = pedidosData.find(item => item.id === idPedido);
-      if (!p) return;
+    function salvarCredenciaisClienteCard(idx) {
+      if (pedidosData[idx]) {
+        pedidosData[idx].userCliente = document.getElementById(`adm_user_${idx}`).value.trim();
+        pedidosData[idx].passCliente = document.getElementById(`adm_pass_${idx}`).value.trim();
+        pedidosData[idx].pdfUrl = document.getElementById(`adm_pdf_${idx}`).value.trim();
 
-      document.getElementById('admCliId').value = p.id;
-      document.getElementById('admCliEmpresa').value = p.empresa;
-      document.getElementById('admCliUser').value = p.userCliente || '';
-      document.getElementById('admCliPass').value = p.passCliente || '';
-      document.getElementById('admCliPdf').value = p.pdfUrl || '';
-
-      document.getElementById('modalGerenciarClienteAdmin').classList.remove('hidden');
-    }
-
-    function fecharGerenciarClienteAdmin() {
-      document.getElementById('modalGerenciarClienteAdmin').classList.add('hidden');
-    }
-
-    function salvarAcessoClienteAdmin(e) {
-      e.preventDefault();
-      const id = document.getElementById('admCliId').value;
-      const p = pedidosData.find(item => item.id === id);
-
-      if (p) {
-        p.userCliente = document.getElementById('admCliUser').value.trim();
-        p.passCliente = document.getElementById('admCliPass').value.trim();
-        p.pdfUrl = document.getElementById('admCliPdf').value.trim();
-
-        localStorage.setItem('dt_pedidos_v7', JSON.stringify(pedidosData));
+        localStorage.setItem('dt_pedidos_v8', JSON.stringify(pedidosData));
+        alert(`Credenciais e PDF do cliente ${pedidosData[idx].empresa} salvas com sucesso!`);
         renderizarPedidosAdmin();
-        fecharGerenciarClienteAdmin();
-        alert(`Acesso do cliente ${p.empresa} salvo com sucesso!`);
       }
     }
 
@@ -975,15 +716,14 @@
       container.innerHTML = semObj.regioes.map((r, index) => {
         const fotos = r.fotos || ['', '', '', '', ''];
         return `
-          <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 space-y-3 text-xs">
+          <div class="bg-brandCard p-4 rounded-xl border border-gray-800 space-y-3 text-xs">
             <div class="flex justify-between items-center">
               <span class="font-bold text-brandOrange">Região #${index + 1}</span>
               <label class="flex items-center text-gray-300">
                 <input type="checkbox" id="adm_vis_${index}" ${r.visivel ? 'checked' : ''} class="mr-1">
-                Visível para Clientes
+                Visível no Site
               </label>
             </div>
-
             <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
               <div class="col-span-2">
                 <label class="text-gray-400">Nome da Região / Bairros</label>
@@ -1006,10 +746,10 @@
                 <input type="number" id="adm_max_${index}" value="${r.max}" min="1" max="4" class="bg-gray-900 p-2 rounded text-white w-full border border-gray-700">
               </div>
 
-              <div class="col-span-4 space-y-1 pt-2 border-t border-gray-700">
-                <label class="text-brandOrange font-bold block">Fotos do Mapa da Região (Links do Google Drive / Web):</label>
+              <div class="col-span-4 space-y-1 pt-2 border-t border-gray-800">
+                <label class="text-brandOrange font-bold block">Fotos do Mapa da Região (Links do Google Drive):</label>
                 <div class="grid grid-cols-1 md:grid-cols-5 gap-2">
-                  <input type="text" id="adm_f0_${index}" value="${fotos[0] || ''}" placeholder="Foto 1 (Principal)" class="bg-gray-900 p-1.5 rounded text-white w-full border border-gray-700">
+                  <input type="text" id="adm_f0_${index}" value="${fotos[0] || ''}" placeholder="Foto 1" class="bg-gray-900 p-1.5 rounded text-white w-full border border-gray-700">
                   <input type="text" id="adm_f1_${index}" value="${fotos[1] || ''}" placeholder="Foto 2" class="bg-gray-900 p-1.5 rounded text-white w-full border border-gray-700">
                   <input type="text" id="adm_f2_${index}" value="${fotos[2] || ''}" placeholder="Foto 3" class="bg-gray-900 p-1.5 rounded text-white w-full border border-gray-700">
                   <input type="text" id="adm_f3_${index}" value="${fotos[3] || ''}" placeholder="Foto 4" class="bg-gray-900 p-1.5 rounded text-white w-full border border-gray-700">
@@ -1066,7 +806,7 @@
           ];
         });
 
-        localStorage.setItem('dt_semanas_v7', JSON.stringify(semanasData));
+        localStorage.setItem('dt_semanas_v8', JSON.stringify(semanasData));
         renderizarRegioes();
         alert(`Regiões e fotos salvas com sucesso para a Semana ${sem}!`);
       }
@@ -1076,11 +816,11 @@
       const container = document.getElementById('formAdminPrecos');
       if (!container) return;
       container.innerHTML = precosData.map((p, index) => `
-        <div class="bg-gray-800 p-3 rounded border border-gray-700 text-xs space-y-2">
-          <strong class="text-brandOrange block">${p.nome}</strong>
-          <div><label class="text-gray-400">Regional (R$):</label> <input type="number" step="0.01" id="adm_p_reg_${index}" value="${p.regional}" class="bg-gray-900 p-1.5 rounded text-white w-full border border-gray-700"></div>
-          <div><label class="text-gray-400">Semanal (R$):</label> <input type="number" step="0.01" id="adm_p_sem_${index}" value="${p.semanal}" class="bg-gray-900 p-1.5 rounded text-white w-full border border-gray-700"></div>
-          <div><label class="text-gray-400">Mensal (R$):</label> <input type="number" step="0.01" id="adm_p_men_${index}" value="${p.mensal}" class="bg-gray-900 p-1.5 rounded text-white w-full border border-gray-700"></div>
+        <div class="bg-brandCard p-4 rounded-xl border border-gray-800 text-xs space-y-2">
+          <strong class="text-brandOrange block text-sm">${p.nome}</strong>
+          <div><label class="text-gray-400">Regional (R$):</label> <input type="number" step="0.01" id="adm_p_reg_${index}" value="${p.regional}" class="bg-gray-900 p-2 rounded text-white w-full border border-gray-700"></div>
+          <div><label class="text-gray-400">Semanal (R$):</label> <input type="number" step="0.01" id="adm_p_sem_${index}" value="${p.semanal}" class="bg-gray-900 p-2 rounded text-white w-full border border-gray-700"></div>
+          <div><label class="text-gray-400">Mensal (R$):</label> <input type="number" step="0.01" id="adm_p_men_${index}" value="${p.mensal}" class="bg-gray-900 p-2 rounded text-white w-full border border-gray-700"></div>
         </div>
       `).join('');
     }
@@ -1092,22 +832,96 @@
         p.mensal = parseFloat(document.getElementById(`adm_p_men_${index}`).value) || 0;
       });
 
-      localStorage.setItem('dt_precos_v7', JSON.stringify(precosData));
+      localStorage.setItem('dt_precos_v8', JSON.stringify(precosData));
       renderizarPrecos();
       alert('Tabela de preços atualizada com sucesso!');
     }
 
-    // --- INICIALIZAÇÃO ---
+    // --- ÁREA DO CLIENTE (PÁGINA COMPLETA & HISTÓRICO) ---
+    function abrirLoginCliente() {
+      document.getElementById('cliLoginError').classList.add('hidden');
+      document.getElementById('modalLoginCliente').classList.remove('hidden');
+    }
+    function fecharLoginCliente() { document.getElementById('modalLoginCliente').classList.add('hidden'); }
+
+    function autenticarCliente(e) {
+      e.preventDefault();
+      const user = document.getElementById('cliUser').value.trim();
+      const pass = document.getElementById('cliPass').value.trim();
+
+      const clienteEncontrado = pedidosData.find(p => p.userCliente && p.userCliente === user && p.passCliente === pass);
+
+      if (clienteEncontrado) {
+        clienteLogado = clienteEncontrado;
+        fecharLoginCliente();
+        renderizarPainelClientePagina();
+        navegarPara('cliente');
+      } else {
+        document.getElementById('cliLoginError').classList.remove('hidden');
+      }
+    }
+
+    function renderizarPainelClientePagina() {
+      if (!clienteLogado) return;
+      document.getElementById('cliPainelNome').innerText = `Painel do Parceiro`;
+      document.getElementById('cliPainelEmpresa').innerText = clienteLogado.empresa;
+
+      // Áreas Ativas Contratadas
+      const areaContratada = document.getElementById('cliAreaContratadas');
+      areaContratada.innerHTML = `
+        <div class="bg-brandCard p-6 rounded-2xl border border-gray-800 shadow-xl flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="bg-green-500/20 text-green-400 border border-green-500/30 text-[10px] px-2.5 py-1 rounded font-bold uppercase">Campanha em Andamento</span>
+              <span class="text-xs text-gray-400">Semana ${clienteLogado.semana}</span>
+            </div>
+            <h4 class="text-xl font-bold text-white mb-2">${clienteLogado.regiao}</h4>
+            <div class="text-xs text-gray-300 space-y-1 bg-gray-900/60 p-3 rounded-xl border border-gray-800 mb-4">
+              <p><strong>Plano Contratado:</strong> ${clienteLogado.plano}</p>
+              <p><strong>Segmento Garantido:</strong> ${clienteLogado.ramo}</p>
+            </div>
+          </div>
+          <div class="text-xs text-brandOrange font-semibold flex items-center">
+            <i class="fa-solid fa-satellite-dish mr-1 animate-pulse"></i> Auditoria GPS em processamento no setor
+          </div>
+        </div>
+      `;
+
+      // Histórico de Campanhas e Download de PDF do Google Drive
+      const areaHistorico = document.getElementById('cliAreaHistorico');
+      if (clienteLogado.pdfUrl && clienteLogado.pdfUrl.trim() !== '') {
+        const pdfLink = converterLinkDrive(clienteLogado.pdfUrl);
+        areaHistorico.innerHTML = `
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <h5 class="text-lg font-bold text-white mb-1"><i class="fa-solid fa-file-pdf text-red-500 mr-2"></i> Relatório Completo de Distribuição</h5>
+              <p class="text-xs text-gray-400">Acesse o PDF com mapa de calor por GPS e fotos auditadas da sua campanha na região <strong>${clienteLogado.regiao}</strong>.</p>
+            </div>
+            <a href="${pdfLink}" target="_blank" class="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-xl text-xs shadow transition whitespace-nowrap flex items-center justify-center">
+              <i class="fa-solid fa-file-arrow-down mr-2 text-sm"></i> Visualizar / Baixar Relatório PDF
+            </a>
+          </div>
+        `;
+      } else {
+        areaHistorico.innerHTML = `
+          <div class="text-center py-6 text-xs text-gray-400">
+            <i class="fa-solid fa-clock text-2xl text-brandOrange mb-2 block"></i>
+            Seu relatório em PDF ainda está sendo gerado pela diretoria. Assim que a rota for finalizada, o documento ficará disponível aqui.
+          </div>
+        `;
+      }
+    }
+
+    function sairPainelCliente() {
+      clienteLogado = null;
+      navegarPara('home');
+    }
+
+    // --- INICIALIZAÇÃO DA APLICAÇÃO ---
     document.addEventListener("DOMContentLoaded", function() {
       renderizarPrecos();
       renderizarBotoesSemanas();
       renderizarRegioes();
-
-      const btnCli = document.getElementById("btnHeaderCliente");
-      if (btnCli) btnCli.addEventListener("click", abrirLoginCliente);
-
-      const btnDir = document.getElementById("btnHeaderDiretoria");
-      if (btnDir) btnDir.addEventListener("click", abrirLoginAdmin);
     });
   </script>
 </body>
