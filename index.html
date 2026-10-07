@@ -52,6 +52,7 @@
       <nav class="hidden md:flex space-x-6 font-semibold text-sm">
         <button onclick="navegarPara('home')" class="hover:text-brandOrange transition">Início</button>
         <a href="#sobre" class="hover:text-brandOrange transition">Quem Somos</a>
+        <a href="#diferenciais" class="hover:text-brandOrange transition">Compromisso</a>
         <a href="#precos" class="hover:text-brandOrange transition">Planos</a>
         <a href="#regioes" class="hover:text-brandOrange transition">Regiões</a>
         <a href="https://www.instagram.com/droptrackinteligente/" target="_blank" class="text-pink-500 hover:text-pink-400 transition flex items-center">
@@ -105,6 +106,71 @@
       </a>
     </section>
 
+    <!-- QUEM SOMOS & COMO ATUAMOS -->
+    <section id="sobre" class="max-w-7xl mx-auto px-4 py-12 border-t border-gray-800">
+      <div class="text-center mb-8">
+        <span class="text-brandOrange font-bold text-sm uppercase tracking-wider">Metodologia Exclusiva</span>
+        <h3 class="text-3xl font-bold text-white">Quem Somos & Como Atuamos</h3>
+        <p class="text-gray-400 text-xs mt-1">Clique em qualquer um dos pilares abaixo para ver o funcionamento detalhado</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div onclick="abrirModalSobre(1)" class="bg-brandCard p-6 rounded-2xl border border-gray-800 hover:border-brandOrange/60 cursor-pointer transition transform hover:-translate-y-1 shadow-lg group">
+          <div class="flex justify-between items-center mb-3">
+            <div class="text-brandOrange text-3xl group-hover:scale-110 transition"><i class="fa-solid fa-route"></i></div>
+            <span class="text-[10px] text-brandOrange bg-brandOrange/10 border border-brandOrange/30 px-2 py-0.5 rounded font-bold">Ver detalhes</span>
+          </div>
+          <h4 class="text-xl font-bold text-white mb-2">Mapeamento Geoestratégico</h4>
+          <p class="text-gray-400 text-sm">Roteamento setor por setor em Limeira com dados geográficos de alta densidade e público-alvo com real potencial de compra.</p>
+        </div>
+
+        <div onclick="abrirModalSobre(2)" class="bg-brandCard p-6 rounded-2xl border border-gray-800 hover:border-brandOrange/60 cursor-pointer transition transform hover:-translate-y-1 shadow-lg group">
+          <div class="flex justify-between items-center mb-3">
+            <div class="text-brandOrange text-3xl group-hover:scale-110 transition"><i class="fa-solid fa-map-location-dot"></i></div>
+            <span class="text-[10px] text-brandOrange bg-brandOrange/10 border border-brandOrange/30 px-2 py-0.5 rounded font-bold">Ver detalhes</span>
+          </div>
+          <h4 class="text-xl font-bold text-white mb-2">Rastreamento via Satélite</h4>
+          <p class="text-gray-400 text-sm">100% das rotas auditadas com rastreador GPS em tempo real, mapas de calor, cálculo de velocidade e fotos das entregas.</p>
+        </div>
+
+        <div onclick="abrirModalSobre(3)" class="bg-brandCard p-6 rounded-2xl border border-gray-800 hover:border-brandOrange/60 cursor-pointer transition transform hover:-translate-y-1 shadow-lg group">
+          <div class="flex justify-between items-center mb-3">
+            <div class="text-brandOrange text-3xl group-hover:scale-110 transition"><i class="fa-solid fa-shield-halved"></i></div>
+            <span class="text-[10px] text-brandOrange bg-brandOrange/10 border border-brandOrange/30 px-2 py-0.5 rounded font-bold">Ver detalhes</span>
+          </div>
+          <h4 class="text-xl font-bold text-white mb-2">Proteção de Nicho</h4>
+          <p class="text-gray-400 text-sm">Garantimos zero concorrência direta no mesmo lote (ex: apenas 1 pizzaria, 1 loja de calçados ou 1 farmácia por área).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPROMISSO OPERACIONAL & CUIDADOS -->
+    <section id="diferenciais" class="max-w-7xl mx-auto px-4 py-12 border-t border-gray-800">
+      <div class="text-center mb-10">
+        <span class="text-brandOrange font-bold text-sm uppercase tracking-wider">Qualidade Operacional</span>
+        <h3 class="text-3xl font-bold text-white">Compromisso e Cuidado em Cada Detalhe</h3>
+        <p class="text-gray-400 text-sm">Respeitamos seu investimento e a imagem da sua marca</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-brandCard p-6 rounded-2xl border border-gray-800">
+          <div class="text-brandOrange text-3xl mb-3"><i class="fa-solid fa-wind"></i></div>
+          <h4 class="text-lg font-bold text-white mb-2">1. Fixação Antivento</h4>
+          <p class="text-gray-400 text-xs leading-relaxed">Em casas sem caixa de correio, utilizamos elásticos próprios para fixar a peça no portão com organização, evitando que o vento espalhe o panfleto.</p>
+        </div>
+        <div class="bg-brandCard p-6 rounded-2xl border border-gray-800">
+          <div class="text-brandOrange text-3xl mb-3"><i class="fa-solid fa-cloud-showers-heavy"></i></div>
+          <h4 class="text-lg font-bold text-white mb-2">2. Política Anti-Chuva</h4>
+          <p class="text-gray-400 text-xs leading-relaxed">Monitoramos o tempo em tempo real. Em caso de chuva, a distribuição é imediatamente pausada para não danificar nem molhar seu material gráfico.</p>
+        </div>
+        <div class="bg-brandCard p-6 rounded-2xl border border-gray-800">
+          <div class="text-brandOrange text-3xl mb-3"><i class="fa-solid fa-calendar-check"></i></div>
+          <h4 class="text-lg font-bold text-white mb-2">3. Reprogramação Sem Custo</h4>
+          <p class="text-gray-400 text-xs leading-relaxed">Pausas climáticas garantem a reprogramação automática e reposição das datas de entrega sem absolutamente nenhum custo adicional.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- PREÇOS E PLANOS -->
     <section id="precos" class="max-w-7xl mx-auto px-4 py-12 border-t border-gray-800">
       <div class="text-center mb-10">
@@ -114,13 +180,18 @@
       <div class="grid md:grid-cols-3 gap-6" id="lista-precos"></div>
     </section>
 
-    <!-- SELEÇÃO DE REGIÕES -->
+    <!-- SELEÇÃO DE REGIÕES E BANNER GERAL DA SEMANA -->
     <section id="regioes" class="max-w-7xl mx-auto px-4 py-12 border-t border-gray-800">
-      <div class="text-center mb-10">
+      <div class="text-center mb-8">
         <span class="text-brandOrange font-bold text-sm uppercase tracking-wider">Mapeamento Geoestratégico</span>
         <h3 class="text-3xl font-bold text-white">Escolha sua Região e Garanta sua Vaga</h3>
       </div>
+
       <div class="flex overflow-x-auto space-x-3 pb-4 mb-8 scrollbar-thin" id="botoes-semanas"></div>
+
+      <!-- BANNER/FOTO DO MAPA GERAL DA SEMANA -->
+      <div id="containerMapaGeralSemana" class="mb-10"></div>
+
       <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6" id="cards-regioes"></div>
     </section>
   </main>
@@ -150,12 +221,22 @@
       <div id="listaPedidosAgrupadosAdmin" class="space-y-6"></div>
     </div>
 
-    <!-- ABA 2: EDITAR REGIÕES E MAPAS (COM BOTÃO DE DISPONIBILIDADE) -->
+    <!-- ABA 2: EDITAR REGIÕES E MAPA GERAL DA SEMANA -->
     <div id="secAdminRegioes" class="hidden">
-      <div class="mb-6 bg-brandCard p-4 rounded-xl border border-gray-800">
-        <label class="block text-xs font-semibold text-gray-400 mb-2">Selecione a Semana para Editar:</label>
-        <select id="adminSemanaSelect" onchange="carregarFormAdminSemana()" class="bg-gray-900 border border-gray-700 rounded p-2 text-white w-full text-xs outline-none focus:border-brandOrange"></select>
+      <div class="mb-6 bg-brandCard p-4 rounded-xl border border-gray-800 space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-gray-400 mb-2">Selecione a Semana para Editar:</label>
+          <select id="adminSemanaSelect" onchange="carregarFormAdminSemana()" class="bg-gray-900 border border-gray-700 rounded p-2 text-white w-full text-xs outline-none focus:border-brandOrange"></select>
+        </div>
+
+        <!-- CAMPO DA FOTO DO MAPA GERAL DA SEMANA -->
+        <div class="border-t border-gray-800 pt-3">
+          <label class="block text-xs font-bold text-brandOrange mb-1"><i class="fa-solid fa-map-location-dot mr-1"></i> URL da Foto do Mapa Geral / Banner da Semana (Google Drive / Web):</label>
+          <input type="text" id="adminMapaGeralSemanaInput" placeholder="https://drive.google.com/file/d/.../view" class="bg-gray-900 border border-gray-700 rounded p-2 text-white w-full text-xs outline-none focus:border-brandOrange">
+          <p class="text-[10px] text-gray-400 mt-1">Essa foto aparecerá no topo do site como o mapa panorâmico com todas as regiões atendidas na semana.</p>
+        </div>
       </div>
+
       <div id="adminRegioesContainer" class="space-y-4"></div>
       <div class="mt-6 flex space-x-3">
         <button onclick="adicionarRegiaoAdmin()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-xs font-bold shadow">+ Adicionar Nova Região</button>
@@ -206,6 +287,18 @@
       <div id="cliAreaHistorico" class="grid md:grid-cols-2 gap-6"></div>
     </div>
   </section>
+
+  <!-- MODAL QUEM SOMOS -->
+  <div id="modalSobre" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
+    <div class="bg-brandCard border border-brandOrange/30 p-6 rounded-2xl max-w-xl w-full">
+      <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-3">
+        <h4 class="text-2xl font-bold text-white" id="modalSobreTitulo">Título</h4>
+        <button onclick="fecharModalSobre()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+      </div>
+      <div id="modalSobreConteudo" class="text-gray-300 text-sm space-y-3 leading-relaxed mb-6"></div>
+      <button onclick="fecharModalSobre()" class="w-full bg-brandOrange hover:bg-brandOrangeHover text-white font-bold py-2.5 rounded-xl transition">Entendi</button>
+    </div>
+  </div>
 
   <!-- MODAL DETALHES CARD REGIÃO -->
   <div id="modalDetalhesRegiao" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
@@ -392,6 +485,37 @@
       return url;
     }
 
+    // --- MODAL QUEM SOMOS ---
+    function abrirModalSobre(pilar) {
+      const titulo = document.getElementById('modalSobreTitulo');
+      const conteudo = document.getElementById('modalSobreConteudo');
+
+      if (pilar === 1) {
+        titulo.innerText = "Mapeamento Geoestratégico";
+        conteudo.innerHTML = `
+          <p>Nossas rotas em Limeira são planejadas com inteligência geoestratégica, separando a cidade em micro-regiões residenciais de 1.000 a 1.300 casas.</p>
+          <p>Garantimos entrega direta em bairros de alta densidade para maximizar o retorno das campanhas.</p>
+        `;
+      } else if (pilar === 2) {
+        titulo.innerText = "Rastreamento via Satélite (GPS)";
+        conteudo.innerHTML = `
+          <p>Utilizamos rastreadores de alta precisão que geram mapas de calor de percurso e velocidade média, comprovando a entrega na caixa de correio.</p>
+          <p>Fotos e registros da rota são compartilhados nos Stories do Instagram em tempo real.</p>
+        `;
+      } else if (pilar === 3) {
+        titulo.innerText = "Proteção de Nicho Comercial";
+        conteudo.innerHTML = `
+          <p>Garantimos zero concorrência direta no mesmo panfleto compartilhado (ex: apenas 1 pizzaria ou 1 loja de calçados por área).</p>
+          <p>No Plano Exclusivo Premium, 100% da área é dedicada inteiramente à sua empresa.</p>
+        `;
+      }
+      document.getElementById('modalSobre').classList.remove('hidden');
+    }
+
+    function fecharModalSobre() {
+      document.getElementById('modalSobre').classList.add('hidden');
+    }
+
     // --- BANCO DE DADOS LOCALSTORAGE DE RETENÇÃO ---
     const defaultPrecos = [
       { id: 'p1', nome: 'Plano Compartilhado', regional: 79.90, semanal: 349.50, mensal: 1199.80, desc: 'Até 4 parceiros por área (1 por segmento).' },
@@ -413,13 +537,14 @@
       return {
         semana: semNum,
         data: semNum === 1 ? '19/10/2026' : `Semana ${semNum}`,
+        mapaGeralUrl: '',
         regioes: regioes
       };
     });
 
-    let precosData = JSON.parse(localStorage.getItem('dt_precos_v10')) || defaultPrecos;
-    let semanasData = JSON.parse(localStorage.getItem('dt_semanas_v10')) || defaultSemanas;
-    let pedidosData = JSON.parse(localStorage.getItem('dt_pedidos_v10')) || [];
+    let precosData = JSON.parse(localStorage.getItem('dt_precos_v12')) || defaultPrecos;
+    let semanasData = JSON.parse(localStorage.getItem('dt_semanas_v12')) || defaultSemanas;
+    let pedidosData = JSON.parse(localStorage.getItem('dt_pedidos_v12')) || [];
     let semanaAtual = 1;
     let clienteLogado = null;
 
@@ -471,8 +596,31 @@
 
     function renderizarRegioes() {
       const container = document.getElementById('cards-regioes');
+      const containerMapaGeral = document.getElementById('containerMapaGeralSemana');
       if (!container) return;
+
       const semanaObj = semanasData.find(s => s.semana === semanaAtual);
+
+      // Renderiza Banner do Mapa Geral da Semana se existir
+      if (containerMapaGeral) {
+        if (semanaObj && semanaObj.mapaGeralUrl && semanaObj.mapaGeralUrl.trim() !== '') {
+          const imgGeral = converterLinkDrive(semanaObj.mapaGeralUrl);
+          containerMapaGeral.innerHTML = `
+            <div class="bg-brandCard rounded-2xl border border-brandOrange/40 overflow-hidden shadow-2xl p-4 cursor-pointer group" onclick="abrirZoomImagemGenérica('${imgGeral}')">
+              <div class="flex justify-between items-center mb-2 px-1">
+                <span class="text-xs font-bold text-brandOrange tracking-widest uppercase"><i class="fa-solid fa-map-marked-alt mr-1"></i> Mapeamento Panorâmico Oficial (Semana ${semanaObj.semana})</span>
+                <span class="text-[10px] text-gray-400 group-hover:text-white transition"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Clique para Ampliar</span>
+              </div>
+              <div class="h-64 md:h-80 w-full bg-gray-950 rounded-xl overflow-hidden flex items-center justify-center p-2">
+                <img src="${imgGeral}" class="max-h-full max-w-full object-contain group-hover:scale-[1.01] transition duration-300">
+              </div>
+            </div>
+          `;
+        } else {
+          containerMapaGeral.innerHTML = '';
+        }
+      }
+
       const regioesVisiveis = semanaObj ? semanaObj.regioes.filter(r => r.visivel) : [];
 
       if (!semanaObj || regioesVisiveis.length === 0) {
@@ -532,6 +680,12 @@
       semanaAtual = s;
       renderizarBotoesSemanas();
       renderizarRegioes();
+    }
+
+    function abrirZoomImagemGenérica(url) {
+      if (!url) return;
+      document.getElementById('imgZoomMapa').src = url;
+      document.getElementById('modalZoomMapa').classList.remove('hidden');
     }
 
     // --- MODAL DETALHES DAS FOTOS ---
@@ -623,7 +777,7 @@
       };
 
       pedidosData.push(novoPedido);
-      localStorage.setItem('dt_pedidos_v10', JSON.stringify(pedidosData));
+      localStorage.setItem('dt_pedidos_v12', JSON.stringify(pedidosData));
 
       fecharModalCliente();
       alert(`Solicitação enviada com sucesso! A diretoria analisará e liberará seu login.`);
@@ -750,7 +904,7 @@
         pedidosData[idx].passCliente = document.getElementById(`adm_s_${idx}`).value.trim();
         pedidosData[idx].pdfUrl = document.getElementById(`adm_pdf_${idx}`).value.trim();
 
-        localStorage.setItem('dt_pedidos_v10', JSON.stringify(pedidosData));
+        localStorage.setItem('dt_pedidos_v12', JSON.stringify(pedidosData));
         alert(`Dados do cliente ${pedidosData[idx].empresa} atualizados com sucesso!`);
         renderizarPedidosAgrupadosAdmin();
       }
@@ -759,7 +913,7 @@
     function finalizarCampanhaAdmin(idx) {
       if (pedidosData[idx]) {
         pedidosData[idx].status = 'Finalizada';
-        localStorage.setItem('dt_pedidos_v10', JSON.stringify(pedidosData));
+        localStorage.setItem('dt_pedidos_v12', JSON.stringify(pedidosData));
         alert(`Campanha da empresa ${pedidosData[idx].empresa} foi FINALIZADA e movida para o histórico!`);
         renderizarPedidosAgrupadosAdmin();
       }
@@ -771,13 +925,18 @@
       select.innerHTML = semanasData.map(s => `<option value="${s.semana}">Semana ${s.semana} (${s.data})</option>`).join('');
     }
 
-    // FORMULARIO DA DIRETORIA COM TOGGLE DE DISPONIBILIDADE DO MAPA
     function carregarFormAdminSemana() {
       const select = document.getElementById('adminSemanaSelect');
       if (!select) return;
       const sem = parseInt(select.value) || 1;
       const semObj = semanasData.find(s => s.semana === sem);
       const container = document.getElementById('adminRegioesContainer');
+      const inputGeral = document.getElementById('adminMapaGeralSemanaInput');
+
+      if (inputGeral && semObj) {
+        inputGeral.value = semObj.mapaGeralUrl || '';
+      }
+
       if (!container) return;
 
       if (!semObj || semObj.regioes.length === 0) {
@@ -797,7 +956,6 @@
                   <input type="checkbox" id="adm_vis_${index}" ${r.visivel ? 'checked' : ''} class="mr-1">
                   Visível no Site
                 </label>
-                <!-- BOTAO/TOGGLE INDISPONIVEL -->
                 <label class="flex items-center font-bold ${isDisp ? 'text-green-400' : 'text-red-400'}">
                   <input type="checkbox" id="adm_disp_${index}" ${isDisp ? 'checked' : ''} class="mr-1">
                   ${isDisp ? 'MAPA DISPONÍVEL' : 'MAPA INDISPONÍVEL / ESGOTADO'}
@@ -871,6 +1029,11 @@
       const semObj = semanasData.find(s => s.semana === sem);
 
       if (semObj) {
+        const inputGeral = document.getElementById('adminMapaGeralSemanaInput');
+        if (inputGeral) {
+          semObj.mapaGeralUrl = inputGeral.value.trim();
+        }
+
         semObj.regioes.forEach((r, index) => {
           r.nome = document.getElementById(`adm_nome_${index}`).value;
           r.residencias = parseInt(document.getElementById(`adm_res_${index}`).value) || 0;
@@ -889,9 +1052,9 @@
           ];
         });
 
-        localStorage.setItem('dt_semanas_v10', JSON.stringify(semanasData));
+        localStorage.setItem('dt_semanas_v12', JSON.stringify(semanasData));
         renderizarRegioes();
-        alert(`Regiões e disponibilidade salvas com sucesso para a Semana ${sem}!`);
+        alert(`Regiões, disponibilidade e foto geral salvas com sucesso para a Semana ${sem}!`);
       }
     }
 
@@ -915,7 +1078,7 @@
         p.mensal = parseFloat(document.getElementById(`adm_p_men_${index}`).value) || 0;
       });
 
-      localStorage.setItem('dt_precos_v10', JSON.stringify(precosData));
+      localStorage.setItem('dt_precos_v12', JSON.stringify(precosData));
       renderizarPrecos();
       alert('Tabela de preços atualizada com sucesso!');
     }
@@ -1037,7 +1200,7 @@
     function avaliarCampanhaCliente(idx, nota) {
       if (pedidosData[idx]) {
         pedidosData[idx].estrelas = nota;
-        localStorage.setItem('dt_pedidos_v10', JSON.stringify(pedidosData));
+        localStorage.setItem('dt_pedidos_v12', JSON.stringify(pedidosData));
         renderizarPainelClientePagina();
       }
     }
@@ -1046,7 +1209,7 @@
       if (pedidosData[idx]) {
         const txt = document.getElementById(`fb_txt_${idx}`).value.trim();
         pedidosData[idx].feedback = txt;
-        localStorage.setItem('dt_pedidos_v10', JSON.stringify(pedidosData));
+        localStorage.setItem('dt_pedidos_v12', JSON.stringify(pedidosData));
         alert('Obrigado pelo seu feedback!');
         renderizarPainelClientePagina();
       }
@@ -1094,7 +1257,7 @@
       };
 
       pedidosData.push(novoPedido);
-      localStorage.setItem('dt_pedidos_v10', JSON.stringify(pedidosData));
+      localStorage.setItem('dt_pedidos_v12', JSON.stringify(pedidosData));
 
       fecharModalContratarNovoMapa();
       alert('Sua nova solicitação de mapa foi enviada para a diretoria!');
