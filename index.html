@@ -189,7 +189,7 @@
 
       <div class="flex overflow-x-auto space-x-3 pb-4 mb-8 scrollbar-thin" id="botoes-semanas"></div>
 
-      <!-- BANNER/FOTO DO MAPA GERAL DA SEMANA -->
+      <!-- BANNER/FOTO DO MAPA GERAL DA SEMANA (SEM BORDAS ESCURAS) -->
       <div id="containerMapaGeralSemana" class="mb-10"></div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6" id="cards-regioes"></div>
@@ -309,7 +309,7 @@
       </div>
 
       <div class="mb-4">
-        <div id="galeriaGrande" class="relative h-80 w-full rounded-xl overflow-hidden border border-brandOrange/30 bg-gray-950 flex items-center justify-center p-2 cursor-zoom-in" onclick="abrirZoomMapa()"></div>
+        <div id="galeriaGrande" class="relative min-h-[250px] w-full rounded-xl overflow-hidden border border-brandOrange/30 bg-gray-950 flex items-center justify-center p-1 cursor-zoom-in" onclick="abrirZoomMapa()"></div>
         <div class="flex justify-between items-center text-[10px] text-gray-400 px-1 mt-1">
           <span><i class="fa-solid fa-magnifying-glass-plus text-brandOrange mr-1"></i> Clique para Tela Cheia</span>
           <span id="contadorFotosTexto">1/1</span>
@@ -516,7 +516,7 @@
       document.getElementById('modalSobre').classList.add('hidden');
     }
 
-    // --- BANCO DE DADOS LOCALSTORAGE DE RETENÇÃO ---
+    // --- DADOS PADRÃO DE RETENÇÃO ---
     const defaultPrecos = [
       { id: 'p1', nome: 'Plano Compartilhado', regional: 79.90, semanal: 349.50, mensal: 1199.80, desc: 'Até 4 parceiros por área (1 por segmento).' },
       { id: 'p2', nome: 'Promoção Inauguração', regional: 59.90, semanal: 279.50, mensal: 998.00, desc: 'Condição especial de lançamento!' },
@@ -542,9 +542,26 @@
       };
     });
 
-    let precosData = JSON.parse(localStorage.getItem('dt_precos_v12')) || defaultPrecos;
-    let semanasData = JSON.parse(localStorage.getItem('dt_semanas_v12')) || defaultSemanas;
-    let pedidosData = JSON.parse(localStorage.getItem('dt_pedidos_v12')) || [];
+    // SISTEMA DE BUSCA DE DADOS ANTERIORES PARA NÃO PERDER NADA QUE JÁ FOI DIGITADO
+    function carregarSemPerder(chaveNova, chavesAntigas, valorPadrao) {
+      if (localStorage.getItem(chaveNova)) {
+        return JSON.parse(localStorage.getItem(chaveNova));
+      }
+      for (let antiga of chavesAntigas) {
+        if (localStorage.getItem(antiga)) {
+          const dadosAntigos = JSON.parse(localStorage.getItem(antiga));
+          localStorage.setItem(chaveNova, JSON.stringify(dadosAntigos));
+          return dadosAntigos;
+        }
+      }
+      return valorPadrao;
+    }
+
+    const CHAVE_VERSAO = 'dt_v14';
+    let precosData = carregarSemPerder(`dt_precos_${CHAVE_VERSAO}`, ['dt_precos_v13', 'dt_precos_v12', 'dt_precos_v11', 'dt_precos_v10'], defaultPrecos);
+    let semanasData = carregarSemPerder(`dt_semanas_${CHAVE_VERSAO}`, ['dt_semanas_v13', 'dt_semanas_v12', 'dt_semanas_v11', 'dt_semanas_v10'], defaultSemanas);
+    let pedidosData = carregarSemPerder(`dt_pedidos_${CHAVE_VERSAO}`, ['dt_pedidos_v13', 'dt_pedidos_v12', 'dt_pedidos_v11', 'dt_pedidos_v10'], []);
+
     let semanaAtual = 1;
     let clienteLogado = null;
 
@@ -601,18 +618,18 @@
 
       const semanaObj = semanasData.find(s => s.semana === semanaAtual);
 
-      // Renderiza Banner do Mapa Geral da Semana se existir
+      // Renderiza Banner do Mapa Geral da Semana mantendo a proporção exata da imagem sem cortar
       if (containerMapaGeral) {
         if (semanaObj && semanaObj.mapaGeralUrl && semanaObj.mapaGeralUrl.trim() !== '') {
           const imgGeral = converterLinkDrive(semanaObj.mapaGeralUrl);
           containerMapaGeral.innerHTML = `
             <div class="bg-brandCard rounded-2xl border border-brandOrange/40 overflow-hidden shadow-2xl p-4 cursor-pointer group" onclick="abrirZoomImagemGenérica('${imgGeral}')">
-              <div class="flex justify-between items-center mb-2 px-1">
+              <div class="flex justify-between items-center mb-3 px-1">
                 <span class="text-xs font-bold text-brandOrange tracking-widest uppercase"><i class="fa-solid fa-map-marked-alt mr-1"></i> Mapeamento Panorâmico Oficial (Semana ${semanaObj.semana})</span>
                 <span class="text-[10px] text-gray-400 group-hover:text-white transition"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Clique para Ampliar</span>
               </div>
-              <div class="h-64 md:h-80 w-full bg-gray-950 rounded-xl overflow-hidden flex items-center justify-center p-2">
-                <img src="${imgGeral}" class="max-h-full max-w-full object-contain group-hover:scale-[1.01] transition duration-300">
+              <div class="w-full flex items-center justify-center rounded-xl overflow-hidden">
+                <img src="${imgGeral}" class="w-full h-auto max-h-[600px] object-contain rounded-xl group-hover:scale-[1.005] transition duration-300">
               </div>
             </div>
           `;
@@ -637,8 +654,8 @@
         const primeiraFoto = fotosValidas.length > 0 ? fotosValidas[0] : '';
 
         const blocoImagem = primeiraFoto !== ''
-          ? `<div class="relative h-48 w-full border-b border-brandOrange/30 bg-gray-950 flex items-center justify-center p-2">
-               <img src="${primeiraFoto}" alt="Mapa ${r.nome}" class="max-h-full max-w-full object-contain">
+          ? `<div class="relative w-full border-b border-brandOrange/30 bg-gray-950 flex items-center justify-center p-2">
+               <img src="${primeiraFoto}" alt="Mapa ${r.nome}" class="w-full h-auto max-h-64 object-contain">
                <div class="absolute top-2 right-2 bg-brandDark/90 backdrop-blur px-2.5 py-1 rounded text-[10px] font-bold text-brandOrange border border-brandOrange/30 shadow">
                  <i class="fa-solid fa-images mr-1"></i> ${fotosValidas.length} Foto(s)
                </div>
@@ -705,7 +722,7 @@
       const contadorTxt = document.getElementById('contadorFotosTexto');
 
       if (fotosValidas.length > 0) {
-        gGrande.innerHTML = `<img id="imgPrincipalGaleria" src="${fotosValidas[0]}" class="max-h-full max-w-full object-contain">`;
+        gGrande.innerHTML = `<img id="imgPrincipalGaleria" src="${fotosValidas[0]}" class="w-full h-auto max-h-[450px] object-contain rounded-lg">`;
         if (contadorTxt) contadorTxt.innerText = `1 / ${fotosValidas.length}`;
 
         gMini.innerHTML = fotosValidas.map((f, idx) => `
@@ -714,7 +731,7 @@
           </button>
         `).join('');
       } else {
-        gGrande.innerHTML = `<div class="text-xs text-gray-500">Setor Mapeado e Auditado em Limeira</div>`;
+        gGrande.innerHTML = `<div class="text-xs text-gray-500 p-8">Setor Mapeado e Auditado em Limeira</div>`;
         gMini.innerHTML = '';
         if (contadorTxt) contadorTxt.innerText = `0 / 0`;
       }
@@ -777,7 +794,7 @@
       };
 
       pedidosData.push(novoPedido);
-      localStorage.setItem('dt_pedidos_v12', JSON.stringify(pedidosData));
+      localStorage.setItem(`dt_pedidos_${CHAVE_VERSAO}`, JSON.stringify(pedidosData));
 
       fecharModalCliente();
       alert(`Solicitação enviada com sucesso! A diretoria analisará e liberará seu login.`);
@@ -904,7 +921,7 @@
         pedidosData[idx].passCliente = document.getElementById(`adm_s_${idx}`).value.trim();
         pedidosData[idx].pdfUrl = document.getElementById(`adm_pdf_${idx}`).value.trim();
 
-        localStorage.setItem('dt_pedidos_v12', JSON.stringify(pedidosData));
+        localStorage.setItem(`dt_pedidos_${CHAVE_VERSAO}`, JSON.stringify(pedidosData));
         alert(`Dados do cliente ${pedidosData[idx].empresa} atualizados com sucesso!`);
         renderizarPedidosAgrupadosAdmin();
       }
@@ -913,7 +930,7 @@
     function finalizarCampanhaAdmin(idx) {
       if (pedidosData[idx]) {
         pedidosData[idx].status = 'Finalizada';
-        localStorage.setItem('dt_pedidos_v12', JSON.stringify(pedidosData));
+        localStorage.setItem(`dt_pedidos_${CHAVE_VERSAO}`, JSON.stringify(pedidosData));
         alert(`Campanha da empresa ${pedidosData[idx].empresa} foi FINALIZADA e movida para o histórico!`);
         renderizarPedidosAgrupadosAdmin();
       }
@@ -1052,7 +1069,7 @@
           ];
         });
 
-        localStorage.setItem('dt_semanas_v12', JSON.stringify(semanasData));
+        localStorage.setItem(`dt_semanas_${CHAVE_VERSAO}`, JSON.stringify(semanasData));
         renderizarRegioes();
         alert(`Regiões, disponibilidade e foto geral salvas com sucesso para a Semana ${sem}!`);
       }
@@ -1078,7 +1095,7 @@
         p.mensal = parseFloat(document.getElementById(`adm_p_men_${index}`).value) || 0;
       });
 
-      localStorage.setItem('dt_precos_v12', JSON.stringify(precosData));
+      localStorage.setItem(`dt_precos_${CHAVE_VERSAO}`, JSON.stringify(precosData));
       renderizarPrecos();
       alert('Tabela de preços atualizada com sucesso!');
     }
@@ -1200,7 +1217,7 @@
     function avaliarCampanhaCliente(idx, nota) {
       if (pedidosData[idx]) {
         pedidosData[idx].estrelas = nota;
-        localStorage.setItem('dt_pedidos_v12', JSON.stringify(pedidosData));
+        localStorage.setItem(`dt_pedidos_${CHAVE_VERSAO}`, JSON.stringify(pedidosData));
         renderizarPainelClientePagina();
       }
     }
@@ -1209,7 +1226,7 @@
       if (pedidosData[idx]) {
         const txt = document.getElementById(`fb_txt_${idx}`).value.trim();
         pedidosData[idx].feedback = txt;
-        localStorage.setItem('dt_pedidos_v12', JSON.stringify(pedidosData));
+        localStorage.setItem(`dt_pedidos_${CHAVE_VERSAO}`, JSON.stringify(pedidosData));
         alert('Obrigado pelo seu feedback!');
         renderizarPainelClientePagina();
       }
@@ -1257,7 +1274,7 @@
       };
 
       pedidosData.push(novoPedido);
-      localStorage.setItem('dt_pedidos_v12', JSON.stringify(pedidosData));
+      localStorage.setItem(`dt_pedidos_${CHAVE_VERSAO}`, JSON.stringify(pedidosData));
 
       fecharModalContratarNovoMapa();
       alert('Sua nova solicitação de mapa foi enviada para a diretoria!');
